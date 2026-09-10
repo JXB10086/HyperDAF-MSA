@@ -1,0 +1,342 @@
+{
+  "variant": "dimension_matched",
+  "target": {
+    "audio": 5,
+    "vision": 20,
+    "text": 300,
+    "L": 50
+  },
+  "pca_evr": {
+    "audio": [
+      0.9861800557331903,
+      0.005563202074915034,
+      0.0030899892441055045,
+      0.0006108628572923591,
+      0.0004950814462918231
+    ],
+    "vision": [
+      0.4009492553412058,
+      0.2542085058850273,
+      0.10688089005948447,
+      0.08906184975857746,
+      0.0402364248687519,
+      0.029609989437793312,
+      0.01721894955764992,
+      0.011446687782316141,
+      0.01073454252575214,
+      0.007880611679756351,
+      0.006769937387528376,
+      0.005022917531957974,
+      0.004387540733785982,
+      0.0020594286333168823,
+      0.0019553152780082935,
+      0.001639701110958003,
+      0.0014714438734309734,
+      0.0012252041712799517,
+      0.0010193084705247177,
+      0.0009473354521533062
+    ]
+  },
+  "pca_fit": "train_valid_frames_only (no leakage)",
+  "inf_policy": "train_p01",
+  "config": {
+    "seed": 42,
+    "epochs": 30,
+    "lr": 0.001,
+    "batch_size": 32
+  },
+  "fixed": {
+    "baseline|A|None": {
+      "MAE": 0.6543028629038673,
+      "Corr": 0.5970657161390402
+    },
+    "baseline|A|T missing": {
+      "MAE": 0.8317358471670852,
+      "Corr": 0.10220907129453163
+    },
+    "baseline|A|A missing": {
+      "MAE": 0.6465344055603124,
+      "Corr": 0.6062311690374865
+    },
+    "baseline|A|V missing": {
+      "MAE": 0.6660032810808122,
+      "Corr": 0.5937333941642774
+    },
+    "baseline|A|T+A missing": {
+      "MAE": 0.8420775713075582,
+      "Corr": 0.017968509996045583
+    },
+    "baseline|A|T+V missing": {
+      "MAE": 0.8354784339082936,
+      "Corr": 0.07383269500768125
+    },
+    "baseline|A|A+V missing": {
+      "MAE": 0.6730701135619621,
+      "Corr": 0.5826311857710141
+    },
+    "baseline|B|None": {
+      "MAE": 0.654280598180273,
+      "Corr": 0.6008945205080986
+    },
+    "baseline|B|T missing": {
+      "MAE": 0.8110177329851841,
+      "Corr": 0.24601600030178275
+    },
+    "baseline|B|A missing": {
+      "MAE": 0.6416197186068013,
+      "Corr": 0.6110107910656101
+    },
+    "baseline|B|V missing": {
+      "MAE": 0.6546032566486757,
+      "Corr": 0.6056094949474817
+    },
+    "baseline|B|T+A missing": {
+      "MAE": 0.8069298022209204,
+      "Corr": 0.2188266232906862
+    },
+    "baseline|B|T+V missing": {
+      "MAE": 0.8207229944104342,
+      "Corr": 0.17530582314551701
+    },
+    "baseline|B|A+V missing": {
+      "MAE": 0.6520929564417242,
+      "Corr": 0.605122029576243
+    },
+    "mask_aware|A|None": {
+      "MAE": 0.6498218906715806,
+      "Corr": 0.5927870932650188
+    },
+    "mask_aware|A|T missing": {
+      "MAE": 0.8289194792941305,
+      "Corr": 0.1516365384137735
+    },
+    "mask_aware|A|A missing": {
+      "MAE": 0.6479185145399986,
+      "Corr": 0.597240300596353
+    },
+    "mask_aware|A|V missing": {
+      "MAE": 0.6682389336054572,
+      "Corr": 0.583430948208613
+    },
+    "mask_aware|A|T+A missing": {
+      "MAE": 0.8391493062288324,
+      "Corr": 0.07938425512621966
+    },
+    "mask_aware|A|T+V missing": {
+      "MAE": 0.8353286937237505,
+      "Corr": 0.10295362373407921
+    },
+    "mask_aware|A|A+V missing": {
+      "MAE": 0.6714283122382885,
+      "Corr": 0.5776370044997758
+    },
+    "mask_aware|B|None": {
+      "MAE": 0.6644039307982222,
+      "Corr": 0.5928906441285862
+    },
+    "mask_aware|B|T missing": {
+      "MAE": 0.8139590406864091,
+      "Corr": 0.2238117080352771
+    },
+    "mask_aware|B|A missing": {
+      "MAE": 0.65411181930116,
+      "Corr": 0.605247933701083
+    },
+    "mask_aware|B|V missing": {
+      "MAE": 0.6663374913792801,
+      "Corr": 0.5989189651151106
+    },
+    "mask_aware|B|T+A missing": {
+      "MAE": 0.8107151283381895,
+      "Corr": 0.2026660480324658
+    },
+    "mask_aware|B|T+V missing": {
+      "MAE": 0.8215864947574799,
+      "Corr": 0.16789066006039535
+    },
+    "mask_aware|B|A+V missing": {
+      "MAE": 0.658754986793839,
+      "Corr": 0.6081034606812773
+    },
+    "hyper|A|None": {
+      "MAE": 0.653127695631348,
+      "Corr": 0.5837271381324958
+    },
+    "hyper|A|T missing": {
+      "MAE": 0.8383044234926347,
+      "Corr": 0.04939003601259695
+    },
+    "hyper|A|A missing": {
+      "MAE": 0.6508217547086104,
+      "Corr": 0.5944643333813391
+    },
+    "hyper|A|V missing": {
+      "MAE": 0.6662134411634576,
+      "Corr": 0.5898299417079026
+    },
+    "hyper|A|T+A missing": {
+      "MAE": 0.8406677311266083,
+      "Corr": 0.02215067888577859
+    },
+    "hyper|A|T+V missing": {
+      "MAE": 0.8378522996554015,
+      "Corr": 0.02543130441917662
+    },
+    "hyper|A|A+V missing": {
+      "MAE": 0.673893400503762,
+      "Corr": 0.5796794294695259
+    },
+    "hyper|B|None": {
+      "MAE": 0.6458242961667175,
+      "Corr": 0.6132581976465382
+    },
+    "hyper|B|T missing": {
+      "MAE": 0.8076677276477469,
+      "Corr": 0.24405890385357304
+    },
+    "hyper|B|A missing": {
+      "MAE": 0.6476711847959434,
+      "Corr": 0.6108737723991182
+    },
+    "hyper|B|V missing": {
+      "MAE": 0.6514956136895758,
+      "Corr": 0.6112729570506978
+    },
+    "hyper|B|T+A missing": {
+      "MAE": 0.8059071661231778,
+      "Corr": 0.22824802786089465
+    },
+    "hyper|B|T+V missing": {
+      "MAE": 0.8207975659268334,
+      "Corr": 0.17659082248313637
+    },
+    "hyper|B|A+V missing": {
+      "MAE": 0.6552300812389971,
+      "Corr": 0.6062506285544494
+    }
+  },
+  "train_info": {
+    "baseline|A": {
+      "best_epoch": 20,
+      "best_valid_mae": 0.6274120532668984,
+      "n_params": 173569
+    },
+    "baseline|B": {
+      "best_epoch": 23,
+      "best_valid_mae": 0.6772754249004949,
+      "n_params": 173569
+    },
+    "mask_aware|A": {
+      "best_epoch": 13,
+      "best_valid_mae": 0.6242551749564123,
+      "n_params": 174337
+    },
+    "mask_aware|B": {
+      "best_epoch": 14,
+      "best_valid_mae": 0.6849221978510978,
+      "n_params": 174337
+    },
+    "hyper|A": {
+      "best_epoch": 18,
+      "best_valid_mae": 0.6299120835286304,
+      "n_params": 413441
+    },
+    "hyper|B": {
+      "best_epoch": 23,
+      "best_valid_mae": 0.6777547389352021,
+      "n_params": 413441
+    }
+  },
+  "tmiss_comparison": [
+    {
+      "Model": "M2 MaskAware",
+      "Protocol": "A",
+      "Metric": "MAE",
+      "Standard": 0.8052,
+      "DimMatch": 0.8289,
+      "Δ(DM-Std)": 0.0237
+    },
+    {
+      "Model": "M2 MaskAware",
+      "Protocol": "A",
+      "Metric": "Corr",
+      "Standard": 0.2334,
+      "DimMatch": 0.1516,
+      "Δ(DM-Std)": -0.0818
+    },
+    {
+      "Model": "M2 MaskAware",
+      "Protocol": "B",
+      "Metric": "MAE",
+      "Standard": 0.8055,
+      "DimMatch": 0.814,
+      "Δ(DM-Std)": 0.0084
+    },
+    {
+      "Model": "M2 MaskAware",
+      "Protocol": "B",
+      "Metric": "Corr",
+      "Standard": 0.2561,
+      "DimMatch": 0.2238,
+      "Δ(DM-Std)": -0.0323
+    },
+    {
+      "Model": "M3 H0 Hyper",
+      "Protocol": "A",
+      "Metric": "MAE",
+      "Standard": 0.8149,
+      "DimMatch": 0.8383,
+      "Δ(DM-Std)": 0.0234
+    },
+    {
+      "Model": "M3 H0 Hyper",
+      "Protocol": "A",
+      "Metric": "Corr",
+      "Standard": 0.2546,
+      "DimMatch": 0.0494,
+      "Δ(DM-Std)": -0.2053
+    },
+    {
+      "Model": "M3 H0 Hyper",
+      "Protocol": "B",
+      "Metric": "MAE",
+      "Standard": 0.8001,
+      "DimMatch": 0.8077,
+      "Δ(DM-Std)": 0.0075
+    },
+    {
+      "Model": "M3 H0 Hyper",
+      "Protocol": "B",
+      "Metric": "Corr",
+      "Standard": 0.247,
+      "DimMatch": 0.2441,
+      "Δ(DM-Std)": -0.0029
+    }
+  ],
+  "verdict": {
+    "A|MAE": {
+      "gap_standard": -0.009746838476932362,
+      "gap_dimmatch": -0.00938494419850422,
+      "hyper_better_standard": false,
+      "hyper_better_dimmatch": false
+    },
+    "A|Corr": {
+      "gap_standard": 0.021207872932214128,
+      "gap_dimmatch": -0.10224650240117655,
+      "hyper_better_standard": true,
+      "hyper_better_dimmatch": false
+    },
+    "B|MAE": {
+      "gap_standard": 0.0053933622079986865,
+      "gap_dimmatch": 0.006291313038662261,
+      "hyper_better_standard": true,
+      "hyper_better_dimmatch": true
+    },
+    "B|Corr": {
+      "gap_standard": -0.009102790124246918,
+      "gap_dimmatch": 0.020247195818295927,
+      "hyper_better_standard": false,
+      "hyper_better_dimmatch": true
+    }
+  }
+}

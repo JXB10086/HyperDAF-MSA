@@ -1,0 +1,5 @@
+Model,Protocol,None,T missing,A missing,V missing,T+A missing,T+V missing,A+V missing
+Baseline(A),A,1.0256,1.5103,1.0164,1.0714,1.4382,1.6538,1.0331
+Baseline(A),B,1.0873,1.3972,1.0999,1.0686,1.4785,1.3966,1.0818
+MaskAware(B),A,1.0308,1.4305,1.0376,1.1015,1.4049,1.5944,1.0566
+MaskAware(B),B,1.1427,1.3892,1.1245,1.1385,1.4493,1.388,1.1351

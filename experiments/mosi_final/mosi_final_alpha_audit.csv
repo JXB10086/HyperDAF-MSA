@@ -1,0 +1,8 @@
+﻿variant,cond,max_missing_α,mean_α_T,mean_α_A,mean_α_V
+FINAL,None,0.0,0.8302,0.0062,0.1636
+FINAL,T missing,0.0,0.0,0.0362,0.9638
+FINAL,A missing,0.0,0.8352,0.0,0.1648
+FINAL,V missing,0.0,0.9922,0.0078,0.0
+FINAL,T+A missing,0.0,0.0,0.0,1.0
+FINAL,T+V missing,0.0,0.0,1.0,0.0
+FINAL,A+V missing,0.0,1.0,0.0,0.0

@@ -1,0 +1,9 @@
+Model,Protocol,Metric,Standard,DimMatch,Δ(DM-Std)
+M2 MaskAware,A,MAE,0.8052,0.8289,0.0237
+M2 MaskAware,A,Corr,0.2334,0.1516,-0.0818
+M2 MaskAware,B,MAE,0.8055,0.814,0.0084
+M2 MaskAware,B,Corr,0.2561,0.2238,-0.0323
+M3 H0 Hyper,A,MAE,0.8149,0.8383,0.0234
+M3 H0 Hyper,A,Corr,0.2546,0.0494,-0.2053
+M3 H0 Hyper,B,MAE,0.8001,0.8077,0.0075
+M3 H0 Hyper,B,Corr,0.247,0.2441,-0.0029

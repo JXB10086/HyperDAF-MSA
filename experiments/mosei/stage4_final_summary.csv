@@ -1,0 +1,4 @@
+﻿model,best_ep,validMAE,probe_corr,eff_rank,z_std,drift_T,missMAE,missCorr
+"H0+B3        (rep+cons, 无融合)",23,0.68,0.5633,2.821,1.2032,0.7879,0.7326,0.4181
+"H0+F2        (rep+fusion, 无cons)",18,0.6796,0.4839,2.244,0.5927,0.8251,0.7314,0.4195
+H0+B3+F2     (rep+fusion+cons) = FINAL,29,0.6788,0.5392,2.065,1.0464,0.8209,0.7263,0.4244

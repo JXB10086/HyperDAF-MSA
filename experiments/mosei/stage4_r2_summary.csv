@@ -1,0 +1,4 @@
+﻿variant,best_ep,validMAE,probe_corr,eff_rank,z_std,drift_T,missMAE,missCorr
+F2 GlobalQuery,29,0.6788,0.5392,2.065,1.0464,0.8209,0.7263,0.4244
+F3_raw HyperGuided,29,0.6826,0.5898,2.536,4.5826,0.6916,0.74,0.4094
+F3_norm QNorm,18,0.6813,0.5764,1.541,3.3253,0.7112,0.7412,0.4149

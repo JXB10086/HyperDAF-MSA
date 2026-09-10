@@ -1,0 +1,4 @@
+λ_cons,drift_T,drift↓?,transfer_T,transfer↑?,eff_rank,rank未塌?,missMAE_PB,MAE≤H0+ε?,missMAE_PA,TmissCorr_PB,必须项通过,理想项(MAE↓&Corr↑)
+0.01,0.900→1.057,False,+0.139→+0.009,False,1.0,False,0.7349→0.7412,False,0.7838→0.8376,+0.2470→+0.2006,False,False
+0.05,0.900→0.773,True,+0.139→+0.199,True,1.0,False,0.7349→0.7377,True,0.7838→0.8376,+0.2470→+0.2402,True,False
+0.1,0.900→1294699.730,False,+0.139→-0.008,False,1.0,False,0.7349→0.8328,False,0.7838→0.8376,+0.2470→+0.0135,False,False

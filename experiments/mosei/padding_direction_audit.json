@@ -1,0 +1,287 @@
+{
+  "mosi": {
+    "train": {
+      "L": 50,
+      "N": 1284,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "left_padded": 1232,
+          "inner_block": 7,
+          "with_holes": 41,
+          "full": 4
+        },
+        "audio": {
+          "left_padded": 947,
+          "with_holes": 284,
+          "inner_block": 51,
+          "full": 2
+        },
+        "vision": {
+          "left_padded": 909,
+          "with_holes": 319,
+          "inner_block": 54,
+          "all_zero": 1,
+          "full": 1
+        }
+      },
+      "k_mean": {
+        "text": 11.940031152647975,
+        "audio": 11.62772585669782,
+        "vision": 11.559968847352025
+      },
+      "first_mean": {
+        "text": 38.019470404984425,
+        "audio": 38.0404984423676,
+        "vision": 38.037412314886986
+      },
+      "last_mean": {
+        "text": 48.992990654205606,
+        "audio": 48.93457943925234,
+        "vision": 48.92127825409197
+      },
+      "agree": {
+        "k_text_audio": 958,
+        "first_text_audio": 1259,
+        "first_text_vision": 1256,
+        "last_text_vision": 1204
+      },
+      "dominant_text_direction": "left_padded"
+    },
+    "valid": {
+      "L": 50,
+      "N": 229,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "left_padded": 224,
+          "with_holes": 4,
+          "inner_block": 1
+        },
+        "audio": {
+          "left_padded": 191,
+          "with_holes": 26,
+          "inner_block": 12
+        },
+        "vision": {
+          "left_padded": 186,
+          "with_holes": 32,
+          "inner_block": 11
+        }
+      },
+      "k_mean": {
+        "text": 11.14410480349345,
+        "audio": 10.960698689956331,
+        "vision": 10.899563318777293
+      },
+      "first_mean": {
+        "text": 38.83406113537118,
+        "audio": 38.8471615720524,
+        "vision": 38.85589519650655
+      },
+      "last_mean": {
+        "text": 48.995633187772924,
+        "audio": 48.93886462882096,
+        "vision": 48.92576419213974
+      },
+      "agree": {
+        "k_text_audio": 193,
+        "first_text_audio": 226,
+        "first_text_vision": 224,
+        "last_text_vision": 215
+      },
+      "dominant_text_direction": "left_padded"
+    },
+    "test": {
+      "L": 50,
+      "N": 686,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "left_padded": 642,
+          "with_holes": 31,
+          "inner_block": 3,
+          "full": 10
+        },
+        "audio": {
+          "left_padded": 486,
+          "with_holes": 160,
+          "inner_block": 36,
+          "full": 3,
+          "right_padded": 1
+        },
+        "vision": {
+          "left_padded": 462,
+          "with_holes": 180,
+          "inner_block": 40,
+          "full": 3,
+          "all_zero": 1
+        }
+      },
+      "k_mean": {
+        "text": 13.520408163265307,
+        "audio": 13.17930029154519,
+        "vision": 13.077259475218659
+      },
+      "first_mean": {
+        "text": 36.427113702623906,
+        "audio": 36.46355685131196,
+        "vision": 36.46131386861314
+      },
+      "last_mean": {
+        "text": 48.99562682215743,
+        "audio": 48.932944606414,
+        "vision": 48.894890510948905
+      },
+      "agree": {
+        "k_text_audio": 490,
+        "first_text_audio": 664,
+        "first_text_vision": 656,
+        "last_text_vision": 636
+      },
+      "dominant_text_direction": "left_padded"
+    }
+  },
+  "mosei": {
+    "train": {
+      "L": 50,
+      "N": 16265,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "full": 1161,
+          "left_padded": 15011,
+          "with_holes": 92,
+          "inner_block": 1
+        },
+        "audio": {
+          "full": 1173,
+          "left_padded": 15092
+        },
+        "vision": {
+          "full": 1067,
+          "left_padded": 13259,
+          "with_holes": 1565,
+          "all_zero": 82,
+          "inner_block": 287,
+          "right_padded": 5
+        }
+      },
+      "k_mean": {
+        "text": 24.83356901321857,
+        "audio": 24.83977866584691,
+        "vision": 23.988810328927144
+      },
+      "first_mean": {
+        "text": 25.160467260989854,
+        "audio": 25.16022133415309,
+        "vision": 25.289130569115738
+      },
+      "last_mean": {
+        "text": 48.99993851829081,
+        "audio": 49.0,
+        "vision": 48.85392078106655
+      },
+      "agree": {
+        "k_text_audio": 16168,
+        "first_text_audio": 16261,
+        "first_text_vision": 15591,
+        "last_text_vision": 15657
+      },
+      "dominant_text_direction": "left_padded"
+    },
+    "valid": {
+      "L": 50,
+      "N": 1869,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "left_padded": 1735,
+          "full": 122,
+          "with_holes": 11,
+          "inner_block": 1
+        },
+        "audio": {
+          "left_padded": 1746,
+          "full": 123
+        },
+        "vision": {
+          "left_padded": 1553,
+          "full": 112,
+          "with_holes": 173,
+          "inner_block": 26,
+          "right_padded": 3,
+          "all_zero": 2
+        }
+      },
+      "k_mean": {
+        "text": 25.663991439272337,
+        "audio": 25.670947030497594,
+        "vision": 25.084002140181916
+      },
+      "first_mean": {
+        "text": 24.329588014981272,
+        "audio": 24.329052969502406,
+        "vision": 24.432244242099625
+      },
+      "last_mean": {
+        "text": 48.99946495452114,
+        "audio": 49.0,
+        "vision": 48.92233529726835
+      },
+      "agree": {
+        "k_text_audio": 1856,
+        "first_text_audio": 1868,
+        "first_text_vision": 1807,
+        "last_text_vision": 1820
+      },
+      "dominant_text_direction": "left_padded"
+    },
+    "test": {
+      "L": 50,
+      "N": 4643,
+      "backend": "npy_mmap",
+      "cats": {
+        "text": {
+          "left_padded": 4295,
+          "full": 319,
+          "with_holes": 29
+        },
+        "audio": {
+          "left_padded": 4321,
+          "full": 322
+        },
+        "vision": {
+          "left_padded": 3776,
+          "full": 290,
+          "with_holes": 437,
+          "inner_block": 86,
+          "all_zero": 49,
+          "right_padded": 5
+        }
+      },
+      "k_mean": {
+        "text": 25.09885849666164,
+        "audio": 25.105319836312727,
+        "vision": 24.068705578289897
+      },
+      "first_mean": {
+        "text": 24.89489554167564,
+        "audio": 24.894680163687273,
+        "vision": 25.050500653025686
+      },
+      "last_mean": {
+        "text": 49.0,
+        "audio": 49.0,
+        "vision": 48.833913800609494
+      },
+      "agree": {
+        "k_text_audio": 4613,
+        "first_text_audio": 4642,
+        "first_text_vision": 4429,
+        "last_text_vision": 4436
+      },
+      "dominant_text_direction": "left_padded"
+    }
+  }
+}

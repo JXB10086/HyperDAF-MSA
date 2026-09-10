@@ -1,0 +1,15 @@
+﻿variant,cond,H_norm,max_α,min_avail_α,frac_sat
+F3,None,0.0,1.0,0.0,1.0
+F3,T missing,0.0,1.0,0.0,1.0
+F3,A missing,0.0,1.0,0.0,1.0
+F3,V missing,0.0,1.0,0.0,1.0
+F3,T+A missing,0.0,1.0,1.0,1.0
+F3,T+V missing,0.0,1.0,1.0,1.0
+F3,A+V missing,0.0,1.0,1.0,1.0
+F3n,None,0.0184,0.9916,0.0001,0.9733
+F3n,T missing,0.0291,0.9918,0.0082,0.9742
+F3n,A missing,0.089,0.9751,0.0249,0.9201
+F3n,V missing,0.0242,0.9928,0.0072,0.9778
+F3n,T+A missing,0.0,1.0,1.0,1.0
+F3n,T+V missing,0.0,1.0,1.0,1.0
+F3n,A+V missing,0.0,1.0,1.0,1.0

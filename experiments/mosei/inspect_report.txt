@@ -1,0 +1,170 @@
+================================================================================================
+[MOSEI inspect] 只体检, 不训练, 不改模型
+  pkl      = F:\winoptimizeDir\Desktop\HyperDAF-MSA\data\mosei\mosei_senti_data.pkl  (3557.7 MB)
+  转换目录 = F:\winoptimizeDir\Desktop\HyperDAF-MSA\data\mosei\converted
+  环境     = {'ram_total_GB': 16.5, 'ram_avail_GB': 5.0, 'ram_load_pct': 69, 'pagefile_total_GB': 34.9, 'pagefile_avail_GB': 6.6, 'disk_free_GB': 132.6}
+================================================================================================
+[convert] 跳过, 复用已有转换结果 (31.3s 那次)
+
+================================================================================================
+[report] MOSEI 数据体检 (mmap 读取, 小内存)
+================================================================================================
+
+### split=train  字段顺序=['vision', 'audio', 'text', 'labels', 'id']
+    label 字段=labels  id 字段=id  模态字段=['text', 'audio', 'vision']
+    各字段 N = {'vision': 16265, 'audio': 16265, 'text': 16265, 'labels': 16265, 'id': 16265}  -> 一致: True
+    对照常见对齐版 MOSEI train=16326 -> 不一致(需查来源)
+    labels 原始shape=[16265, 1, 1] 原始dtype=float32
+    label min/max=-3.0000/3.0000 mean=0.1459 std=1.1247
+    正=8014 负=4721 零=3530 | NaN=0 Inf=0
+    id 原始shape=[16265, 3] dtype=<U15 解码后=(16265, 3)
+    id 首3=[['-3g5yACwYnA', '82.753', '100.555'], ['-3g5yACwYnA', '119.919', '125.299'], ['-3g5yACwYnA', '13.211', '27.521']]
+    id 随机3=[['VN1IPN1TL3Q', '0.0124716553288', '18.5403628118'], ['201582', '66.47', '80.86'], ['frNJdG0GkYw', '1.488', '13.583']]
+    首列唯一=2247/16265 (重复 14018) | 三元组唯一=16265/16265 (重复 0)
+    键语义: 首列为分组键(如 video), 三元组才是样本键
+    text    转换后 shape=(16265, 50, 300) dtype=float32 (原始 dtype=float64)
+    audio   转换后 shape=(16265, 50, 74) dtype=float32 (原始 dtype=float64)
+    vision  转换后 shape=(16265, 50, 35) dtype=float32 (原始 dtype=float64)
+    序列长度 L 按模态={'text': 50, 'audio': 50, 'vision': 50} -> 统一: True
+    [text] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=0 | mean=0.00021 std=0.24369 min=-3.0638999938964844 max=2.666800022125244
+         有效帧长 mean/min/max=24.83/1/50 (L=50) 满长占比=0.071 尾部padding占比=0.071
+    [audio] NaN=0(涉及样本0) Inf=1249(涉及样本1020) 整段全零样本=0 | mean=1.16286 std=15.09641 min=-55.55973434448242 max=500.0
+         有效帧长 mean/min/max=24.84/1/50 (L=50) 满长占比=0.072 尾部padding占比=0.072
+    [vision] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=82 | mean=-0.43070 std=1.78808 min=-39.54077911376953 max=28.783618927001953
+         有效帧长 mean/min/max=23.99/0/50 (L=50) 满长占比=0.066 尾部padding占比=0.071
+    padding 掩码一致率 text~audio = 0.9999
+    padding 掩码一致率 text~vision = 0.9829
+    padding 掩码一致率 audio~vision = 0.9831
+
+### split=test  字段顺序=['vision', 'audio', 'text', 'labels', 'id']
+    label 字段=labels  id 字段=id  模态字段=['text', 'audio', 'vision']
+    各字段 N = {'vision': 4643, 'audio': 4643, 'text': 4643, 'labels': 4643, 'id': 4643}  -> 一致: True
+    对照常见对齐版 MOSEI test=4659 -> 不一致(需查来源)
+    labels 原始shape=[4643, 1, 1] 原始dtype=float32
+    label min/max=-3.0000/3.0000 mean=0.1414 std=1.1081
+    正=2275 负=1345 零=1023 | NaN=0 Inf=0
+    id 原始shape=[4643, 3] dtype=<U15 解码后=(4643, 3)
+    id 首3=[['-6rXp3zJ3kc', '58.109', '71.96'], ['-6rXp3zJ3kc', '45.428', '58.151'], ['-6rXp3zJ3kc', '14.468', '22.882']]
+    id 随机3=[['ZKErPftd--w', '1.55782312925', '6.59863945578'], ['1LkYxsqRPZM', '19.367', '30.405'], ['huzEsVEJPaY', '49.18', '69.476']]
+    首列唯一=675/4643 (重复 3968) | 三元组唯一=4643/4643 (重复 0)
+    键语义: 首列为分组键(如 video), 三元组才是样本键
+    text    转换后 shape=(4643, 50, 300) dtype=float32 (原始 dtype=float64)
+    audio   转换后 shape=(4643, 50, 74) dtype=float32 (原始 dtype=float64)
+    vision  转换后 shape=(4643, 50, 35) dtype=float32 (原始 dtype=float64)
+    序列长度 L 按模态={'text': 50, 'audio': 50, 'vision': 50} -> 统一: True
+    [text] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=0 | mean=0.00035 std=0.24530 min=-3.0638999938964844 max=2.5046000480651855
+         有效帧长 mean/min/max=25.10/1/50 (L=50) 满长占比=0.069 尾部padding占比=0.069
+    [audio] NaN=0(涉及样本0) Inf=425(涉及样本319) 整段全零样本=0 | mean=1.17661 std=15.22344 min=-39.79557418823242 max=495.8571472167969
+         有效帧长 mean/min/max=25.11/1/50 (L=50) 满长占比=0.069 尾部padding占比=0.069
+    [vision] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=49 | mean=-0.42112 std=1.75617 min=-35.373958587646484 max=27.34148406982422
+         有效帧长 mean/min/max=24.07/0/50 (L=50) 满长占比=0.062 尾部padding占比=0.074
+    padding 掩码一致率 text~audio = 0.9999
+    padding 掩码一致率 text~vision = 0.9792
+    padding 掩码一致率 audio~vision = 0.9793
+
+### split=valid  字段顺序=['vision', 'audio', 'text', 'labels', 'id']
+    label 字段=labels  id 字段=id  模态字段=['text', 'audio', 'vision']
+    各字段 N = {'vision': 1869, 'audio': 1869, 'text': 1869, 'labels': 1869, 'id': 1869}  -> 一致: True
+    对照常见对齐版 MOSEI valid=1871 -> 不一致(需查来源)
+    labels 原始shape=[1869, 1, 1] 原始dtype=float32
+    label min/max=-3.0000/3.0000 mean=0.1899 std=1.0381
+    正=931 负=505 零=433 | NaN=0 Inf=0
+    id 原始shape=[1869, 3] dtype=<U15 解码后=(1869, 3)
+    id 首3=[['--qXJuDtHPw', '23.199', '30.325'], ['-571d8cVauQ', '0.0', '4.992'], ['-571d8cVauQ', '21.842', '28.309']]
+    id 随机3=[['ZaoFHcbRM9g', '48.84', '53.801'], ['130456', '33.705', '40.931'], ['goMtnNHQ_z4', '5.529', '10.52']]
+    首列唯一=300/1869 (重复 1569) | 三元组唯一=1869/1869 (重复 0)
+    键语义: 首列为分组键(如 video), 三元组才是样本键
+    text    转换后 shape=(1869, 50, 300) dtype=float32 (原始 dtype=float64)
+    audio   转换后 shape=(1869, 50, 74) dtype=float32 (原始 dtype=float64)
+    vision  转换后 shape=(1869, 50, 35) dtype=float32 (原始 dtype=float64)
+    序列长度 L 按模态={'text': 50, 'audio': 50, 'vision': 50} -> 统一: True
+    [text] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=0 | mean=0.00026 std=0.24775 min=-3.0638999938964844 max=2.407099962234497
+         有效帧长 mean/min/max=25.66/1/50 (L=50) 满长占比=0.065 尾部padding占比=0.065
+    [audio] NaN=0(涉及样本0) Inf=191(涉及样本161) 整段全零样本=0 | mean=1.17766 std=14.94644 min=-35.516448974609375 max=497.1111145019531
+         有效帧长 mean/min/max=25.67/1/50 (L=50) 满长占比=0.066 尾部padding占比=0.066
+    [vision] NaN=0(涉及样本0) Inf=0(涉及样本0) 整段全零样本=2 | mean=-0.43834 std=1.81536 min=-32.089481353759766 max=29.55523109436035
+         有效帧长 mean/min/max=25.08/0/50 (L=50) 满长占比=0.060 尾部padding占比=0.063
+    padding 掩码一致率 text~audio = 0.9999
+    padding 掩码一致率 text~vision = 0.9878
+    padding 掩码一致率 audio~vision = 0.9880
+
+### 跨 split ID 重叠检查 (泄漏)
+    train ∩ test (首列/视频级) = 0
+    train ∩ valid (首列/视频级) = 0
+    test ∩ valid (首列/视频级) = 0
+    train ∩ test (三元组/样本级) = 0
+    train ∩ valid (三元组/样本级) = 0
+    test ∩ valid (三元组/样本级) = 0
+
+================================================================================================
+[verify] 回读原始 pkl 校验 NaN/Inf 来源 (原始 dtype 上统计)
+================================================================================================
+    载入用时 6.6s
+    [train/vision] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=39.5408 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [train/audio] 原始dtype=float64 NaN=0(样本0) Inf=1249(样本1020) 有限值|最大|=500 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [train/text] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3.0639 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [train/labels] 原始dtype=float32 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [test/vision] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=35.374 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [test/audio] 原始dtype=float64 NaN=0(样本0) Inf=425(样本319) 有限值|最大|=495.857 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [test/text] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3.0639 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [test/labels] 原始dtype=float32 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [valid/vision] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=32.0895 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [valid/audio] 原始dtype=float64 NaN=0(样本0) Inf=191(样本161) 有限值|最大|=497.111 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [valid/text] 原始dtype=float64 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3.0639 -> float32溢出可能性=无(|x|远小于3.4e38)
+    [valid/labels] 原始dtype=float32 NaN=0(样本0) Inf=0(样本0) 有限值|最大|=3 -> float32溢出可能性=无(|x|远小于3.4e38)
+
+================================================================================================
+[对照] MOSI mosi_data.pkl 结构指纹 (同一预处理体系判断依据)
+================================================================================================
+    pickle protocol=4 顶层keys(顺序)=['valid', 'test', 'train']
+    split=valid 字段顺序=['vision', 'labels', 'text', 'audio', 'id']
+        vision  shape=(229, 50, 20) dtype=float64
+        labels  shape=(229, 1, 1) dtype=float64
+        text    shape=(229, 50, 300) dtype=float32
+        audio   shape=(229, 50, 5) dtype=float64
+        id      shape=(229, 3) dtype=|S14
+    split=test 字段顺序=['vision', 'labels', 'text', 'audio', 'id']
+        vision  shape=(686, 50, 20) dtype=float64
+        labels  shape=(686, 1, 1) dtype=float64
+        text    shape=(686, 50, 300) dtype=float32
+        audio   shape=(686, 50, 5) dtype=float64
+        id      shape=(686, 3) dtype=|S14
+    split=train 字段顺序=['vision', 'labels', 'text', 'audio', 'id']
+        vision  shape=(1284, 50, 20) dtype=float64
+        labels  shape=(1284, 1, 1) dtype=float64
+        text    shape=(1284, 50, 300) dtype=float32
+        audio   shape=(1284, 50, 5) dtype=float64
+        id      shape=(1284, 3) dtype=|S14
+
+================================================================================================
+[判定] MOSEI 与 MOSI 是否同一预处理体系 (只给证据, 不猜测特征语义)
+================================================================================================
+    pickle protocol        MOSEI=4 | MOSI=4 -> 一致
+    顶层容器                   MOSEI=dict(splits) | MOSI=dict(splits) -> 一致
+    split 内字段顺序            MOSEI=['vision', 'audio', 'text', 'labels', 'id'] | MOSI=['vision', 'labels', 'text', 'audio', 'id'] -> 不同
+    字段集合                   MOSEI=['audio', 'id', 'labels', 'text', 'vision'] | MOSI=['audio', 'id', 'labels', 'text', 'vision'] -> 一致
+    labels 原始dtype         MOSEI=float32 | MOSI=float64 -> 不同
+    labels 原始shape         MOSEI=[16265, 1, 1] | MOSI=[229, 1, 1] -> 不同
+    id 原始dtype             MOSEI=<U15 | MOSI=|S14 -> 不同
+    id 原始shape             MOSEI=[16265, 3] | MOSI=[229, 3] -> 不同
+    text 原始dtype           MOSEI=float64 | MOSI=float32 -> 不同
+    audio 原始dtype          MOSEI=float64 | MOSI=float64 -> 一致
+    vision 原始dtype         MOSEI=float64 | MOSI=float64 -> 一致
+    注: 特征语义(GloVe/COVAREP/FACET/OpenFace 等)无法由数组本身证明, 必须以下载来源为准。
+
+================================================================================================
+[体检判定] PASS=可直接进实验 / WARN=需裁决 (本脚本不会自行修改任何数据)
+================================================================================================
+    [PASS] 三个 split 齐全 (train/valid/test)
+    [PASS] 每 split 各字段 N 一致 (逐样本对应前提)
+    [PASS] 三模态序列长度 L 统一
+    [PASS] labels 无 NaN/Inf 且在 [-3,3]
+    [PASS] 样本键(三元组)无重复
+    [PASS] 跨 split 无 ID 重叠 (无泄漏)
+    [WARN] 模态特征无 NaN/Inf (实测 NaN=0, Inf=1865)
+    [WARN] 无整段全零的模态样本 (实测 133 个)
+    [WARN] 三模态 padding 掩码一致率 >= 0.99 (最低实测 0.9792)
+    => 6/9 项 PASS
+    [INFO] train 样本数=16265 与常见对齐版 16326 不同 (差 61) -> 需确认来源版本/是否经过过滤
+    [INFO] test 样本数=4643 与常见对齐版 4659 不同 (差 16) -> 需确认来源版本/是否经过过滤
+    [INFO] valid 样本数=1869 与常见对齐版 1871 不同 (差 2) -> 需确认来源版本/是否经过过滤

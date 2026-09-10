@@ -1,0 +1,4 @@
+﻿model,None,T missing,A missing,V missing,T+A missing,T+V missing,A+V missing,missAvg
+"H0+B3        (rep+cons, 无融合)",0.5951,0.1668,0.5877,0.5898,0.1043,0.1256,0.5885,0.3604
+"H0+F2        (rep+fusion, 无cons)",0.6182,0.1669,0.6037,0.6099,0.0877,0.2153,0.5722,0.3759
+H0+B3+F2     (rep+fusion+cons)=FINAL,0.6076,0.1609,0.5842,0.5839,0.0838,0.2107,0.5151,0.3564

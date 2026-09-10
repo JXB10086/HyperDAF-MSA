@@ -1,0 +1,7 @@
+pattern,‖z_full‖,‖z_miss‖,‖z_full−z_miss‖
+T missing,16.4247,9.4682,10.6455
+A missing,16.4247,16.185,2.652
+V missing,16.4247,14.1553,5.225
+T+A missing,16.4247,8.3556,11.2417
+T+V missing,16.4247,5.2791,12.8064
+A+V missing,16.4247,13.9409,6.2211

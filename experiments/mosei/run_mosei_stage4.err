@@ -1,0 +1,84 @@
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 34701 (\N{CJK UNIFIED IDEOGRAPH-878D}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 21512 (\N{CJK UNIFIED IDEOGRAPH-5408}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 26435 (\N{CJK UNIFIED IDEOGRAPH-6743}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 37325 (\N{CJK UNIFIED IDEOGRAPH-91CD}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 26465 (\N{CJK UNIFIED IDEOGRAPH-6761}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 20214 (\N{CJK UNIFIED IDEOGRAPH-4EF6}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 27169 (\N{CJK UNIFIED IDEOGRAPH-6A21}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 24577 (\N{CJK UNIFIED IDEOGRAPH-6001}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 24179 (\N{CJK UNIFIED IDEOGRAPH-5E73}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 22343 (\N{CJK UNIFIED IDEOGRAPH-5747}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 26631 (\N{CJK UNIFIED IDEOGRAPH-6807}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 24046 (\N{CJK UNIFIED IDEOGRAPH-5DEE}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 26679 (\N{CJK UNIFIED IDEOGRAPH-6837}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 26412 (\N{CJK UNIFIED IDEOGRAPH-672C}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 33258 (\N{CJK UNIFIED IDEOGRAPH-81EA}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 36866 (\N{CJK UNIFIED IDEOGRAPH-9002}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 24212 (\N{CJK UNIFIED IDEOGRAPH-5E94}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:109: UserWarning: Glyph 24230 (\N{CJK UNIFIED IDEOGRAPH-5EA6}) missing from current font.
+  fig.tight_layout(rect=[0, 0, 1, 0.965])
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 34701 (\N{CJK UNIFIED IDEOGRAPH-878D}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 21512 (\N{CJK UNIFIED IDEOGRAPH-5408}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 26435 (\N{CJK UNIFIED IDEOGRAPH-6743}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 37325 (\N{CJK UNIFIED IDEOGRAPH-91CD}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 26465 (\N{CJK UNIFIED IDEOGRAPH-6761}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 20214 (\N{CJK UNIFIED IDEOGRAPH-4EF6}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 27169 (\N{CJK UNIFIED IDEOGRAPH-6A21}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 24577 (\N{CJK UNIFIED IDEOGRAPH-6001}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 24179 (\N{CJK UNIFIED IDEOGRAPH-5E73}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 22343 (\N{CJK UNIFIED IDEOGRAPH-5747}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 26631 (\N{CJK UNIFIED IDEOGRAPH-6807}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 24046 (\N{CJK UNIFIED IDEOGRAPH-5DEE}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 26679 (\N{CJK UNIFIED IDEOGRAPH-6837}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 26412 (\N{CJK UNIFIED IDEOGRAPH-672C}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 33258 (\N{CJK UNIFIED IDEOGRAPH-81EA}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 36866 (\N{CJK UNIFIED IDEOGRAPH-9002}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 24212 (\N{CJK UNIFIED IDEOGRAPH-5E94}) missing from current font.
+  fig.savefig(out_path, dpi=130)
+F:\winoptimizeDir\Desktop\HyperDAF-MSA\experiments\stage4_lib.py:110: UserWarning: Glyph 24230 (\N{CJK UNIFIED IDEOGRAPH-5EA6}) missing from current font.
+  fig.savefig(out_path, dpi=130)

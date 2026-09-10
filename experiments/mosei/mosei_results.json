@@ -1,0 +1,345 @@
+{
+  "config": {
+    "dataset": "MOSEI",
+    "seed": 42,
+    "epochs": 30,
+    "lr": 0.001,
+    "batch_size": 32,
+    "dims": [
+      300,
+      74,
+      35,
+      50
+    ],
+    "hyper_dim": 256,
+    "protocol_b_train_missing_prob": 0.5
+  },
+  "fixed": {
+    "baseline|A|None": {
+      "MAE": 0.6526361575902832,
+      "Corr": 0.5976129164568745
+    },
+    "baseline|A|T missing": {
+      "MAE": 0.8074025027035426,
+      "Corr": 0.2222668791591348
+    },
+    "baseline|A|A missing": {
+      "MAE": 0.705730782748435,
+      "Corr": 0.5318140681774542
+    },
+    "baseline|A|V missing": {
+      "MAE": 0.656473739347885,
+      "Corr": 0.5930655346392839
+    },
+    "baseline|A|T+A missing": {
+      "MAE": 0.8485376046971088,
+      "Corr": 0.07412659700927647
+    },
+    "baseline|A|T+V missing": {
+      "MAE": 0.8302961540362398,
+      "Corr": 0.09980406096375907
+    },
+    "baseline|A|A+V missing": {
+      "MAE": 0.7646025522443693,
+      "Corr": 0.45365776854004186
+    },
+    "baseline|B|None": {
+      "MAE": 0.657909406084665,
+      "Corr": 0.609999515750291
+    },
+    "baseline|B|T missing": {
+      "MAE": 0.7988047362974744,
+      "Corr": 0.2684691918586714
+    },
+    "baseline|B|A missing": {
+      "MAE": 0.6549083480355432,
+      "Corr": 0.6113869285170531
+    },
+    "baseline|B|V missing": {
+      "MAE": 0.659007336344883,
+      "Corr": 0.6090370791108515
+    },
+    "baseline|B|T+A missing": {
+      "MAE": 0.7972661926027697,
+      "Corr": 0.2506557226691714
+    },
+    "baseline|B|T+V missing": {
+      "MAE": 0.8134400337397825,
+      "Corr": 0.2275561314409322
+    },
+    "baseline|B|A+V missing": {
+      "MAE": 0.657880746598955,
+      "Corr": 0.6025254350718375
+    },
+    "mask_aware|A|None": {
+      "MAE": 0.6639262500289428,
+      "Corr": 0.5903693545172246
+    },
+    "mask_aware|A|T missing": {
+      "MAE": 0.8051845383955146,
+      "Corr": 0.23344041949946856
+    },
+    "mask_aware|A|A missing": {
+      "MAE": 0.7517656950819108,
+      "Corr": 0.4605878581482731
+    },
+    "mask_aware|A|V missing": {
+      "MAE": 0.6670301886946911,
+      "Corr": 0.5854970715729673
+    },
+    "mask_aware|A|T+A missing": {
+      "MAE": 0.8938718838087595,
+      "Corr": -0.056679933406521034
+    },
+    "mask_aware|A|T+V missing": {
+      "MAE": 0.8321192734059777,
+      "Corr": 0.07722624698443738
+    },
+    "mask_aware|A|A+V missing": {
+      "MAE": 0.7912994188451958,
+      "Corr": 0.3954063467131729
+    },
+    "mask_aware|B|None": {
+      "MAE": 0.6576753570740826,
+      "Corr": 0.5979916338955245
+    },
+    "mask_aware|B|T missing": {
+      "MAE": 0.8055227557713222,
+      "Corr": 0.2560634400412046
+    },
+    "mask_aware|B|A missing": {
+      "MAE": 0.6543526632161233,
+      "Corr": 0.6007750202850729
+    },
+    "mask_aware|B|V missing": {
+      "MAE": 0.650097244263352,
+      "Corr": 0.6055466637872835
+    },
+    "mask_aware|B|T+A missing": {
+      "MAE": 0.8131858131939241,
+      "Corr": 0.2185186567334399
+    },
+    "mask_aware|B|T+V missing": {
+      "MAE": 0.817817612223871,
+      "Corr": 0.19542476647680238
+    },
+    "mask_aware|B|A+V missing": {
+      "MAE": 0.6516996983783688,
+      "Corr": 0.6023201892651373
+    },
+    "hyper|A|None": {
+      "MAE": 0.6537208662248457,
+      "Corr": 0.6069862188096948
+    },
+    "hyper|A|T missing": {
+      "MAE": 0.814931376872447,
+      "Corr": 0.2546482924316827
+    },
+    "hyper|A|A missing": {
+      "MAE": 0.776884981398033,
+      "Corr": 0.47015854705936605
+    },
+    "hyper|A|V missing": {
+      "MAE": 0.6689077864256169,
+      "Corr": 0.5655253084294876
+    },
+    "hyper|A|T+A missing": {
+      "MAE": 0.8420645079552211,
+      "Corr": 0.011094746144579568
+    },
+    "hyper|A|T+V missing": {
+      "MAE": 0.8193497074550662,
+      "Corr": 0.16315589734138158
+    },
+    "hyper|A|A+V missing": {
+      "MAE": 0.7805539968020818,
+      "Corr": 0.3920730706916981
+    },
+    "hyper|B|None": {
+      "MAE": 0.6591024988108952,
+      "Corr": 0.6017551351444713
+    },
+    "hyper|B|T missing": {
+      "MAE": 0.8001293935633235,
+      "Corr": 0.2469606499169577
+    },
+    "hyper|B|A missing": {
+      "MAE": 0.6595772029023893,
+      "Corr": 0.6000232404224769
+    },
+    "hyper|B|V missing": {
+      "MAE": 0.6572085812630908,
+      "Corr": 0.608963657230307
+    },
+    "hyper|B|T+A missing": {
+      "MAE": 0.8048502428437785,
+      "Corr": 0.22916463860291605
+    },
+    "hyper|B|T+V missing": {
+      "MAE": 0.8296296937090433,
+      "Corr": 0.13880562877787345
+    },
+    "hyper|B|A+V missing": {
+      "MAE": 0.6581771769596979,
+      "Corr": 0.6043202613420489
+    }
+  },
+  "train_info": {
+    "baseline|A": {
+      "best_epoch": 16,
+      "best_valid_mae": 0.6180693145581372,
+      "n_params": 184321
+    },
+    "baseline|B": {
+      "best_epoch": 14,
+      "best_valid_mae": 0.6800534326495695,
+      "n_params": 184321
+    },
+    "mask_aware|A": {
+      "best_epoch": 22,
+      "best_valid_mae": 0.6201447949980456,
+      "n_params": 185089
+    },
+    "mask_aware|B": {
+      "best_epoch": 15,
+      "best_valid_mae": 0.6795399970033168,
+      "n_params": 185089
+    },
+    "hyper|A": {
+      "best_epoch": 25,
+      "best_valid_mae": 0.61836897736787,
+      "n_params": 434945
+    },
+    "hyper|B": {
+      "best_epoch": 22,
+      "best_valid_mae": 0.6785799579918729,
+      "n_params": 434945
+    }
+  },
+  "diag_hyper": {
+    "probe_corr": 0.5791131413357475,
+    "probe_r2": 0.3335599231103986,
+    "knn_same_sign": 0.5299806159810467,
+    "knn_mean_dlabel": 0.887935221195221,
+    "eff_rank": 2.214318455923371,
+    "sil_binary": 0.1057164860830644,
+    "median_pair_dist": 13.959730780405541,
+    "per_pattern": {
+      "None": {
+        "drift": 0.0,
+        "drift_ratio": 0.0,
+        "transfer": 0.6525967251213649
+      },
+      "T missing": {
+        "drift": 12.558785438537598,
+        "drift_ratio": 0.8996438137092148,
+        "transfer": 0.13898876571641142
+      },
+      "A missing": {
+        "drift": 4.098110675811768,
+        "drift_ratio": 0.2935665980944618,
+        "transfer": 0.49303564349041623
+      },
+      "V missing": {
+        "drift": 6.179131984710693,
+        "drift_ratio": 0.44263976730420473,
+        "transfer": 0.6010405182502397
+      },
+      "T+A missing": {
+        "drift": 13.887962341308594,
+        "drift_ratio": 0.9948588951161906,
+        "transfer": 0.09787087084159607
+      },
+      "T+V missing": {
+        "drift": 13.88681411743164,
+        "drift_ratio": 0.9947766425358986,
+        "transfer": 0.0077953569375278624
+      },
+      "A+V missing": {
+        "drift": 7.834864139556885,
+        "drift_ratio": 0.5612475098726817,
+        "transfer": 0.4009777489725301
+      }
+    }
+  },
+  "diag_mask": {
+    "probe_corr": 0.5675119496756367,
+    "probe_r2": 0.31857515120066826,
+    "eff_rank": 6.057218548360425,
+    "sil_binary": 0.01761656453703996
+  },
+  "questions": {
+    "q1_worst_condition": {
+      "baseline|A": "T+A missing",
+      "baseline|B": "T+V missing",
+      "mask_aware|A": "T+A missing",
+      "mask_aware|B": "T+V missing",
+      "hyper|A": "T+A missing",
+      "hyper|B": "T+V missing"
+    },
+    "q2_text_dependency": true,
+    "q3_nontext": {
+      "A": {
+        "wins": 1,
+        "delta": -0.005417154001311301
+      },
+      "B": {
+        "wins": 0,
+        "delta": -0.0062711184224446175
+      }
+    },
+    "q4_protocol_consistency": {
+      "pa_delta": -0.006429773553930596,
+      "pb_delta": 0.00281608403239364,
+      "t_worst_PA": true,
+      "t_worst_PB": true
+    }
+  },
+  "cross_dataset": [
+    {
+      "metric": "Mask T-miss Corr (PA)",
+      "MOSI": 0.1917,
+      "MOSEI": 0.23344041949946856
+    },
+    {
+      "metric": "Hyper T-miss Corr (PA)",
+      "MOSI": 0.1452,
+      "MOSEI": 0.2546482924316827
+    },
+    {
+      "metric": "Mask 缺失均值 MAE (PA)",
+      "MOSI": 1.2709,
+      "MOSEI": 0.790211833038675
+    },
+    {
+      "metric": "Hyper 缺失均值 MAE (PA)",
+      "MOSI": 1.2993,
+      "MOSEI": 0.7837820594847443
+    },
+    {
+      "metric": "Mask 缺失均值 MAE (PB)",
+      "MOSI": 1.2708,
+      "MOSEI": 0.7321126311744935
+    },
+    {
+      "metric": "Hyper 缺失均值 MAE (PB)",
+      "MOSI": 1.3158,
+      "MOSEI": 0.7349287152068872
+    },
+    {
+      "metric": "Hyper drift_T (x中位距)",
+      "MOSI": 0.79,
+      "MOSEI": 0.8996438137092148
+    },
+    {
+      "metric": "Hyper transfer_T",
+      "MOSI": 0.245,
+      "MOSEI": 0.13898876571641142
+    },
+    {
+      "metric": "Hyper eff_rank",
+      "MOSI": 1.5,
+      "MOSEI": 2.214318455923371
+    }
+  ]
+}

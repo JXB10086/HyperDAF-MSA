@@ -1,0 +1,72 @@
+# ===== 数据集 (超过 GitHub 100MB 限制, 不纳入版本控制) =====
+data/
+*.pkl
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# ===== 模型权重 / 检查点 =====
+# 注意: 不要忽略 Python 包 models/（源码需入库）；权重用下方扩展名规则排除
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.pb
+checkpoints/
+saved_models/
+pretrained/
+
+# ===== 训练输出 / 日志 =====
+outputs/
+results/
+runs/
+logs/
+*.log
+wandb/
+tensorboard/
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===== 虚拟环境 =====
+venv/
+env/
+ENV/
+.venv/
+.env/
+conda-env/
+
+# ===== Jupyter Notebook =====
+.ipynb_checkpoints
+
+# ===== IDE / 编辑器 =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini

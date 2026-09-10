@@ -1,0 +1,102 @@
+{
+  "Hyper z": {
+    "probe_corr": 0.5628981963435973,
+    "probe_r2": 0.2834374289024554,
+    "knn_same_sign": 0.6486880466472303,
+    "knn_mean_dlabel": 1.301166178614075,
+    "eff_rank": 1.5121078865821154,
+    "sil_binary": 0.20669231255823414
+  },
+  "MaskAware h": {
+    "probe_corr": 0.5117101954665901,
+    "probe_r2": 0.15704076272410294,
+    "knn_same_sign": 0.6285714285714286,
+    "knn_mean_dlabel": 1.3405077754321668,
+    "eff_rank": 3.6594239556143626,
+    "sil_binary": 0.02218915770207982
+  },
+  "missing_B": {
+    "none_probe_corr": 0.678424029721113,
+    "median_pair_dist": 2.025245195999327,
+    "drift": [
+      {
+        "pattern": "None",
+        "drift": 0.0,
+        "drift_over_pair": 0.0
+      },
+      {
+        "pattern": "T missing",
+        "drift": 1.5933679433224532,
+        "drift_over_pair": 0.7867531031221513
+      },
+      {
+        "pattern": "A missing",
+        "drift": 0.43332855263772785,
+        "drift_over_pair": 0.21396350095275493
+      },
+      {
+        "pattern": "V missing",
+        "drift": 0.5416117207975275,
+        "drift_over_pair": 0.267430196402884
+      },
+      {
+        "pattern": "T+A missing",
+        "drift": 1.704977725592233,
+        "drift_over_pair": 0.8418623720813592
+      },
+      {
+        "pattern": "T+V missing",
+        "drift": 1.7140940154450124,
+        "drift_over_pair": 0.8463636985707573
+      },
+      {
+        "pattern": "A+V missing",
+        "drift": 0.7265149295801075,
+        "drift_over_pair": 0.3587293680076551
+      }
+    ],
+    "transfer": [
+      {
+        "pattern": "None",
+        "self_corr": 0.5584945916633951,
+        "transfer_corr": 0.678424029721113
+      },
+      {
+        "pattern": "T missing",
+        "self_corr": 0.2185081273225226,
+        "transfer_corr": 0.24471695690375417
+      },
+      {
+        "pattern": "A missing",
+        "self_corr": 0.5746001472956572,
+        "transfer_corr": 0.6186633731046559
+      },
+      {
+        "pattern": "V missing",
+        "self_corr": 0.5342271200186259,
+        "transfer_corr": 0.6238295158119894
+      },
+      {
+        "pattern": "T+A missing",
+        "self_corr": 0.15129351330308577,
+        "transfer_corr": 0.17201237107751596
+      },
+      {
+        "pattern": "T+V missing",
+        "self_corr": 0.23803762497893702,
+        "transfer_corr": 0.21759499526580445
+      },
+      {
+        "pattern": "A+V missing",
+        "self_corr": 0.5579637688882072,
+        "transfer_corr": 0.5927414519529746
+      }
+    ]
+  },
+  "verdict": {
+    "struct_better": true,
+    "collapsed": false,
+    "not_robust": true,
+    "recommendation": "表征本身含情感信息但缺失不鲁棒 -> 改结构/用法(优先 A: z_hyper 生成融合门控) 或加缺失不变性目标, 不建议单纯延长训练(C)。"
+  }
+}

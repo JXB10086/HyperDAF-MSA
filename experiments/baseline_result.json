@@ -1,0 +1,16 @@
+{
+  "model": "FullModalBaseline",
+  "modality": "T+A+V",
+  "checkpoint_epoch": 26,
+  "best_valid_mae_from_training": 0.9576505936812365,
+  "valid": {
+    "MAE": 0.9576505936812365,
+    "Corr": 0.6662480071357195
+  },
+  "test": {
+    "MAE": 1.025616695333283,
+    "Corr": 0.6189232527495973
+  },
+  "n_valid": 229,
+  "n_test": 686
+}

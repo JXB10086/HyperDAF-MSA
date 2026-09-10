@@ -1,0 +1,22 @@
+variant,cond,missing_dims,max_missing_α,avail_α_sum,mean_α_T,mean_α_A,mean_α_V
+F1,None,-,0.0,1.0,1.0,0.0,0.0
+F1,T missing,T,0.0,1.0,0.0,0.0045,0.9955
+F1,A missing,A,0.0,1.0,1.0,0.0,0.0
+F1,V missing,V,0.0,1.0,1.0,0.0,0.0
+F1,T+A missing,TA,0.0,1.0,0.0,0.0,1.0
+F1,T+V missing,TV,0.0,1.0,0.0,1.0,0.0
+F1,A+V missing,AV,0.0,1.0,1.0,0.0,0.0
+F2,None,-,0.0,1.0,0.964,0.0001,0.0359
+F2,T missing,T,0.0,1.0,0.0,0.0136,0.9864
+F2,A missing,A,0.0,1.0,0.964,0.0,0.036
+F2,V missing,V,0.0,1.0,0.9999,0.0001,0.0
+F2,T+A missing,TA,0.0,1.0,0.0,0.0,1.0
+F2,T+V missing,TV,0.0,1.0,0.0,1.0,0.0
+F2,A+V missing,AV,0.0,1.0,1.0,0.0,0.0
+F3,None,-,0.0,1.0,0.9897,0.0,0.0103
+F3,T missing,T,0.0,1.0,0.0,0.0011,0.9989
+F3,A missing,A,0.0,1.0,0.9894,0.0,0.0106
+F3,V missing,V,0.0,1.0,1.0,0.0,0.0
+F3,T+A missing,TA,0.0,1.0,0.0,0.0,1.0
+F3,T+V missing,TV,0.0,1.0,0.0,1.0,0.0
+F3,A+V missing,AV,0.0,1.0,1.0,0.0,0.0
