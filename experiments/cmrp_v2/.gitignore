@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.pt
+*.pth
+*.ckpt
+r1_relational/results/
+*.log

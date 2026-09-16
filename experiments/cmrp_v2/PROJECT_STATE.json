@@ -1,0 +1,63 @@
+{
+  "project": "CMRP v2 relational consistency track",
+  "status": "CODE_DESIGN_READY_NO_GPU_RUN",
+  "current_stage": "R1",
+  "research_question": "Is relational representation consistency more stable than pointwise full-vector consistency under irreversible whole-modality loss?",
+  "v1_boundary": {
+    "status": "FROZEN_UNCHANGED",
+    "core": "H0+B3",
+    "lambda_cons": 0.005,
+    "evidence_package": "experiments/cmrp_evidence",
+    "paired_result": "pointwise B3 effect is small and seed-dependent"
+  },
+  "r1": {
+    "dataset": "MOSEI",
+    "protocol": "B whole-modality missing",
+    "seeds": [42, 43, 44],
+    "variants": ["H0", "B3_POINT", "REL"],
+    "lambda_point": 0.005,
+    "lambda_rel": 0.005,
+    "lambda_rel_status": "preregistered scale-matched pilot; not test-tuned",
+    "consistency_views": "single-modality missing only, matching v1 B3",
+    "checkpoint_selection": "validation MAE only",
+    "test_use": "automated final evaluation only; never selection",
+    "pairing_required": [
+      "initial weights",
+      "sample order",
+      "task masks",
+      "task-forward dropout",
+      "consistency masks for B3_POINT and REL",
+      "consistency-forward dropout for B3_POINT and REL"
+    ],
+    "primary_task_metrics": ["missAvg DeltaMAE", "missAvg DeltaCorr"],
+    "primary_representation_metric": "relational_drift_rms",
+    "secondary_representation_metrics": [
+      "absolute_l2",
+      "cosine_drift",
+      "legacy_D_cross",
+      "shared_reference_D_cross"
+    ]
+  },
+  "prohibited_until_r1_decision": [
+    "balanced all-pattern sampling",
+    "Group-DRO",
+    "F2",
+    "F3",
+    "attention",
+    "new fusion",
+    "reconstruction",
+    "imputation",
+    "HME",
+    "CMAD",
+    "IEMOCAP"
+  ],
+  "handoff": {
+    "read_first": [
+      "experiments/cmrp_v2/README.md",
+      "experiments/cmrp_v2/R1_PREREGISTRATION.md",
+      "experiments/cmrp_v2/PROJECT_STATE.json"
+    ],
+    "entrypoint": "experiments/cmrp_v2/r1_relational/run_r1.py",
+    "next_action": "Run CPU tests and audit-only now; run full R1 only after GPU GO."
+  }
+}
