@@ -7,17 +7,18 @@
   "pairing_audits_passed": 3,
   "checkpoint_count": 9,
   "checkpoint_location": "../results/checkpoints (git-ignored; retained locally and remotely)",
+  "hash_scope": "Tracked evidence uses canonical Git blob bytes (LF-normalized); checkpoints use raw file bytes.",
   "files": [
-    {"path": "metrics_long.csv", "bytes": 36890, "sha256": "817c7133beac6ca4f9911d387aa9a43b21839bb1e85dcae64503510f5b651f50"},
+    {"path": "metrics_long.csv", "bytes": 36286, "sha256": "d61dbabe28800ffdd14df2dd9b374a51a1d9ae08385f07c58b3073ce5922b7b9"},
     {"path": "R1_REPORT.md", "bytes": 1342, "sha256": "cecfb003f68ed2e4f923eec87045417cb8a33fe324a091ed3d5d1d31ddf1d809"},
     {"path": "RUN_CONFIG.json", "bytes": 844, "sha256": "4f2d9529833d8b68ecdaacbc845f773050aa54f456c1e5b6f422a6a6eaeb87b3"},
-    {"path": "seed42/metrics_long.csv", "bytes": 12322, "sha256": "19200c80d63629829505767887ed12d985466569f76462372d40ce93cb170190"},
+    {"path": "seed42/metrics_long.csv", "bytes": 12120, "sha256": "ee395035cbcdabf17ece041b2871d928461c4cb6315673f59b51f701b21839d5"},
     {"path": "seed42/results.json", "bytes": 42353, "sha256": "6b5c82f61036f63d82efa94ce8ace9ec3d833a0fb437657a5b5b5d850e08989b"},
-    {"path": "seed43/metrics_long.csv", "bytes": 12332, "sha256": "34864912043a7b58cf4822333edddc770286c1548a1fda45fffb2a8da0050491"},
+    {"path": "seed43/metrics_long.csv", "bytes": 12130, "sha256": "8d41c7a03f2251f388ded21bcc56b872a22347e4f23ae00e2f6b54464083e189"},
     {"path": "seed43/results.json", "bytes": 42330, "sha256": "12e2b25ec8ae478fc4f2ec94a85ae2dd411e7a6d258f59fbb3e299a89785f93d"},
-    {"path": "seed44/metrics_long.csv", "bytes": 12330, "sha256": "2be0292f48e8d0d7ad78414f7f52a602d898d820857acacac3d9a7b1fca3d447"},
+    {"path": "seed44/metrics_long.csv", "bytes": 12128, "sha256": "ed7f9b35f4f260617cc7cc4e14e3d40c66a76e6ec41fea5296403a5bd08bdee6"},
     {"path": "seed44/results.json", "bytes": 42364, "sha256": "980ebb5f2a544208b475b40484fbb0f81a70ccff055d2e3517bd2696a71335fc"},
-    {"path": "summary.csv", "bytes": 44901, "sha256": "af442f2789fa9a96718d2be0bf6f9235dbb97f4b023031ea0e8c98d41d3dfea0"},
+    {"path": "summary.csv", "bytes": 44632, "sha256": "2539c68b35dd3b4d1fec7be26683ea42fd79c994826826e6509de6123dd0ea8c"},
     {"path": "summary.json", "bytes": 387746, "sha256": "538749c1fbaef29ef936c78130fbf05271f3b31915a2a8035420ae894c954247"}
   ],
   "checkpoint_sha256": {
