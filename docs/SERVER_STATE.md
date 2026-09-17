@@ -68,8 +68,8 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 
 | 项 | 本地（Windows） | 远端（Linux） |
 |---|---|---|
-| HEAD | `1b906e2`（**领先 1 个未推送提交**） | `b270f17` |
-| `origin/main` | `b270f17` | `b270f17` |
+| HEAD | `3db00f8`（已推送） | 待同步（最后已知 `b270f17`） |
+| `origin/main` | `3db00f8` | 待同步 |
 | `experiments/cmrp_v2/` | 有（R1 runner、单测） | **不存在** |
 | `experiments/cmrp_evidence/` | 有 | 有 |
 | `experiments/fair_baseline/lnln_native/` | 有（派生汇总） | **不存在**（原始产物在 `/autodl-fs`） |
@@ -79,9 +79,32 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 
 远端工作树有 **136 个文件显示为 modified，但内容并无变化**：
 `git diff --stat --ignore-cr-at-eol` 输出为空，是纯 CRLF/LF 换行差异。
-**直接 `git pull` 会产生冲突噪声**，建议改用干净 clone 到新目录。
+这些伪改动可以直接 `git checkout -- .` 丢弃，`scripts/sync_run_r1_to_server.ps1`
+在丢弃前会先用上面的命令确认没有真实改动。
 
 仓库地址（本地与远端相同）：`https://github.com/JXB10086/HyperDAF-MSA.git`
+
+### 4.1 同步通道：远端无法直连 GitHub
+
+**远端 `git fetch/pull` 不可用**，实测报错：
+
+```text
+fatal: unable to access 'https://github.com/JXB10086/HyperDAF-MSA.git/':
+GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+```
+
+因此不要把「远端 pull」写进任何流程。唯一被验证过的同步通道是本地脚本：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync_run_r1_to_server.ps1
+```
+
+它按顺序做：本地单测 → `git commit` + `push` → 服务器诊断 →
+**本地 `git bundle main` 打包后 scp 上去、在服务器上从 bundle fetch 并 fast-forward**
+→ 比对两侧 SHA-256（不一致则 scp 直传整棵 `experiments/cmrp_v2`）→
+服务器 `py_compile` + 关键符号计数比对 → 打印 `SYNC_PASS` / `SYNC_FAIL`。
+
+`-DiagnoseOnly` 只打印服务器诊断（GPU / python / git / 磁盘 / GitHub 可达性），不改任何东西。
 
 ---
 
@@ -108,7 +131,8 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 | 级别 | 问题 |
 |---|---|
 | 高 | 远端没有 `cmrp_v2/`，R1 目前**只能在本地跑或需先同步**。 |
-| 高 | `run_paired_multiseed.py` 与 `run_r1.py` **都不保存权重**（无 `torch.save`），运行结束即无法复查表征。 |
+| 高 | **远端无法直连 GitHub**（`GnuTLS recv error -110`），只能走 `scripts/sync_run_r1_to_server.ps1` 的 bundle 通道；见 4.1。 |
+| 已修（待同步） | `run_r1.py` 原本没有 `torch.save`，运行结束即无法复查表征；现已按 variant/seed 保存验证集最优权重，并把路径/字节数/SHA-256 写入结果 JSON。`run_paired_multiseed.py`（v1 冻结产物）仍不保存权重。 |
 | 高 | 唯一现存的权重（`experiments/mosei/*.pt`）**不在 git 中**，且只存在于本地。 |
 | 中 | 远端工作树 CRLF 伪修改，`git pull` 易冲突。 |
 | 中 | 远端 `.venv` 是 Windows 版，Linux 下不可用；重跑需在 `base` 环境或缺环境时新建。 |
