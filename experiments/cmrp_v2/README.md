@@ -37,11 +37,14 @@ experiments/cmrp_v2/
 |   |-- __init__.py
 |   `-- run_r1.py                 # strict paired H0/B3/REL experiment
 `-- tests/
-    `-- test_losses_metrics.py    # CPU-only mathematical checks
+    |-- test_losses_metrics.py             # CPU-only mathematical checks
+    |-- test_r1_checkpoint.py              # checkpoint provenance round-trip
+    `-- test_r1_checkpoint_integration.py  # training-loop wiring, bit-identical
 ```
 
-Runtime results belong under `r1_relational/results/` and should not replace
-any v1 artifact.
+Runtime results belong under `r1_relational/results/`, and the validation-selected
+weights under `r1_relational/results/checkpoints/`. Neither replaces any v1
+artifact. Both are git-ignored (`results/`, `checkpoints/`, `*.pth`).
 
 ## R1 Comparison
 
@@ -64,6 +67,28 @@ R1 intentionally excludes:
 - attention, fusion, reconstruction, or imputation;
 - HME/CMAD integration;
 - test-driven lambda tuning.
+
+## Checkpoint Artifacts
+
+`run_r1.py` writes one file per variant and seed:
+
+```text
+results/checkpoints/<variant>_seed<seed>_best_val_mae.pth
+```
+
+Each file records `variant`, `seed`, `best_epoch`, `best_valid_mae`, `protocol`,
+`lambda_point`, `lambda_rel`, the selection rule (`validation MAE only`) and the
+`state_dict`. The same record plus byte size and SHA-256 is stored in
+`train_info["checkpoint"]` and therefore reaches `results.json` and `summary.json`.
+
+This is instrumentation added after the R1 protocol was frozen. It consumes no
+randomness and does not affect validation-based selection:
+`test_r1_checkpoint_integration.py` asserts that a run with checkpoints enabled
+and a run without are bit-identical in parameters, digests and validation MAE.
+
+It exists because the sealed CMRP v1 paired run never called `torch.save`, so
+per-sample representation audits were impossible once a process exited. Keeping
+the selected weights makes those audits repeatable.
 
 ## Commands
 

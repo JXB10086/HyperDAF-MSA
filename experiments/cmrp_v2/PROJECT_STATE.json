@@ -20,6 +20,8 @@
     "lambda_rel_status": "preregistered scale-matched pilot; not test-tuned",
     "consistency_views": "single-modality missing only, matching v1 B3",
     "checkpoint_selection": "validation MAE only",
+    "checkpoint_artifacts": "results/checkpoints/<variant>_seed<seed>_best_val_mae.pth, with path/bytes/sha256 recorded in results.json",
+    "checkpoint_instrumentation": "added after freeze; consumes no randomness; verified bit-identical to a run without checkpoints",
     "test_use": "automated final evaluation only; never selection",
     "pairing_required": [
       "initial weights",

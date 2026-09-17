@@ -101,6 +101,17 @@ REL may proceed to R2 only if all conditions hold:
 Passing R1 supports further study, not a causal or SOTA claim. Failing R1 stops
 the consistency line before balanced sampling, Group-DRO, or other modules.
 
+## Amendments After Freeze
+
+| Date | Change | Effect on the preregistered contrast |
+| --- | --- | --- |
+| 2026-09-17 | `run_r1.py` saves the validation-selected weights per variant and seed under `results/checkpoints/`, and records path, byte size and SHA-256 in `results.json` / `summary.json` | None. Instrumentation only: consumes no randomness, selection rule remains validation MAE alone |
+
+Amendment policy: changes are recorded here, never applied silently. Any change
+that touches seeds, sample order, masks, dropout draws, the optimizer, the
+selection rule, the lambdas or the gate invalidates the frozen protocol and must
+be dated together with its reason.
+
 ## Explicit Exclusions
 
 R1 does not include all-pattern consistency training, Group-DRO, task-aware

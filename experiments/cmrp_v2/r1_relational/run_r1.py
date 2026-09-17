@@ -104,6 +104,15 @@ def state_hash(model):
     return digest.hexdigest()
 
 
+def file_sha256(path, chunk_size=1 << 20):
+    """SHA-256 of a file on disk, recorded as checkpoint provenance."""
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(chunk_size), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def update_id_hash(digest, ids):
     for sample_id in ids:
         digest.update(str(sample_id).encode("utf-8"))
@@ -125,7 +134,39 @@ def build_model(cfg, device):
     ).to(device)
 
 
-def train_variant(variant, seed, cfg, datasets, device):
+def save_best_checkpoint(checkpoint_dir, variant, seed, best_epoch, best_mae, best_state):
+    """Persist the validation-selected weights and return their provenance record.
+
+    This is instrumentation only. It consumes no randomness and does not influence
+    model selection, which remains validation MAE alone.
+    """
+    checkpoint_dir = Path(checkpoint_dir)
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    checkpoint_path = checkpoint_dir / f"{variant}_seed{seed}_best_val_mae.pth"
+    torch.save(
+        {
+            "variant": variant,
+            "seed": seed,
+            "best_epoch": best_epoch,
+            "best_valid_mae": best_mae,
+            "protocol": PROTOCOL,
+            "selection": "validation MAE only",
+            "lambda_point": LAMBDA_POINT,
+            "lambda_rel": LAMBDA_REL,
+            "state_dict": {
+                key: value.detach().cpu() for key, value in best_state.items()
+            },
+        },
+        checkpoint_path,
+    )
+    return {
+        "path": str(checkpoint_path),
+        "bytes": checkpoint_path.stat().st_size,
+        "sha256": file_sha256(checkpoint_path),
+    }
+
+
+def train_variant(variant, seed, cfg, datasets, device, checkpoint_dir=None):
     seed_torch(seed)
     np.random.seed(seed)
     model = build_model(cfg, device)
@@ -284,6 +325,13 @@ def train_variant(variant, seed, cfg, datasets, device):
         )
 
     model.load_state_dict(best_state)
+
+    checkpoint_info = None
+    if checkpoint_dir is not None:
+        checkpoint_info = save_best_checkpoint(
+            checkpoint_dir, variant, seed, best_epoch, best_mae, best_state
+        )
+
     return model, {
         "variant": variant,
         "seed": seed,
@@ -293,6 +341,7 @@ def train_variant(variant, seed, cfg, datasets, device):
         "initial_state_sha256": initial_state_sha256,
         **{f"{name}_sha256": digest.hexdigest() for name, digest in digests.items()},
         "runtime_sec": time.time() - started,
+        "checkpoint": checkpoint_info,
         "history": history,
     }
 
@@ -635,6 +684,7 @@ def main():
         "lambda_point": LAMBDA_POINT,
         "lambda_rel": LAMBDA_REL,
         "checkpoint_selection": "validation MAE only",
+        "checkpoint_artifacts": "best validation-MAE weights saved per variant/seed under checkpoints/",
         "split_sizes": {key: len(value) for key, value in datasets.items()},
         "dims": list(dims),
         "metric_block_size": args.metric_block_size,
@@ -659,6 +709,7 @@ def main():
         for name, pattern in FIXED_TEST_CONDITIONS
     }
 
+    checkpoint_dir = output_dir / "checkpoints"
     run_started = time.time()
     seed_results = []
     long_rows = []
@@ -669,7 +720,7 @@ def main():
         models = {}
         for variant in VARIANTS:
             model, train_info = train_variant(
-                variant, seed, cfg, datasets, device
+                variant, seed, cfg, datasets, device, checkpoint_dir
             )
             fixed, representations = evaluate_task_and_representations(
                 model, test_loader, condition_masks, device
