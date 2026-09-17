@@ -1,0 +1,59 @@
+HyperDAF-MSA server bundle
+===========================
+
+Purpose
+-------
+This archive is a working copy for continuing the full project on a GPU server.
+It includes the CMRP-MSA source, frozen evidence, experiment records, MOSI/MOSEI
+data used by the project, LNLN source/configuration, and official LNLN MOSI data.
+
+Included
+--------
+- configs/, datasets/, losses/, models/, scripts/, utils/
+- train.py, test.py, requirements.txt
+- experiments/ source files, generated tables, reports, plots, logs, and model
+  artifacts needed to inspect or reproduce the existing CMRP experiments
+- experiments/cmrp_evidence/ (Evidence Package v1; frozen reference)
+- experiments/fair_baseline/ (fair-baseline audits and LNLN smoke records)
+- data/mosi/ (CMRP MOSI data and converted features)
+- data/mosei/ (CMRP MOSEI data and converted features)
+- data/mmsa/MOSI/Processed/unaligned_50.pkl (official MMSA LNLN MOSI data)
+- third_party/LNLN/ source, configs, README, and scripts, excluding checkpoints
+- this manifest
+
+Important data verification
+---------------------------
+data/mmsa/MOSI/Processed/unaligned_50.pkl
+SHA-256: 78e0f8b5ef8ff71558e7307848fc1fa929ecb078203f565ab22b9daab2e02524
+Expected splits: train=1284, valid=229, test=686
+
+Excluded intentionally
+----------------------
+- third_party/LNLN/ckpt/*.pth: existing LNLN checkpoints, about 7.75 GB;
+  not needed for a fresh run and can be generated on the server
+- external/mmsa_data/: duplicate copy of the official MMSA MOSI file
+- external/LNLN/: duplicate older LNLN source copy
+- .venv/, Python caches, Hugging Face cache, and temporary download caches
+- synthetic_valid_mosi_tiny.pkl: diagnostic-only synthetic data
+- root scratch file 4.30
+
+Server setup notes
+------------------
+1. Extract the archive.
+2. Create a CUDA-enabled Python environment. Do not install the repository's
+   CPU-only torch pin unchanged; select a PyTorch build compatible with the
+   server CUDA driver.
+3. Verify the official MMSA SHA-256 before training.
+4. Update LNLN config dataPath values to the extracted server path.
+5. Run only the approved sequence: GPU 10-epoch seed-1111 smoke, review it,
+   then 200-epoch seed-1111 native reproduction.
+6. Preserve LNLN's native token/frame-level missing protocol. Do not merge its
+   metrics into CMRP's whole-modality seven-pattern tables.
+
+Frozen research constraints
+---------------------------
+- CMRP-MSA H0+B3 and Evidence Package v1 remain frozen.
+- F2 is auxiliary only; F3 is failure analysis only.
+- Do not start HME, CMAD, IEMOCAP, or seeds 1112/1113 without explicit review.
+- LNLN native code currently saves metric-specific checkpoints based on test
+  metrics; report this test-selection caveat in any reproduction summary.

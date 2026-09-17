@@ -1,0 +1,70 @@
+{
+  "status": "complete",
+  "label": "official/native reproduction with test-driven checkpoint selection",
+  "dataset": "MOSI",
+  "data_sha256": "78e0f8b5ef8ff71558e7307848fc1fa929ecb078203f565ab22b9daab2e02524",
+  "epochs_per_seed": 200,
+  "test_used_for_checkpoint_selection": true,
+  "leakage_free_fair_baseline": false,
+  "best_metric_semantics": "Metric-specific historical optima; MAE and Corr may come from different epochs.",
+  "std_definition": "sample standard deviation (ddof=1)",
+  "seeds": [
+    {
+      "seed": 1111,
+      "exit_code": 0,
+      "robust_exit_code": 0,
+      "final_train_loss": 0.1444325462,
+      "best_valid_mae": {"value": 1.0815, "epoch": 26},
+      "best_valid_corr": {"value": 0.5700, "epoch": 14},
+      "best_test_mae": {"value": 1.0687, "epoch": 162},
+      "best_test_corr": {"value": 0.5212, "epoch": 5},
+      "training_time_sec": 2801,
+      "gpu": "NVIDIA GeForce RTX 3090",
+      "peak_memory_mib": 13588,
+      "anomaly": false
+    },
+    {
+      "seed": 1112,
+      "exit_code": 0,
+      "robust_exit_code": 0,
+      "final_train_loss": 0.0852271428,
+      "best_valid_mae": {"value": 0.9892, "epoch": 101},
+      "best_valid_corr": {"value": 0.6285, "epoch": 101},
+      "best_test_mae": {"value": 1.0523, "epoch": 16},
+      "best_test_corr": {"value": 0.5418, "epoch": 24},
+      "training_time_sec": 2064,
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "peak_memory_mib": 13737,
+      "anomaly": false
+    },
+    {
+      "seed": 1113,
+      "exit_code": 0,
+      "robust_exit_code": 0,
+      "final_train_loss": 0.1174615774,
+      "best_valid_mae": {"value": 1.0460, "epoch": 104},
+      "best_valid_corr": {"value": 0.5665, "epoch": 104},
+      "best_test_mae": {"value": 1.0975, "epoch": 45},
+      "best_test_corr": {"value": 0.5003, "epoch": 43},
+      "training_time_sec": 2432,
+      "gpu": "NVIDIA GeForce RTX 4090",
+      "peak_memory_mib": 13737,
+      "anomaly": false
+    }
+  ],
+  "aggregate": {
+    "best_valid_mae": {"mean": 1.038900, "sample_std": 0.046558},
+    "best_valid_corr": {"mean": 0.588333, "sample_std": 0.034829},
+    "best_test_mae": {"mean": 1.072833, "sample_std": 0.022882},
+    "best_test_corr": {"mean": 0.521100, "sample_std": 0.020750},
+    "training_time_sec": {"mean": 2432.333333, "sample_std": 368.500113, "hardware_mixed": true}
+  },
+  "robust_evaluation": {
+    "protocol": "LNLN native token/frame-level erase",
+    "checkpoint_per_seed": "best_MAE_<seed>.pth",
+    "rows_file": "robust_summary.csv",
+    "rates": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  },
+  "protocol_audit": "PROTOCOL_COMPARISON.md",
+  "next_action": "Review the sealed evidence before any HME native reproduction."
+}

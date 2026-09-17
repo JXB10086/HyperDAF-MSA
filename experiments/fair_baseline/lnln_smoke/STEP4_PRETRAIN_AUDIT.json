@@ -1,0 +1,180 @@
+{
+  "step": "Fair Baseline Step4 - LNLN pre-training audit",
+  "status": "AUDIT_COMPLETE_NO_TRAINING",
+  "date": "2026-09-15",
+  "frozen_baseline": {
+    "CMRP": "H0+B3 lam=0.005",
+    "Evidence_Package": "v1 FROZEN",
+    "no_CMRP_change": true,
+    "no_HME_CMAD": true,
+    "no_IEMOCAP": true,
+    "native_missing_protocol_preserved": true
+  },
+  "data": {
+    "dataset": "MOSI",
+    "path": "F:/winoptimizeDir/Desktop/HyperDAF-MSA/data/mmsa/MOSI/Processed/unaligned_50.pkl",
+    "sha256": "78e0f8b5ef8ff71558e7307848fc1fa929ecb078203f565ab22b9daab2e02524",
+    "sha256_verified": true,
+    "splits": {
+      "train": 1284,
+      "valid": 229,
+      "test": 686
+    },
+    "protocol": "LNLN native token/frame-level erase; not CMRP whole-modality Protocol B"
+  },
+  "selection_metric": {
+    "code_behavior": "Per-metric best checkpoint, with metric-specific comparisons",
+    "checkpoint_metrics": [
+      "Has0_acc_2",
+      "Non0_acc_2",
+      "MAE",
+      "Mult_acc_2",
+      "Mult_acc_3",
+      "Mult_acc_5",
+      "Mult_acc_7",
+      "Corr"
+    ],
+    "checkpoint_source": "test_results passed to get_best_results(..., save_best_model=True)",
+    "mae_selection": "test MAE minimum",
+    "corr_selection": "test Corr maximum",
+    "classification_selection": "test classification metric maximum"
+  },
+  "test_used_for_selection": true,
+  "test_used_for_final_report_only": false,
+  "validation_behavior": {
+    "evaluated_each_epoch": true,
+    "best_valid_metrics_tracked_in_memory": true,
+    "valid_checkpoint_saved": false,
+    "role": "diagnostic/in-memory tracking; not the source of saved best checkpoints"
+  },
+  "selection_audit": {
+    "finding": "The official training code uses test metrics to update and save metric-specific best checkpoints.",
+    "leakage_caveat": "This is test-driven checkpoint selection. It is not a clean validation-selected reproduction protocol.",
+    "source_locations": [
+      "third_party/LNLN/train.py:59-66",
+      "third_party/LNLN/core/utils.py:24-78"
+    ],
+    "do_not_modify_original_method": true,
+    "recommended_reporting": "Report native official-code reproduction with an explicit test-selection caveat; do not call it validation-selected or leak-free. A clean validation-selected rerun would be a separate protocol and must not overwrite native results."
+  },
+  "readme_paper_consistency": {
+    "README": "README states that checkpoints are selected as best-performing separately for each metric type and warns that metrics can correspond to different epochs.",
+    "README_matches_per_metric_behavior": true,
+    "README_explicitly_documents_test_selection": false,
+    "paper_context": "Robust evaluation loads best_{metric}_{seed}.pth and averages results over missing rates r=0.0,...,0.9.",
+    "same_epoch_caveat": true,
+    "assessment": "Metric-specific checkpoint selection is consistent with the README wording; the implementation's test-driven selection is an additional methodological caveat not made explicit there."
+  },
+  "official_config": {
+    "epochs": 200,
+    "batch_size": 64,
+    "lr": 0.0001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "seeds": [1111, 1112, 1113],
+    "num_workers": 8,
+    "train_mode": "regression",
+    "missing_rate_eval_test_in_train_yaml": 0.5,
+    "do_validation": true,
+    "loss_weights": {
+      "alpha_completeness": 0.9,
+      "beta_effectiveness": 0.8,
+      "gamma_reconstruction": 0.1,
+      "sigma_sentiment": 1.0
+    },
+    "model": {
+      "bert_pretrained": "bert-base-uncased",
+      "input_length_LVA": [50, 500, 375],
+      "input_dims_LVA": [768, 20, 5],
+      "hidden_dims_LVA": [128, 128, 128]
+    },
+    "robust_evaluation_missing_rates": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  },
+  "actual_code_config": {
+    "epochs": 200,
+    "batch_size": 64,
+    "lr": 0.0001,
+    "optimizer": "torch.optim.AdamW",
+    "weight_decay": 0.0001,
+    "seeds_from_train_sh": [1111, 1112, 1113],
+    "scheduler": {
+      "type": "GradualWarmupScheduler wrapping CosineAnnealingLR",
+      "warmup_multiplier": 1.0,
+      "warmup_epochs": 20.0,
+      "cosine_T_max": 180.0,
+      "step_called_after_each_epoch": true
+    },
+    "training_missing_generation": "Each modality receives per-sample U(0,1) missing rates; half of samples per modality are forced to rate 0; text erases tokens to UNK=100 and audio/vision erase frames to zero.",
+    "eval_missing_generation": "Uniform scalar missing_rate_eval_test is applied to all three modalities; robust_evaluation sweeps 0.0 through 0.9.",
+    "model_selection": "Test-driven per-metric checkpoint saving; validation is tracked but not saved.",
+    "loss": "MultimodalLoss = alpha*l_cc + beta*l_adv + gamma*l_rec + sigma*l_sp",
+    "source_locations": [
+      "third_party/LNLN/train.py:46-68",
+      "third_party/LNLN/core/scheduler.py:68-73",
+      "third_party/LNLN/core/losses.py:5-25",
+      "third_party/LNLN/core/dataset.py:54-103",
+      "third_party/LNLN/robust_evaluation.py:32-82"
+    ]
+  },
+  "phase2_audit_comparison": {
+    "epochs": "match",
+    "batch_size": "match",
+    "lr": "match",
+    "optimizer": "match",
+    "weight_decay": "match",
+    "seeds": "match",
+    "missing_protocol": "match native LNLN description",
+    "loss": "match MultimodalLoss description",
+    "model_selection": "Phase-2 recorded per-metric caveat but did not explicitly identify test-driven checkpoint saving; code audit adds this caveat",
+    "scheduler": "newly verified from source: warmup + cosine annealing"
+  },
+  "environment": {
+    "python": "3.8.15",
+    "torch": "2.4.1+cpu",
+    "cuda_available": false,
+    "cuda_version": null,
+    "gpu_name": null,
+    "gpu_count": 0,
+    "local_assessment": "CPU-only; do not run official 200-epoch reproduction locally"
+  },
+  "smoke_reference": {
+    "official_native_3_epoch_status": "PASS",
+    "seed": 1111,
+    "device": "CPU",
+    "elapsed_sec": 3338.2,
+    "best_test_mae": 1.3232,
+    "best_test_corr": 0.249,
+    "note": "Smoke proves official data and code path run; it is not paper evidence and uses a different batch size/epoch count from the official config."
+  },
+  "estimated_runtime": {
+    "cpu_linear_reference": "About 61.8 hours per seed if naively extrapolating 3338.2 seconds for 3 smoke epochs; this is not a reliable official-config estimate because smoke used batch_size=8 and num_workers=0.",
+    "gpu_estimate": "No local GPU is available, so no measured speedup exists. For an A40-class or similar CUDA server, plan roughly 2-8 hours for one 200-epoch MOSI seed, subject to GPU, CUDA/PyTorch compatibility, dataloader behavior, and actual throughput. Treat this as a planning range, not a benchmark.",
+    "10_epoch_gpu_smoke": "Use the measured 10-epoch wall time on the selected server to replace the planning range before starting 200 epochs.",
+    "memory_requirement": "Use an A40-class GPU or another GPU with ample VRAM; verify one official batch before committing to a rental."
+  },
+  "formal_reproduction_plan": {
+    "step_A": {
+      "action": "On GPU, run official configuration for 10 epochs with seed 1111 only.",
+      "verify": [
+        "CUDA and GPU identity",
+        "official data SHA-256 and split sizes",
+        "native loss path",
+        "epoch MAE/Corr",
+        "checkpoint creation",
+        "wall-clock runtime",
+        "no CMRP code changes"
+      ],
+      "status": "awaiting explicit GO and GPU environment"
+    },
+    "step_B": {
+      "action": "Only after Step A passes, run the official 200-epoch MOSI configuration for seed 1111.",
+      "evaluation": "Run native robust_evaluation over r=0.0,...,0.9 using the metric-specific checkpoints, while reporting test-selection caveat.",
+      "status": "blocked_pending_step_A"
+    },
+    "step_C": {
+      "action": "Only after seed 1111 is reviewed, decide whether to run seeds 1112 and 1113.",
+      "status": "not_started"
+    }
+  },
+  "next_action": "STOP. Await explicit GO and GPU server details for Step A 10-epoch seed-1111 smoke. Do not start 200 epochs, seeds 1112/1113, HME, CMAD, or IEMOCAP."
+}

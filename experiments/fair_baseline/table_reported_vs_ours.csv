@@ -1,0 +1,33 @@
+method,dataset,missing_setting,metric,value,feature_ecology,train_protocol,status,source,comparability,note
+EASE,MOSI,intra-modal random avg r=0..0.9,MAE,0.995,BERT/MMSA-style,authors' 200ep avg-over-r,reported,ACL'26 Findings EASE Table1 (intra),NOT_FAIR_vs_CMRP,avg over missing rates; not Protocol B
+EASE,MOSI,intra-modal random avg r=0..0.9,Corr,0.573,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table1,NOT_FAIR_vs_CMRP,
+EASE,MOSEI,intra-modal random avg r=0..0.9,MAE,0.645,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table1,NOT_FAIR_vs_CMRP,
+EASE,MOSEI,intra-modal random avg r=0..0.9,Corr,0.610,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table1,NOT_FAIR_vs_CMRP,
+EASE,MOSI,inter-modal 6-subset avg,MAE,1.035,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table3,NOT_FAIR_vs_CMRP,subsets {l}/{a}/{v}/{l,a}/{l,v}/{a,v}
+EASE,MOSI,inter-modal 6-subset avg,Corr,0.473,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table3,NOT_FAIR_vs_CMRP,
+EASE,MOSEI,inter-modal 6-subset avg,MAE,0.682,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table3,NOT_FAIR_vs_CMRP,
+EASE,MOSEI,inter-modal 6-subset avg,Corr,0.487,BERT/MMSA-style,authors',reported,ACL'26 Findings EASE Table3,NOT_FAIR_vs_CMRP,
+LNLN,MOSI,random missing avg r=0..0.9,MAE,1.046,MMSA,authors' seeds 1111-1113; best-ckpt-per-metric-type,reported,NeurIPS'24 LNLN Table2,NOT_FAIR_vs_CMRP,frame/token-level erase; NOT whole-modality dropout
+LNLN,MOSI,random missing avg r=0..0.9,Corr,0.527,MMSA,authors',reported,NeurIPS'24 LNLN Table2,NOT_FAIR_vs_CMRP,
+LNLN,MOSEI,random missing avg r=0..0.9,MAE,0.692,MMSA,authors',reported,NeurIPS'24 LNLN Table2,NOT_FAIR_vs_CMRP,
+LNLN,MOSEI,random missing avg r=0..0.9,Corr,0.530,MMSA,authors',reported,NeurIPS'24 LNLN Table2,NOT_FAIR_vs_CMRP,
+RECAP,MOSI,random missing rate avg (0-0.9),MAE,1.030,MMSA unaligned,authors',reported,RECAP paper (prior inventory),NOT_FAIR_vs_CMRP,
+RECAP,MOSI,random missing rate avg (0-0.9),Corr,0.544,MMSA unaligned,authors',reported,RECAP paper (prior inventory),NOT_FAIR_vs_CMRP,
+RECAP,MOSEI,random missing rate avg (0-0.9),MAE,0.659,MMSA unaligned,authors',reported,RECAP paper (prior inventory),NOT_FAIR_vs_CMRP,
+RECAP,MOSEI,random missing rate avg (0-0.9),Corr,0.599,MMSA unaligned,authors',reported,RECAP paper (prior inventory),NOT_FAIR_vs_CMRP,
+UMDF,MOSI,Full,MAE,0.556,GloVe300+COVAREP74+Facet,authors',reported,UMDF paper (prior inventory),ROUGH_FEATURE_CLOSER,still reported-only; not MultiBench MOSI audio-dim5
+UMDF,MOSI,inter-modal Avg,MAE,0.817,GloVe300+COVAREP74+Facet,authors',reported,UMDF paper (prior inventory),ROUGH_FEATURE_CLOSER,implies rough ΔMAE≈0.261 if Full vs Avg comparable in-paper
+HME,MOSI,fixed+random MR,Acc/F1,— (no MAE),BERT+OpenFace+COVAREP,authors' MR,reported,NeurIPS'25 HME Table1,METRIC_MISMATCH,primary Acc/F1; cannot MAE-rank vs CMRP
+CMAD,MOSEI,fixed modality combinations,Acc/F1,— (no MAE),MIB/MAG BERT,teacher-student,reported,ICCV'25 CMAD Table1,METRIC_MISMATCH,regression converted to Acc/F1; no MOSI main MAE
+CMRP-MSA (H0+B3),MOSI,Full,MAE,1.1526,MultiBench 300/5/20,Protocol B seed42,ours_unified,Evidence Package v1 / mosi_final,INTERNAL,audio dim=5 likely hurts absolute MAE
+CMRP-MSA (H0+B3),MOSI,Full,Corr,0.5827,MultiBench 300/5/20,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,
+CMRP-MSA (H0+B3),MOSI,missAvg(6) whole-modality,MAE,1.2837,MultiBench 300/5/20,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,ΔMAE=0.1312
+CMRP-MSA (H0+B3),MOSI,missAvg(6) whole-modality,Corr,0.3616,MultiBench 300/5/20,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,ΔCorr=0.2212
+CMRP-MSA (H0+B3),MOSI,randMean p=0.1..0.9,MAE,1.2671,MultiBench 300/5/20,Protocol B seed42,ours_unified,Evidence Package v1 / prior canvas,INTERNAL,
+CMRP-MSA (H0+B3),MOSI,missAvg multi-seed,MAE,1.2755±0.0250,MultiBench 300/5/20,PB seeds 42/43/44,ours_unified,Evidence Package v1 table5,INTERNAL,
+CMRP-MSA (H0+B3),MOSEI,Full,MAE,0.6580,MultiBench 300/74/35,Protocol B seed42,ours_unified,Evidence Package v1 / b3sg,INTERNAL,
+CMRP-MSA (H0+B3),MOSEI,Full,Corr,0.6018,MultiBench 300/74/35,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,
+CMRP-MSA (H0+B3),MOSEI,missAvg(6) whole-modality,MAE,0.7326,MultiBench 300/74/35,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,ΔMAE=0.0746
+CMRP-MSA (H0+B3),MOSEI,missAvg(6) whole-modality,Corr,0.4181,MultiBench 300/74/35,Protocol B seed42,ours_unified,Evidence Package v1,INTERNAL,ΔCorr=0.1837
+CMRP-MSA (H0+B3),MOSEI,randMean multi-seed,MAE,0.7212±0.0013,MultiBench 300/74/35,PB seeds 42/43/44,ours_unified,Evidence Package v1 table5,INTERNAL,
+CMRP-MSA (H0+B3),MOSEI,missAvg multi-seed,MAE,0.7335±0.0012,MultiBench 300/74/35,PB seeds 42/43/44,ours_unified,Evidence Package v1 table5,INTERNAL,

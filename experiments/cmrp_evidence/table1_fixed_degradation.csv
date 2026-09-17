@@ -1,0 +1,33 @@
+dataset,model,condition,MAE,Corr,dMAE,dCorr,seed,protocol,status,source,note
+MOSEI,H0 (lam=0),None,0.6591,0.6018,,,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),T missing,0.8001,0.247,0.141,0.3548,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),A missing,0.6596,0.6,0.0005,0.0017,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),V missing,0.6572,0.609,-0.0019,-0.0072,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),T+A missing,0.8049,0.2292,0.1457,0.3726,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),T+V missing,0.8296,0.1388,0.1705,0.4629,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),A+V missing,0.6582,0.6043,-0.0009,-0.0026,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0 (lam=0),missAvg(6),0.7349,0.4047,0.0758,0.197,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),None,0.658,0.6018,,,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),T missing,0.8035,0.26,0.1454,0.3418,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),A missing,0.6511,0.6004,-0.0069,0.0014,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),V missing,0.6655,0.5967,0.0075,0.0051,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),T+A missing,0.8021,0.2417,0.1441,0.3602,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),T+V missing,0.8144,0.2179,0.1564,0.384,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),A+V missing,0.6592,0.592,0.0012,0.0098,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSEI,H0+B3 (lam=0.005),missAvg(6),0.7326,0.4181,0.0746,0.1837,42,B,unified,experiments/mosei/b3sg_results.json,
+MOSI,H0 (no B3),None,1.158,0.5983,,,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),T missing,1.4641,0.189,0.3061,0.4093,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),A missing,1.1597,0.5778,0.0017,0.0205,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),V missing,1.1363,0.6034,-0.0217,-0.005,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),T+A missing,1.5112,0.0991,0.3532,0.4992,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),T+V missing,1.4861,0.1925,0.3281,0.4058,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),A+V missing,1.1374,0.5811,-0.0206,0.0172,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0 (no B3),missAvg(6),1.3158,0.3738,0.1578,0.2245,42,B,unified,experiments/stage3/stage3_results.json,H0 from stage3 hyper_D256; not same run as mosi_final H0+B3
+MOSI,H0+B3 (lam=0.005),None,1.1526,0.5827,,,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),T missing,1.4521,0.1429,0.2996,0.4398,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),A missing,1.1595,0.5651,0.007,0.0176,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),V missing,1.0972,0.5923,-0.0554,-0.0096,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),T+A missing,1.4972,0.0665,0.3446,0.5163,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),T+V missing,1.3931,0.2285,0.2405,0.3542,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),A+V missing,1.1033,0.5741,-0.0493,0.0086,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),missAvg(6),1.2837,0.3616,0.1312,0.2212,42,B,unified,experiments/mosi_final/mosi_final_results.json,

@@ -1,0 +1,4 @@
+method,official_code,datasets_code,feature_ecology,missing_protocol_summary,paper_metrics,direct_on_CMRP_MultiBench,adapt_needed,feasibility,suggested_order
+HME,https://github.com/YetZzzzzz/HME,MOSI+MOSEI,BERT+OpenFace+COVAREP aligned pkl (Baidu),zero-fill; CLI missing_rate MR; fixed(+) & random(-),Acc-2/F1,no,"features; MAE/Corr eval adapter; Protocol B mapping",high_runnable,strategic_1 / engineering_2
+CMAD,https://github.com/YetZzzzzz/CMAD,MOSEI MSA (+IEMOCAP MER skip),MIB/MAG BERT mosei.pkl; teacher ckpt,teacher full / student random drop; fixed modality combos Acc/F1,Acc/F1,no,"features; two-stage; MOSI optional; MAE/Corr adapter",medium_high_heavy,strategic_2 / engineering_3
+LNLN,https://github.com/Haoyu-ha/LNLN,MOSI+MOSEI+SIMS,MMSA features,incomplete/random robust eval; seeds 1111-1113,MAE/Corr+Acc/F1,no,"features if Path A; same-epoch metric selection caveat",highest_for_MAE_pipeline,strategic_3 / engineering_1_first_smoke

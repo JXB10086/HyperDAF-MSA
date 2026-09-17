@@ -1,0 +1,12 @@
+dataset,model,p,MAE,Corr,dMAE,dCorr,seed,protocol,status,source,note
+MOSI,H0 (no B3),0.1,1.1805,0.5718,0.0225,0.0266,42,B,unified,experiments/stage3/stage3_results.json,
+MOSI,H0 (no B3),0.3,1.2441,0.5146,0.0861,0.0837,42,B,unified,experiments/stage3/stage3_results.json,
+MOSI,H0 (no B3),0.5,1.3124,0.4614,0.1544,0.1369,42,B,unified,experiments/stage3/stage3_results.json,
+MOSI,H0 (no B3),0.7,1.3574,0.3765,0.1994,0.2218,42,B,unified,experiments/stage3/stage3_results.json,
+MOSI,H0 (no B3),0.9,1.3959,0.3022,0.2379,0.2961,42,B,unified,experiments/stage3/stage3_results.json,
+MOSI,H0+B3 (lam=0.005),0.1,1.1803,0.5514,0.0278,0.0313,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),0.3,1.2472,0.4644,0.0946,0.1183,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),0.5,1.2544,0.4478,0.1019,0.1349,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),0.7,1.3236,0.3584,0.171,0.2244,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,H0+B3 (lam=0.005),0.9,1.3298,0.3049,0.1773,0.2778,42,B,unified,experiments/mosi_final/mosi_final_results.json,
+MOSEI,H0+B3 (lam=0.005),randMean(0.1-0.9),0.7212,0.4784,0.0632,0.1234,42/43/44,B,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,per-p curve not stored for MOSEI H0+B3; aggregate only

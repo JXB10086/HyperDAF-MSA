@@ -1,0 +1,48 @@
+{
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "cuda_available": true,
+    "cuda_version": "12.4",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "device": "cuda"
+  },
+  "config": {
+    "dataset": "MOSEI",
+    "protocol": "B",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "epochs": 30,
+    "batch_size": 32,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "dropout": 0.1,
+    "train_missing_probability": 0.5,
+    "lambda_cons": 0.005,
+    "consistency": "normalized stop-gradient L2",
+    "split_sizes": {
+      "train": 16265,
+      "valid": 1869,
+      "test": 4643
+    },
+    "dims": [
+      300,
+      74,
+      35,
+      50
+    ],
+    "sample_std_ddof": 1,
+    "random_streams": {
+      "order_seed": "seed + 100000",
+      "task_mask_seed": "seed + global_step",
+      "task_forward_seed": "seed + 200000 + global_step",
+      "cons_mask_seed": "seed + 777777 + global_step",
+      "full_forward_seed": "seed + 300000 + global_step",
+      "miss_forward_seed": "seed + 400000 + global_step"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "step": "Fair Baseline Step5 - LNLN native MOSI GPU 10-epoch smoke",
+  "status": "PASS",
+  "returncode": 0,
+  "date": "2026-09-15",
+  "scope": {
+    "dataset": "MOSI",
+    "seed": 1111,
+    "epochs": 10,
+    "result_label": "native smoke; not paper evidence and not unified re-run",
+    "CMRP_unchanged": true,
+    "Evidence_Package_unchanged": true,
+    "no_200_epoch_run": true,
+    "no_other_seed": true,
+    "no_HME_CMAD_IEMOCAP": true
+  },
+  "remote": {
+    "host": "autodl-container-1a9645b69a-33c2a819",
+    "project_root": "/root/HyperDAF-MSA",
+    "workspace": "/root/HyperDAF-MSA/experiments/fair_baseline/lnln_gpu_smoke10_workspace",
+    "isolation": "Official LNLN source was copied into an isolated workspace without old checkpoints; third_party/LNLN was not modified."
+  },
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "cuda_available": true,
+    "cuda_runtime": "12.4",
+    "gpu_name": "NVIDIA GeForce RTX 3090",
+    "vram_mib": 24576,
+    "transformers": "4.46.3",
+    "einops": "0.8.1",
+    "scikit_learn": "1.9.1",
+    "pyyaml": "6.0.2",
+    "bert_offline_cache_verified": true
+  },
+  "data": {
+    "path": "/root/HyperDAF-MSA/data/mmsa/MOSI/Processed/unaligned_50.pkl",
+    "sha256": "78e0f8b5ef8ff71558e7307848fc1fa929ecb078203f565ab22b9daab2e02524",
+    "official_mmsa_verified": true
+  },
+  "config": {
+    "seed": 1111,
+    "epochs": 10,
+    "batch_size": 64,
+    "num_workers": 8,
+    "lr": 0.0001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "missing_rate_eval_test": 0.5,
+    "missing_protocol": "LNLN native token/frame-level erase",
+    "loss_weights": {
+      "alpha": 0.9,
+      "beta": 0.8,
+      "gamma": 0.1,
+      "sigma": 1.0
+    },
+    "model_parameters": 115965252
+  },
+  "runtime": {
+    "start": "2026-09-15T18:20:43+08:00",
+    "end": "2026-09-15T18:23:49+08:00",
+    "training_elapsed_sec": 178,
+    "wall_elapsed_sec_approx": 186,
+    "mean_training_sec_per_epoch": 17.8,
+    "projected_200_epoch_training_only": "About 59 minutes by direct linear extrapolation; budget roughly 1-1.5 hours for seed 1111 including startup and checkpoint I/O. This is a planning estimate, not a benchmark."
+  },
+  "gpu_monitor": {
+    "peak_utilization_percent_sampled": 96,
+    "peak_memory_mib": 13588,
+    "peak_temperature_c": 66,
+    "peak_power_w": 336.96,
+    "oom": false
+  },
+  "epochs": [
+    {"epoch": 1, "loss": 3.2490177836, "train_MAE": 1.3290, "train_Corr": 0.0273, "best_valid_MAE": 1.4370, "best_valid_Corr": 0.0550, "best_test_MAE": 1.4167, "best_test_Corr": 0.0287},
+    {"epoch": 2, "loss": 3.1477542945, "train_MAE": 1.3326, "train_Corr": 0.0734, "best_valid_MAE": 1.3534, "best_valid_Corr": 0.3142, "best_test_MAE": 1.3763, "best_test_Corr": 0.3312},
+    {"epoch": 3, "loss": 2.1866468361, "train_MAE": 0.9937, "train_Corr": 0.5823, "best_valid_MAE": 1.1566, "best_valid_Corr": 0.5322, "best_test_MAE": 1.1165, "best_test_Corr": 0.5060},
+    {"epoch": 4, "loss": 1.6983280466, "train_MAE": 0.7957, "train_Corr": 0.7279, "best_valid_MAE": 1.1566, "best_valid_Corr": 0.5322, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 5, "loss": 1.5828131267, "train_MAE": 0.7493, "train_Corr": 0.7662, "best_valid_MAE": 1.1391, "best_valid_Corr": 0.5396, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 6, "loss": 1.2408484448, "train_MAE": 0.6218, "train_Corr": 0.8284, "best_valid_MAE": 1.1391, "best_valid_Corr": 0.5559, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 7, "loss": 1.0485293865, "train_MAE": 0.5117, "train_Corr": 0.8789, "best_valid_MAE": 1.0878, "best_valid_Corr": 0.5711, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 8, "loss": 1.0465049148, "train_MAE": 0.4688, "train_Corr": 0.8979, "best_valid_MAE": 1.0878, "best_valid_Corr": 0.5711, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 9, "loss": 0.9135119404, "train_MAE": 0.4263, "train_Corr": 0.9082, "best_valid_MAE": 1.0655, "best_valid_Corr": 0.5795, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100},
+    {"epoch": 10, "loss": 0.8450474484, "train_MAE": 0.3740, "train_Corr": 0.9207, "best_valid_MAE": 1.0655, "best_valid_Corr": 0.5795, "best_test_MAE": 1.1165, "best_test_Corr": 0.5100}
+  ],
+  "checkpoint_audit": {
+    "test_used_for_selection": true,
+    "valid_checkpoint_saved": false,
+    "best_MAE_1111.pth_trigger_epoch": 3,
+    "best_Corr_1111.pth_trigger_epoch": 4,
+    "best_Has0_acc_2_1111.pth_trigger_epoch": 3,
+    "best_Non0_acc_2_1111.pth_trigger_epoch": 3,
+    "best_Mult_acc_5_1111.pth_trigger_epoch": 10,
+    "best_Mult_acc_7_1111.pth_trigger_epoch": 10,
+    "note": "Checkpoint field stores trigger_epoch + 1 because save_model writes epoch + 1."
+  },
+  "health_checks": {
+    "all_10_epochs_completed": true,
+    "loss_finite": true,
+    "metrics_finite": true,
+    "traceback": false,
+    "cuda_error": false,
+    "dataloader_error": false,
+    "checkpoints_created": true
+  },
+  "caveats": [
+    "This native code saves metric-specific checkpoints from test metrics; report the test-selection leakage caveat.",
+    "The 10-epoch scheduler is parameterized by n_epochs and therefore uses 1 warmup epoch plus a 9-epoch cosine schedule. The official 200-epoch run uses 20 warmup epochs plus a 180-epoch cosine schedule.",
+    "Training metrics improved strongly while best validation/test regression metrics plateaued early; smoke metrics are not evidence of reproduction quality.",
+    "The official robust_evaluation.py expects checkpoints for all three seeds. Seed-1111 review must precede any decision to run seeds 1112/1113."
+  ],
+  "verdict": "GPU 10-epoch smoke PASS. CUDA, official data, forward/backward, losses, metrics, checkpoint saving, and logging are operational.",
+  "next_action": "STOP and await explicit review/GO before any 200-epoch seed-1111 run."
+}

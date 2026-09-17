@@ -1,0 +1,50 @@
+{
+  "status": "FROZEN",
+  "package": "CMRP-MSA Evidence Package v1",
+  "core_model": "CMRP-MSA = H0+B3 (lam_cons=0.005, nsg-L2)",
+  "no_new_training": true,
+  "no_model_change": true,
+  "do_not_revise_H0_B3": true,
+  "paper_mainline": "Cross-Missing Representation Stability (not Hyper-Guided Dynamic Fusion)",
+  "next_gate": "CONDITIONAL GO locked (2026-09-13). Phase=paper_validation. Evidence Package v1 frozen. Next: fair nearest-neighbor verification (HME/CMAD/LNLN) on explicit go — then IEMOCAP — then final paper. No SOTA chasing.",
+  "mosei_paired": true,
+  "mosi_dcross_paired": false,
+  "locked_claim_en": "B3 reduces the average cross-missing representation drift and slightly alleviates performance degradation, with the most evident improvements observed under text-related missing patterns.",
+  "locked_claim_zh": "B3 能够在总体上降低跨缺失模式的表征漂移并缓解性能退化，但其收益具有明显的缺失模式依赖性，在文本相关缺失场景下更为明显。",
+  "boxed_summary": "H0+B3 on MOSEI shows limited but directionally consistent improvement in cross-missing representation stability.",
+  "headline_numbers_MOSEI_seed42_PB": {
+    "dMAE": {"H0": 0.0758, "B3": 0.0746},
+    "dCorr": {"H0": 0.1970, "B3": 0.1837},
+    "mean_Dcross": {"H0": 0.6978, "B3": 0.6785}
+  },
+  "pattern_dependence": {
+    "clearest_support": ["T+V (D_cross and MAE/Corr jointly improve)", "T-missing (largest D_cross drop)"],
+    "not_improved_Dcross": ["A-missing", "T+A-missing", "A+V-missing"]
+  },
+  "forbidden": [
+    "B3 eliminates representation drift under all missing patterns",
+    "CMRP-MSA outperforms HME/CMAD/EASE/RECAP"
+  ],
+  "allowed": [
+    "CMRP-MSA achieves competitive reported-level performance on MOSEI (not fair SOTA)",
+    "Representation stability and performance robustness show consistent co-improvement trends"
+  ],
+  "key_findings": [
+    "MOSEI missAvg dMAE: H0 0.0758 -> H0+B3 0.0746 (slightly smaller degradation).",
+    "MOSEI missAvg dCorr: H0 0.1970 -> H0+B3 0.1837 (mildly smaller correlation drop).",
+    "MOSEI D_cross mean(6): H0 0.6978 -> H0+B3 0.6785 (slightly down).",
+    "Largest D_cross drop on MOSEI: T-missing 0.8996->0.7879; T+V 0.9948->0.8937.",
+    "Not uniform: A-missing / T+A / A+V D_cross slightly increase under B3.",
+    "T+V MAE improves with B3 (0.8296->0.8144) alongside D_cross drop — partial support for claim.",
+    "MOSI missAvg dMAE: H0 0.1578 -> H0+B3 0.1312 (lower degradation), but runs are not paired for D_cross.",
+    "Multi-seed MOSEI HB3 missMAE 0.7335±0.0012; MOSI PB HB3 missMAE 1.2755±0.0250 (seeds 42/43/44).",
+    "Lambda neighborhood {0,0.005,0.01,0.02}: chosen 0.005 for lowest missAvg MAE.",
+    "F2 is auxiliary keeper on MOSEI seed42; F3/F3n fail vs F2/F0 — fusion demoted.",
+    "Do not claim outperforms HME/CMAD/EASE; reported table is context only."
+  ],
+  "research_lock": {
+    "RQ": "Cross-Missing Representation Stability",
+    "core": "Missing-Pattern-Aware Representation + Cross-Missing Consistency",
+    "F2": "Auxiliary Ablation"
+  }
+}

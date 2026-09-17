@@ -1,0 +1,5 @@
+dataset,protocol,seed,cons_form,lam_cons,missAvg_MAE,missAvg_Corr,mean_Dcross,T_missing_Dcross,gates_passed,status,source,note
+MOSEI,B,42,nsg-L2 (CMRP),0.0,0.7349,0.4047,0.6978,0.8996,N/A (H0),unified,experiments/mosei/b3sg_results.json,H0 baseline in same sweep
+MOSEI,B,42,nsg-L2 (CMRP),0.005,0.7326,0.4181,0.6785,0.7879,true,unified,experiments/mosei/b3sg_results.json,CHOSEN: lowest missAvg MAE among tested
+MOSEI,B,42,nsg-L2 (CMRP),0.01,0.7332,0.4256,0.5918,0.7422,true,unified,experiments/mosei/b3sg_results.json,lower D_cross but MAE not best
+MOSEI,B,42,nsg-L2 (CMRP),0.02,0.7345,0.4161,0.6158,0.8062,true,unified,experiments/mosei/b3sg_results.json,

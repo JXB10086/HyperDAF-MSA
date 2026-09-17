@@ -1,0 +1,84 @@
+{
+  "package": "CMRP-MSA Evidence Package",
+  "version": "1.0",
+  "status": "FROZEN",
+  "date": "2026-09-12",
+  "freeze_note": "Do not revise H0/B3, do not rebrand paper around Hyper-Guided Dynamic Fusion, do not run new model experiments against this baseline. Next gate: Fair Baseline (HME/CMAD/LNLN) — start only after explicit decision.",
+  "no_new_training": true,
+  "no_model_change": true,
+  "core_model": {
+    "name": "CMRP-MSA",
+    "definition": "H0 + B3",
+    "lam_cons": 0.005,
+    "cons_form": "nsg-L2: ||sg(zhat_full)-zhat_miss||_2^2, zhat=z/(||z||+eps)",
+    "fusion": "not part of core claim; F2 is auxiliary ablation only; F3 is failure analysis only",
+    "paper_mainline_forbidden": "Hyper-Guided Dynamic Fusion"
+  },
+  "locked_interpretation": {
+    "en": "B3 reduces the average cross-missing representation drift and slightly alleviates performance degradation, with the most evident improvements observed under text-related missing patterns.",
+    "zh": "B3 能够在总体上降低跨缺失模式的表征漂移并缓解性能退化，但其收益具有明显的缺失模式依赖性，在文本相关缺失场景下更为明显。",
+    "forbidden_claim": "Do not claim B3 eliminates representation drift under all missing patterns, nor that CMRP outperforms HME/CMAD/EASE/RECAP.",
+    "causal_strength": "consistent co-improvement of D_cross and Delta-MAE/Corr; not a strict causal proof"
+  },
+  "research_story": {
+    "RQ": "When the available modality set changes, how can a multimodal sentiment model preserve the task-relevant structure of its high-level representation?",
+    "problem": "Missing Pattern Shift -> Representation Drift",
+    "method": "Missing-Pattern-Aware Representation + Cross-Missing Consistency",
+    "target": "D_cross down while MAE/Corr do not worsen",
+    "chain": "Mask -> H0 -> discover D_cross -> B3 -> D_cross down (+ mild Delta-MAE/Corr down)"
+  },
+  "layers": [
+    {
+      "id": 1,
+      "name": "Problem exists",
+      "claim": "D_cross(H0) > 0; text-related patterns largest",
+      "tables": ["table3_dcross_h0_vs_b3.csv"]
+    },
+    {
+      "id": 2,
+      "name": "B3 changes the phenomenon",
+      "claim": "mean D_cross(H0+B3) < mean D_cross(H0) on MOSEI (paired)",
+      "tables": ["table3_dcross_h0_vs_b3.csv", "table4_mosei_h0_vs_b3_joint.csv"]
+    },
+    {
+      "id": 3,
+      "name": "Task metrics move in the same direction",
+      "claim": "missAvg Delta-MAE and Delta-Corr slightly decrease on MOSEI",
+      "tables": ["table1_fixed_degradation.csv", "table2_random_degradation.csv", "table4_mosei_h0_vs_b3_joint.csv"]
+    }
+  ],
+  "files": {
+    "table1_fixed_degradation.csv": "Fixed-pattern MAE/Corr/DeltaMAE/DeltaCorr (MOSI/MOSEI; H0 and H0+B3)",
+    "table2_random_degradation.csv": "Random-missing degradation (MOSI per-p; MOSEI randMean only)",
+    "table3_dcross_h0_vs_b3.csv": "D_cross by pattern; MOSEI paired; MOSI H0-only",
+    "table4_mosei_h0_vs_b3_joint.csv": "Primary paired joint table (Delta + D_cross)",
+    "table5_multiseed.csv": "MOSI/MOSEI multi-seed miss/rand aggregates",
+    "table6_lambda_neighborhood.csv": "lam in {0, 0.005, 0.01, 0.02}; chosen 0.005",
+    "table7_f2_f3_aux_failure.csv": "F2 keeper / F3 failure / fusion demotion",
+    "table8_reported_context.csv": "Reported EASE/RECAP/UMDF/HME/CMAD context only",
+    "conclusions.json": "Locked wording and gaps",
+    "_build_tables.py": "Builder for tables 1-4 from raw experiment JSONs"
+  },
+  "protocol_defaults": {
+    "seed_primary": 42,
+    "seeds_multiseed": [42, 43, 44],
+    "protocol": "B",
+    "status_tag": "unified"
+  },
+  "gaps": [
+    "MOSI H0 vs H0+B3 not fully paired (stage3 vs mosi_final)",
+    "MOSI H0+B3 D_cross missing",
+    "No multi-seed paired H0 vs H0+B3 on MOSEI",
+    "MOSEI random per-p curve not stored",
+    "No unified re-run of HME/CMAD/EASE/RECAP"
+  ],
+  "roadmap": [
+    "Novelty Audit (done)",
+    "Evidence Package v1 FROZEN (done)",
+    "Fair Baseline re-run: HME / CMAD / LNLN (next decision)",
+    "IEMOCAP (after fair baseline)",
+    "Final Paper"
+  ],
+  "project_status_file": "PROJECT_STATUS_CONDITIONAL_GO.json",
+  "next_decision_gate": "CONDITIONAL GO locked. Evidence Package v1 frozen as reference baseline. Paper-validation phase: (1) fair nearest HME/CMAD/LNLN on explicit go (2) complete core ablations with D_cross readout (3) IEMOCAP later (4) final paper. Do not chase absolute MAE vs EASE."
+}

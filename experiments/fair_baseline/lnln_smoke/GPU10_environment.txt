@@ -1,0 +1,8 @@
+python 3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]
+torch 2.5.1+cu124
+cuda True 12.4
+gpu NVIDIA GeForce RTX 3090
+transformers 4.46.3
+einops 0.8.1
+sklearn 1.9.1
+yaml 6.0.2

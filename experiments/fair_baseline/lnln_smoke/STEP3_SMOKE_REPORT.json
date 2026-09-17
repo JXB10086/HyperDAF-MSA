@@ -1,0 +1,42 @@
+{
+  "step": "Fair Baseline Step3 · LNLN native smoke",
+  "status": "PASS",
+  "returncode": 0,
+  "elapsed_sec": 3338.2,
+  "environment": {
+    "python": "3.8.15 (default, Nov 24 2022, 14:38:14) [MSC v.1916 64 bit (AMD64)]",
+    "cwd": "F:\\winoptimizeDir\\Desktop\\HyperDAF-MSA\\third_party\\LNLN",
+    "config": "F:\\winoptimizeDir\\Desktop\\HyperDAF-MSA\\third_party\\LNLN\\configs\\train_mosi_smoke.yaml",
+    "data_note": "official MMSA unaligned_50.pkl (SHA 78e0f8b5... matched); BERT offline cache",
+    "hf_offline": true
+  },
+  "train_loss_lines": [
+    "Train Loss Epoch 1: {'loss': 3.1593828423423056, 'l_sp': 2.3397254603249684, 'l_cc': 0.15062033940361153, 'l_adv': 0.7152587130943441, 'l_rec': 1.1189209341262438}",
+    "Train Loss Epoch 2: {'loss': 2.8010629563598157, 'l_sp': 2.176365115674016, 'l_cc': 0.11203936816002272, 'l_adv': 0.6323694305390305, 'l_rec': 0.17966863681903536}",
+    "Train Loss Epoch 3: {'loss': 2.4410476114438926, 'l_sp': 1.9363289349567816, 'l_cc': 0.08033361719770832, 'l_adv': 0.5378901801124123, 'l_rec': 0.021062720876464748}"
+  ],
+  "train_result_lines": [
+    "Train Results Epoch 1: {'Has0_acc_2': 0.5016, 'Has0_F1_score': 0.504, 'Non0_acc_2': 0.5012, 'Non0_F1_score': 0.5025, 'Mult_acc_5': 0.1931, 'Mult_acc_7': 0.1931, 'MAE': 1.3294, 'Corr': 0.0057}",
+    "Train Results Epoch 2: {'Has0_acc_2': 0.5919, 'Has0_F1_score': 0.5774, 'Non0_acc_2': 0.5873, 'Non0_F1_score': 0.5719, 'Mult_acc_5': 0.2142, 'Mult_acc_7': 0.2126, 'MAE': 1.2564, 'Corr': 0.2293}",
+    "Train Results Epoch 3: {'Has0_acc_2': 0.6355, 'Has0_F1_score': 0.6318, 'Non0_acc_2': 0.6385, 'Non0_F1_score': 0.6338, 'Mult_acc_5': 0.2547, 'Mult_acc_7': 0.2484, 'MAE': 1.1593, 'Corr': 0.3921}"
+  ],
+  "best_lines": [
+    "Current Best Valid Results: {'Has0_acc_2': 0.4891, 'Has0_F1_score': 0.4891, 'Non0_acc_2': 0.4907, 'Non0_F1_score': 0.4883, 'Mult_acc_5': 0.214, 'Mult_acc_7': 0.214, 'MAE': 1.437, 'Corr': 0.055}",
+    "Current Best Test Results: {'Has0_acc_2': 0.5233, 'Has0_F1_score': 0.522, 'Non0_acc_2': 0.5229, 'Non0_F1_score': 0.5227, 'Mult_acc_5': 0.1545, 'Mult_acc_7': 0.1545, 'MAE': 1.4167, 'Corr': 0.0287}",
+    "Current Best Valid Results: {'Has0_acc_2': 0.524, 'Has0_F1_score': 0.5137, 'Non0_acc_2': 0.5509, 'Non0_F1_score': 0.5415, 'Mult_acc_5': 0.2533, 'Mult_acc_7': 0.2533, 'MAE': 1.39, 'Corr': 0.2115}",
+    "Current Best Test Results: {'Has0_acc_2': 0.602, 'Has0_F1_score': 0.5732, 'Non0_acc_2': 0.6143, 'Non0_F1_score': 0.5862, 'Mult_acc_5': 0.1968, 'Mult_acc_7': 0.1968, 'MAE': 1.3232, 'Corr': 0.249}",
+    "Current Best Valid Results: {'Has0_acc_2': 0.5983, 'Has0_F1_score': 0.4479, 'Non0_acc_2': 0.5741, 'Non0_F1_score': 0.4187, 'Mult_acc_5': 0.2533, 'Mult_acc_7': 0.2533, 'MAE': 1.39, 'Corr': 0.2115}",
+    "Current Best Test Results: {'Has0_acc_2': 0.602, 'Has0_F1_score': 0.5732, 'Non0_acc_2': 0.6143, 'Non0_F1_score': 0.5862, 'Mult_acc_5': 0.1968, 'Mult_acc_7': 0.1968, 'MAE': 1.3232, 'Corr': 0.249}"
+  ],
+  "checkpoints": [
+    "best_Corr_1111.pth",
+    "best_Has0_acc_2_1111.pth",
+    "best_MAE_1111.pth",
+    "best_Mult_acc_5_1111.pth",
+    "best_Mult_acc_7_1111.pth",
+    "best_Non0_acc_2_1111.pth",
+    "placeholder.pth"
+  ],
+  "error_like_lines": [],
+  "log_path": "F:\\winoptimizeDir\\Desktop\\HyperDAF-MSA\\experiments\\fair_baseline\\lnln_smoke\\train_smoke.log"
+}

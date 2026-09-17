@@ -70,3 +70,13 @@ conda-env/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ===== 服务器 bundle / 大体积第三方目录（不入库） =====
+HyperDAF-MSA_server_bundle_*.tar.gz
+*.tar.gz
+*.tgz
+third_party/
+external/
+
+# ===== 根目录临时 scratch 文件 =====
+/4.30

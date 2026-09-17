@@ -1,0 +1,150 @@
+{
+  "phase": "Fair Baseline Phase-1 Inventory",
+  "status": "STEP1_STEP2_DONE",
+  "date": "2026-09-12",
+  "frozen_constraints": {
+    "CMRP_Evidence_Package": "v1 FROZEN",
+    "core": "H0+B3, lam=0.005, nsg-L2",
+    "RQ": "Cross-Missing Representation Stability",
+    "F2": "auxiliary ablation only",
+    "F3": "failure analysis only",
+    "do_not_modify_H0_B3": true,
+    "do_not_touch_IEMOCAP": true,
+    "labeling_rule": "reported vs unified re-run never mixed as same-layer SOTA"
+  },
+  "cmrp_reference_stack": {
+    "features": "MultiBench-style pkl",
+    "MOSI_dims": "text=300, audio=5, vision=20",
+    "MOSEI_dims": "text=300, audio=74, vision=35",
+    "train_protocol": "Protocol B (random missing during train)",
+    "eval_fixed": ["None", "T", "A", "V", "T+A", "T+V", "A+V"],
+    "eval_random_p": [0.1, 0.3, 0.5, 0.7, 0.9],
+    "primary_metrics": ["MAE", "Corr", "DeltaMAE", "DeltaCorr", "D_cross"]
+  },
+  "priority_order": ["HME", "CMAD", "LNLN"],
+  "methods": {
+    "HME": {
+      "paper": "Hyper-Modality Enhancement (NeurIPS 2025)",
+      "code": "https://github.com/YetZzzzzz/HME",
+      "code_entry": "./HME_MSA/HME_main.py",
+      "datasets_in_code": ["MOSI", "MOSEI"],
+      "data_download": "Baidu Netdisk aligned_{dataset}.pkl → ./datasets/",
+      "features": {
+        "text": "BERT-base contextual embeddings (local ./BERT_en/)",
+        "vision": "MTCNN + OpenFace (paper)",
+        "audio": "COVAREP MFCC+pitch (paper)",
+        "vs_CMRP": "NOT MultiBench; native aligned BERT stack"
+      },
+      "missing_protocol": {
+        "fill": "zero-fill missing modalities",
+        "train": "random modality dropout; CLI --missing_rate = MR",
+        "paper_eval": "fixed missing (+) and random missing (−); same MR setting across train/val/test mentioned in README",
+        "default_MR_examples": {"MOSI": 0.2, "MOSEI": 0.1}
+      },
+      "metrics_in_paper": ["Acc-2", "F1"],
+      "metrics_in_code": "need inspect; paper primary Acc/F1 — MAE/Corr likely need adapter",
+      "deps": ["Python 3.8", "torch 1.12.x", "transformers==4.30.2", "sentence-transformers"],
+      "direct_rerun_on_CMRP_MultiBench": false,
+      "must_adapt": [
+        "feature backbone (BERT aligned ≠ MultiBench 300/5/20 or 300/74/35)",
+        "eval harness to emit MAE/Corr + 7 fixed + random-p for unified table",
+        "optional: Acc-2/F1 for reported-style side table"
+      ],
+      "feasibility": "high_official_runnable",
+      "role_vs_CMRP": "closest non-reconstruction competitor; naming collision risk already handled by CMRP rename"
+    },
+    "CMAD": {
+      "paper": "Correlation-Aware and Modalities-Aware Distillation (ICCV 2025)",
+      "code": "https://github.com/YetZzzzzz/CMAD",
+      "code_entry": "./CMAD/CMAD_sentiment/Student_Model/stu_config_mosei.py",
+      "datasets_in_code": ["MOSEI (MSA script)", "IEMOCAP (MER; skip now)"],
+      "MOSI_in_official_MSA": false,
+      "data_download": "gdown MIB/MAG mosei.pkl; optional Baidu teacher ckpt",
+      "features": {
+        "source": "MIB / MAG BERT multimodal transformer features",
+        "vs_CMRP": "NOT MultiBench"
+      },
+      "missing_protocol": {
+        "fill": "zero-fill; binary indicator Delta",
+        "teacher": "full modalities",
+        "student": "random modality discard during train",
+        "paper_eval": "fixed modality combinations L/A/V/LA/LV/AV/LAV; Acc/F1 after regression→binary conversion on MOSEI"
+      },
+      "metrics_in_paper": ["Acc", "F1"],
+      "training_cost": "two-stage Teacher then Student; heavier than HME/LNLN",
+      "direct_rerun_on_CMRP_MultiBench": false,
+      "must_adapt": [
+        "feature backbone",
+        "add MOSI if needed for our table",
+        "eval adapter for MAE/Corr + Protocol-B-style conditions",
+        "teacher checkpoint acquisition"
+      ],
+      "feasibility": "medium_high_but_heavy",
+      "role_vs_CMRP": "nearest narrative neighbor (representation consistency under missing via KD)"
+    },
+    "LNLN": {
+      "paper": "Towards Robust Multimodal Sentiment Analysis with Incomplete Data (NeurIPS 2024)",
+      "code": "https://github.com/Haoyu-ha/LNLN",
+      "code_entry": "bash train.sh; robust_evaluation.py",
+      "datasets_in_code": ["MOSI", "MOSEI", "CH-SIMS"],
+      "data_download": "MMSA toolkit features",
+      "features": {
+        "source": "MMSA unaligned/default feature packs",
+        "vs_CMRP": "NOT MultiBench; closer to RECAP/MMSA ecology"
+      },
+      "missing_protocol": {
+        "paper": "incomplete / random missing robustness evaluation",
+        "code": "configs + robust_evaluation.py over seeds 1111/1112/1113"
+      },
+      "metrics_in_paper": ["MAE", "Corr", "Acc-2", "F1", "Acc-3/5"],
+      "metric_selection_caveat": "README Note: classification and regression best checkpoints may be different epochs — for fair same-epoch comparison must re-run",
+      "direct_rerun_on_CMRP_MultiBench": false,
+      "must_adapt": [
+        "feature backbone if Path A (MultiBench)",
+        "OR keep MMSA features and only unify missing eval + MAE/Corr reporting (Path B)",
+        "align seed/protocol to Protocol B if Path A"
+      ],
+      "feasibility": "highest_for_MAE_Corr_pipeline",
+      "role_vs_CMRP": "classic robust MSA control; language-dominant repair narrative differs from CMRP"
+    }
+  },
+  "path_decision": {
+    "Path_A_adapt_to_MultiBench": {
+      "description": "Port baseline models onto CMRP MultiBench features + Protocol B eval",
+      "pros": ["same feature stack as frozen CMRP; fairest absolute MAE/Corr table"],
+      "cons": ["not identical to their paper setting; engineering cost; may understate baselines"],
+      "recommended_for": "primary unified table answering if CMRP claim holds on our stack"
+    },
+    "Path_B_native_features_separate_tables": {
+      "description": "Run each baseline on its native features; never merge numbers with CMRP MultiBench into one SOTA row",
+      "pros": ["faithful to official code; faster first smoke"],
+      "cons": ["cannot claim absolute superiority; only mechanism/robustness pattern comparison"],
+      "recommended_for": "smoke test + reported-faithful sanity"
+    },
+    "Path_C_also_train_CMRP_on_BERT_MMSA": {
+      "description": "Keep H0+B3 frozen in structure; train on baseline features for side-by-side",
+      "pros": ["fairest across methods on shared backbone"],
+      "cons": ["new training runs; not modifying architecture but expands compute; defer until Path A/B clarify need"],
+      "status": "deferred"
+    },
+    "chosen_for_next_step": "Path_B_smoke_then_Path_A_on_easiest"
+  },
+  "step2_classification": {
+    "direct_rerun_unchanged_on_current_CMRP_pkl": [],
+    "must_adapt_all_three": true,
+    "easiest_first_for_unified_eval_pipeline": "LNLN",
+    "rationale": [
+      "LNLN already reports MAE/Corr (matches CMRP primary metrics)",
+      "single-stage training (no teacher ckpt)",
+      "documented train.sh + robust_evaluation.py",
+      "HME next (MOSI+MOSEI official; Acc/F1 primary; need metric adapter)",
+      "CMAD last among three (MOSEI-centric, two-stage, Acc/F1 after class conversion)"
+    ],
+    "note_on_priority_vs_ease": "Strategic priority remains HME→CMAD→LNLN for novelty stress-test; engineering order for pipeline validation is LNLN→HME→CMAD."
+  },
+  "next_actions": {
+    "step3": "Clone LNLN; verify MMSA data access; run one MOSI smoke; wrap outputs into reported/unified tags",
+    "step4": "Full HME→CMAD→LNLN comparison under chosen Path",
+    "step5": "Go/No-Go for paper competitiveness"
+  }
+}

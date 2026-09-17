@@ -1,0 +1,9 @@
+model,dataset,condition,D_cross,status,source,note
+H0 (lam=0),MOSEI,mean(6),0.6978,ours_unified,b3sg / Evidence Package table3,paired with B3
+H0+B3 (lam=0.005),MOSEI,mean(6),0.6785,ours_unified,b3sg / Evidence Package table3,↓ vs H0
+H0,MOSEI,T missing,0.8996,ours_unified,b3sg,largest absolute drift among singles
+H0+B3,MOSEI,T missing,0.7879,ours_unified,b3sg,clearest D_cross drop
+H0,MOSEI,T+V missing,0.9948,ours_unified,b3sg,
+H0+B3,MOSEI,T+V missing,0.8937,ours_unified,b3sg,joint with MAE improve
+H0+B3,MOSEI,A / T+A / A+V,see table4,ours_unified,b3sg,D_cross slightly ↑ — pattern-dependent
+near-works (HME/CMAD/EASE/RECAP/LNLN),—,—,—,not_reported,N/A,Existing methods do not report the same representation-level cross-missing drift metric; no direct numerical comparison.

@@ -1,0 +1,6 @@
+seed,epochs,exit_code,robust_exit_code,final_train_loss,best_valid_mae,best_valid_mae_epoch,best_valid_corr,best_valid_corr_epoch,best_test_mae,best_test_mae_epoch,best_test_corr,best_test_corr_epoch,training_time_sec,gpu,peak_memory_mib,anomaly
+1111,200,0,0,0.1444325462,1.0815,26,0.5700,14,1.0687,162,0.5212,5,2801,NVIDIA GeForce RTX 3090,13588,false
+1112,200,0,0,0.0852271428,0.9892,101,0.6285,101,1.0523,16,0.5418,24,2064,NVIDIA GeForce RTX 4090,13737,false
+1113,200,0,0,0.1174615774,1.0460,104,0.5665,104,1.0975,45,0.5003,43,2432,NVIDIA GeForce RTX 4090,13737,false
+mean,200,0,0,0.1157070888,1.038900,,0.588333,,1.072833,,0.521100,,2432.333,mixed,,false
+sample_std,0,0,0,0.0296678351,0.046558,,0.034829,,0.022882,,0.020750,,368.500,mixed,,false

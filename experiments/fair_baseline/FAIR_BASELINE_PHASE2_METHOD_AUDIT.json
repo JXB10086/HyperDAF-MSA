@@ -1,0 +1,226 @@
+{
+  "phase": "Fair Baseline Phase-2 · Nearest-Neighbor Method Audit",
+  "status": "AUDIT_DONE_NO_TRAINING",
+  "date": "2026-09-13",
+  "frozen_baseline": {
+    "core": "CMRP-MSA = H0+B3",
+    "lam_cons": 0.005,
+    "RQ": "Cross-Missing Representation Stability",
+    "Evidence_Package": "v1 FROZEN",
+    "no_training": true,
+    "no_IEMOCAP": true,
+    "no_H0_B3_change": true
+  },
+  "methods": {
+    "HME": {
+      "paper": {
+        "title": "Hyper-Modality Enhancement for Multimodal Sentiment Analysis with Missing Modalities",
+        "venue": "NeurIPS",
+        "year": 2025,
+        "official_links": [
+          "https://neurips.cc/virtual/2025/poster/116212",
+          "https://proceedings.neurips.cc/paper_files/paper/2025/hash/d079de28c5e3f22e3507db24e870126b-Abstract-Conference.html",
+          "https://proceedings.neurips.cc/paper_files/paper/2025/file/d079de28c5e3f22e3507db24e870126b-Paper-Conference.pdf"
+        ],
+        "datasets": ["CMU-MOSI", "CMU-MOSEI", "IEMOCAP"],
+        "main_tables": "Table1 Acc/F1 under fixed(+) and random(−) missing; ablations Table2"
+      },
+      "code": {
+        "repo": "https://github.com/YetZzzzzz/HME",
+        "entry": "./HME_MSA/HME_main.py",
+        "runnable_claim": "README provides MOSI/MOSEI commands; data via Baidu aligned_*.pkl; BERT_en required",
+        "requirements": "Python 3.8.10; CUDA 11.5; pytorch 1.12.1+cu113; transformers==4.30.2; sentence-transformers 3.1.1",
+        "checkpoint_provided": false,
+        "data_scripts": "download Baidu aligned pkl; rename aligned_{dataset}.pkl — no full feature-extraction pipeline in README"
+      },
+      "features": {
+        "text": "BERT-base contextual embeddings",
+        "vision": "MTCNN + OpenFace (paper)",
+        "audio": "COVAREP MFCC + pitch (paper)",
+        "dims_vs_CMRP": "NOT MultiBench. CMRP MOSI 300/5/20; MOSEI 300/74/35 GloVe-style MultiBench. HME = BERT-aligned stack."
+      },
+      "missing_protocol": {
+        "fill": "zero vectors for missing modalities",
+        "train_val_test": "same MR kept across train/val/test (paper)",
+        "MR_definition": "fraction of modalities missing across dataset; MR in {0.0..0.7}; at least one modality present (MR≤2/3)",
+        "fixed_and_random": "both reported (+ fixed / − random)",
+        "dual_missing": "yes (as part of MR / availability patterns)",
+        "all_missing": "no (ai≥1)",
+        "mask_explicit_input": "availability via zeroed inputs; not CMRP-style concatenated m into z encoder as core API",
+        "mechanism_class": "cross-sample retrieval enhancement + VIB + uncertainty-aware fusion — NOT reconstruction"
+      },
+      "training_protocol": {
+        "lr": "2e-5 (README)",
+        "epochs": 100,
+        "optimizer": "not fully specified in README (need code inspect on re-run day)",
+        "batch": "paper analyses mention bs=128 in cases; CLI focuses on lr/layers/MR",
+        "seeds": "not fixed in README examples",
+        "model_selection": "early stop noted on IEMOCAP (~60/100)",
+        "loss": "task + VIB terms (paper)"
+      },
+      "metrics": {
+        "paper_primary": ["Acc-2", "F1"],
+        "MAE_Corr_in_main_tables": false
+      },
+      "reported_results": {
+        "status": "reported",
+        "note": "Acc/F1 under fixed/random MR on MOSI/IEMOCAP/MOSEI appendix — NOT fair MAE peers for CMRP"
+      },
+      "mechanism_one_liner": "它解决的是缺失模态下的鲁棒 MSA（强调不依赖显式重建），核心机制是跨样本检索式 Hyper-Modality Enhancement + VIB + 不确定性融合，与 CMRP 的主要差异是：HME 用其他样本增强当前观测模态；CMRP 在同一样本内用 mask 条件编码 z，并用同网络 full↔miss 归一化一致性约束跨缺失模式稳定性。",
+      "hyper_modality_collision": {
+        "HME_Hyper_Modality": "cross-sample enriched modality prompts / enhanced Em,Fm fused with uncertainty",
+        "CMRP_z_hyper": "same-sample Missing-Pattern-Aware encoder output z conditioned on (x',m); consistency on normalized z",
+        "verdict": "NAME overlap only — dataflow NOT equivalent"
+      },
+      "overlap_with_CMRP": "medium_problem_overlap / low_mechanism_overlap",
+      "adaptation_cost": "high (Baidu data; Acc/F1→MAE adapter; feature ≠ MultiBench)",
+      "rerun_tag": "KEEP_FOR_RERUN",
+      "rerun_priority": 2,
+      "rerun_reason": "Highest novelty-collision risk; must eventually be stress-tested under unified protocol. Not first smoke because Acc/F1-primary and Baidu data friction."
+    },
+    "CMAD": {
+      "paper": {
+        "title": "CMAD: Correlation-Aware and Modalities-Aware Distillation for Multimodal Sentiment Analysis with Missing Modalities",
+        "venue": "ICCV",
+        "year": 2025,
+        "official_links": [
+          "https://openaccess.thecvf.com/content/ICCV2025/html/Zhuang_CMAD_Correlation-Aware_and_Modalities-Aware_Distillation_for_Multimodal_Sentiment_Analysis_with_ICCV_2025_paper.html",
+          "https://openaccess.thecvf.com/content/ICCV2025/papers/Zhuang_CMAD_Correlation-Aware_and_Modalities-Aware_Distillation_for_Multimodal_Sentiment_Analysis_with_ICCV_2025_paper.pdf",
+          "https://iccv.thecvf.com/virtual/2025/poster/2166"
+        ],
+        "datasets": ["MOSEI (MSA)", "IEMOCAP", "MUStARD", "UR-FUNNY", "CHERMA"],
+        "main_tables": "Table1 Acc/F1 under fixed modality combinations on MOSEI etc."
+      },
+      "code": {
+        "repo": "https://github.com/YetZzzzzz/CMAD",
+        "entry": "./CMAD/CMAD_sentiment/Student_Model/stu_config_mosei.py",
+        "runnable_claim": "Teacher then Student; Baidu teacher ckpt optional; gdown mosei.pkl from MIB/MAG",
+        "requirements": "Python 3.8.10; CUDA 11.5; pytorch 1.12.1+cu113; transformers==4.30.2; sentence-transformers 3.1.1",
+        "checkpoint_provided": "teacher ckpt via Baidu (pwd px6s)",
+        "data_scripts": "gdown link for mosei.pkl; IEMOCAP via MuLT (skip now)"
+      },
+      "features": {
+        "text_audio_vision": "MIB/MAG BERT multimodal transformer features (mosei.pkl)",
+        "dims_vs_CMRP": "NOT MultiBench"
+      },
+      "missing_protocol": {
+        "fill": "zero-fill; binary indicator Delta",
+        "teacher": "full modalities",
+        "student_train": "random modality discard",
+        "eval": "fixed combinations L / A / V / LA / LV / AV / LAV",
+        "dual_missing": "yes (LA/LV/AV)",
+        "all_missing": "not the focus of main table",
+        "mask_explicit": "Delta availability indicators",
+        "mechanism_class": "Teacher–Student KD (CAFD feature+correlation alignment + MAR difficulty weighting)"
+      },
+      "training_protocol": {
+        "student_example": "lr=2e-5; n_epochs=80; train_batch_size=128; begin_epoch=20; many KD hypers (tau,temperature,delta,gamma)",
+        "stages": "two-stage Teacher then Student",
+        "optimizer": "need code on re-run day",
+        "MOSI_official_MSA": false
+      },
+      "metrics": {
+        "paper_primary": ["Acc", "F1"],
+        "note": "MOSEI regression converted for classification-style reporting in comparisons"
+      },
+      "reported_results": {
+        "status": "reported",
+        "note": "Acc/F1 by modality combo — METRIC_MISMATCH vs CMRP MAE/Corr primary"
+      },
+      "mechanism_one_liner": "它解决的是缺失下 teacher–student 表示不一致与优化不稳定，核心机制是 CAFD（特征匹配+高阶相关对齐）与 MAR（按模态组合难度加权），与 CMRP 的主要差异是：CMAD 依赖完整模态教师网络蒸馏；CMRP 是同网络内 full/miss 视图上的归一化表征一致性，无双网络 KD。",
+      "kd_vs_same_net": {
+        "CMAD": "Teacher-Student Distillation",
+        "CMRP": "Same-network Cross-Missing Consistency on zhat",
+        "verdict": "narrative neighbors on 'consistency under missing'; mechanism NOT equivalent"
+      },
+      "overlap_with_CMRP": "high_narrative_overlap / medium_low_mechanism_overlap",
+      "adaptation_cost": "very_high (two-stage; Acc/F1; no official MOSI MSA script; Baidu teacher)",
+      "rerun_tag": "KEEP_FOR_RERUN",
+      "rerun_priority": 3,
+      "rerun_reason": "Best narrative neighbor for consistency story; too heavy and Acc-centric for first smoke."
+    },
+    "LNLN": {
+      "paper": {
+        "title": "Towards Robust Multimodal Sentiment Analysis with Incomplete Data",
+        "venue": "NeurIPS",
+        "year": 2024,
+        "official_links": [
+          "https://proceedings.neurips.cc/paper_files/paper/2024/file/65a39213d7d0e1eb5d192aa77e77eeb7-Paper-Conference.pdf",
+          "https://arxiv.org/abs/2409.20012",
+          "https://nips.cc/virtual/2024/poster/93751"
+        ],
+        "datasets": ["CMU-MOSI", "CMU-MOSEI", "CH-SIMS"],
+        "main_tables": "Table2 MOSI/MOSEI MAE/Corr/Acc/F1 averaged over r=0..0.9"
+      },
+      "code": {
+        "repo": "https://github.com/Haoyu-ha/LNLN",
+        "entry": "train.sh / train.py; robust_evaluation.py",
+        "local_copy": "third_party/LNLN (present in workspace)",
+        "runnable_claim": "documented; needs MMSA unaligned_50.pkl; HF bert-base-uncased",
+        "requirements": "paper env: PyTorch 2.2.1, Python 3.11.7, A40; code flexible",
+        "checkpoint_provided": "train produces best_{metric}_{seed}.pth; no official pretrained weights in README",
+        "data_scripts": "point to MMSA download"
+      },
+      "features": {
+        "text": "BERT tokens via text_bert + BertTextEncoder → 768",
+        "vision": "MMSA unaligned; MOSI config input_dims vision=20",
+        "audio": "MMSA unaligned; MOSI config input_dims audio=5",
+        "config_lengths_MOSI": "input_length [50,500,375] L/V/A in official yaml",
+        "dims_vs_CMRP": "NOT MultiBench GloVe300; A/V dims coincidentally similar on MOSI (5/20) but text is BERT; sequences unaligned"
+      },
+      "missing_protocol": {
+        "verified_from_code": true,
+        "train": "per-modality random missing_rate ~U(0,1), half samples forced 0; then TOKEN/FRAME-level erase (text→UNK=100; A/V zero frames)",
+        "eval_test": "missing_rate_eval_test applied uniformly to L/A/V at token/frame level",
+        "robust_eval": "r in {0.0,0.1,...,0.9} averaged",
+        "dual_missing": "not whole-modality dual dropout as CMRP primary; simultaneous partial erase on all modalities",
+        "all_missing": "r→1 would erase almost all tokens; paper skips r=1.0",
+        "mask_explicit": "missing_rate labels used in DMC completeness; not CMRP m-concat encoder",
+        "mechanism_class": "language-dominant correction (DMC) + DMML fusion + reconstructor"
+      },
+      "training_protocol": {
+        "batch_size": 64,
+        "n_epochs": 200,
+        "lr": 0.0001,
+        "optimizer": "AdamW",
+        "weight_decay": 0.0001,
+        "seeds": [1111, 1112, 1113],
+        "model_selection": "IMPORTANT caveat: best ckpt selected separately per metric type (MAE vs Acc) — same-epoch fair compare needs re-run",
+        "loss": "MultimodalLoss (task + DMC/recon terms)"
+      },
+      "metrics": {
+        "paper_primary": ["MAE", "Corr", "Acc-2", "F1", "Acc-5/7"],
+        "MAE_Corr_in_main_tables": true
+      },
+      "reported_results": {
+        "status": "reported",
+        "MOSI_random_avg": {"MAE": 1.046, "Corr": 0.527},
+        "MOSEI_random_avg": {"MAE": 0.692, "Corr": 0.530},
+        "note": "intra-token random avg — NOT CMRP Protocol-B whole-modality missAvg"
+      },
+      "mechanism_one_liner": "它解决的是不完整数据下的鲁棒 MSA，核心机制是语言主导的 DMC 校正 + DMML 融合（并可选重建），与 CMRP 的主要差异是：LNLN 假设并强化语言主导完整性；CMRP 不以语言主导修复为目标，而是约束同一样本在不同缺失模式下的高层 z 稳定。",
+      "language_dominant_check": {
+        "depends_on_language_dominant_restoration": true,
+        "vs_CMRP": "CMRP is non-language-dominant cross-missing representation stability"
+      },
+      "overlap_with_CMRP": "medium_problem_overlap / low_mechanism_overlap",
+      "adaptation_cost": "medium (MAE/Corr native; MMSA data; missing protocol differs from Protocol B; metric-epoch caveat)",
+      "rerun_tag": "KEEP_FOR_RERUN",
+      "rerun_priority": 1,
+      "rerun_reason": "Best first actual re-run: MAE/Corr match CMRP primary metrics; single-stage; documented eval; lowest cost to stand up a baseline harness before novelty-critical HME."
+    }
+  },
+  "final_tags": {
+    "HME": "KEEP_FOR_RERUN",
+    "CMAD": "KEEP_FOR_RERUN",
+    "LNLN": "KEEP_FOR_RERUN",
+    "none_reported_only": "All three have official code; none demoted to reported-only. None are low-priority for the paper story — CMAD is later wave by cost."
+  },
+  "single_next_rerun": {
+    "method": "LNLN",
+    "why_not_HME_first": "HME is novelty-critical but Acc/F1-primary + Baidu aligned data + no MAE main table → poor first harness. Run HME after LNLN proves a baseline pipeline exists.",
+    "why_not_CMAD_first": "Two-stage KD, Acc/F1, MOSEI-only MSA script, teacher ckpt friction — second/third wave.",
+    "why_LNLN_first": "Native MAE/Corr; single-stage; MMSA path known; code already vendored locally; answers pipeline feasibility for fair verification without claiming SOTA."
+  },
+  "stop": "Phase-2 audit complete. No training started. Await explicit go for LNLN smoke / Path decision."
+}

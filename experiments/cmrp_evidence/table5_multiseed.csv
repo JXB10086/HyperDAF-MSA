@@ -1,0 +1,11 @@
+dataset,protocol,model,metric,mean,std,seed_42,seed_43,seed_44,seeds,status,source,note
+MOSEI,B,HB3 (H0+B3),missAvg_MAE,0.7335,0.0012,0.7326,0.7326,0.7352,42/43/44,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,core CMRP model
+MOSEI,B,HB3 (H0+B3),randMean_MAE,0.7212,0.0013,0.7209,0.7199,0.7229,42/43/44,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,aggregate over p; per-p not stored
+MOSEI,B,F2nb (H0+F2 nocons),missAvg_MAE,0.7327,0.0023,0.7314,0.7359,0.7307,42/43/44,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,auxiliary fusion without B3
+MOSEI,B,FINAL (H0+B3+F2),missAvg_MAE,0.7296,0.0030,0.7263,0.7291,0.7335,42/43/44,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,auxiliary ladder; not core claim
+MOSEI,B,FINAL (H0+B3+F2),randMean_MAE,0.7150,0.0031,,,42/43/44,unified,experiments/mosei/multiseed/mosei_multiseed_results.json,per-seed omitted in aggregate export
+MOSI,B,HB3 (H0+B3),missAvg_MAE,1.2755,0.0250,1.2837,1.3011,1.2416,42/43/44,unified,experiments/mosi_multiseed/mosi_multiseed_results.json,core CMRP model
+MOSI,B,HB3 (H0+B3),missAvg_Corr,0.3822,0.0146,0.3616,0.3941,0.3908,42/43/44,unified,experiments/mosi_multiseed/mosi_multiseed_results.json,
+MOSI,B,F2nb (H0+F2 nocons),missAvg_MAE,1.2793,0.0322,,,42/43/44,unified,experiments/mosi_multiseed/mosi_multiseed_results.json,auxiliary
+MOSI,B,FINAL (H0+B3+F2),missAvg_MAE,1.2710,0.0177,,,42/43/44,unified,experiments/mosi_multiseed/mosi_multiseed_results.json,auxiliary; Corr winrate vs HB3 = 0
+MOSI,A,HB3 (H0+B3),missAvg_MAE,1.2876,0.0211,,,42/43/44,unified,experiments/mosi_multiseed/mosi_multiseed_results.json,Protocol A reference only

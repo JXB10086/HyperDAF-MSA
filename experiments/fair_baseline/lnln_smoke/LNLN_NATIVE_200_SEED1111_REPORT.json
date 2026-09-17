@@ -1,0 +1,57 @@
+{
+  "status": "completed",
+  "protocol": "native reproduction",
+  "dataset": "MOSI",
+  "data_path": "/root/HyperDAF-MSA/data/mmsa/MOSI/Processed/unaligned_50.pkl",
+  "data_sha256": "78e0f8b5ef8ff71558e7307848fc1fa929ecb078203f565ab22b9daab2e02524",
+  "seed": 1111,
+  "epochs_completed": 200,
+  "exit_code": 0,
+  "elapsed_sec": 2801,
+  "start_time": "2026-09-15T18:34:55+08:00",
+  "end_time": "2026-09-15T19:21:43+08:00",
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "vram_mib": 24576,
+    "peak_memory_mib": 13588,
+    "peak_temperature_c": 70,
+    "torch": "2.5.1+cu124",
+    "cuda": "12.4",
+    "python": "3.12.3",
+    "transformers": "4.46.3"
+  },
+  "health": {
+    "nan_inf_oom_traceback": false,
+    "final_train_loss": 0.1444325462,
+    "final_train_mae": 0.1229,
+    "final_train_corr": 0.9774
+  },
+  "best_tracked_metrics": {
+    "valid_mae": 1.0815,
+    "valid_corr": 0.57,
+    "test_mae": 1.0687,
+    "test_corr": 0.5212
+  },
+  "checkpoints": [
+    "best_Corr_1111.pth",
+    "best_Has0_acc_2_1111.pth",
+    "best_MAE_1111.pth",
+    "best_Mult_acc_5_1111.pth",
+    "best_Mult_acc_7_1111.pth",
+    "best_Non0_acc_2_1111.pth"
+  ],
+  "selection_caveat": "Released LNLN code saves best checkpoints using test-set metrics; valid metrics are tracked but do not trigger the save. Test-driven checkpoint selection is retained and must be disclosed.",
+  "robust_evaluation": {
+    "status": "completed",
+    "missing_rates": "0.0 through 0.9",
+    "checkpoint": "best_MAE_1111.pth",
+    "results_file": "LNLN_NATIVE_ROBUST_SEED1111.json",
+    "protocol": "native token/frame-level erase"
+  },
+  "artifacts": {
+    "training_log": "LNLN_NATIVE_200_SEED1111.log",
+    "gpu_monitor": "LNLN_NATIVE_200_SEED1111_GPU.csv",
+    "robust_log": "LNLN_NATIVE_ROBUST_SEED1111.log"
+  },
+  "next_action": "HOLD; do not start seed 1112/1113 without explicit GO."
+}

@@ -1,0 +1,21 @@
+dataset,model,condition,D_cross,raw_drift_L2,median_pair_dist_full,transfer,seed,protocol,status,source,definition,note
+MOSEI,H0 (lam=0),T missing,0.8996,12.5588,13.9597,0.139,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),A missing,0.2936,4.0981,13.9597,0.493,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),V missing,0.4426,6.1791,13.9597,0.601,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),T+A missing,0.9949,13.888,13.9597,0.0979,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),T+V missing,0.9948,13.8868,13.9597,0.0078,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),A+V missing,0.5612,7.8349,13.9597,0.401,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0 (lam=0),mean(6),0.6978,,13.9597,,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),T missing,0.7879,10.654,13.5213,0.213,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),A missing,0.3365,4.5498,13.5213,0.4846,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),V missing,0.4337,5.8647,13.5213,0.5431,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),T+A missing,1.0219,13.8175,13.5213,0.113,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),T+V missing,0.8937,12.0835,13.5213,0.1211,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),A+V missing,0.5974,8.0772,13.5213,0.2802,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSEI,H0+B3 (lam=0.005),mean(6),0.6785,,13.5213,,42,B,unified,experiments/mosei/b3sg_results.json,D_cross=||z_full-z_miss||_2 / median_pairwise(z_full),
+MOSI,H0 (no B3),T missing,0.7868,1.5934,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts
+MOSI,H0 (no B3),A missing,0.214,0.4333,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts
+MOSI,H0 (no B3),V missing,0.2674,0.5416,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts
+MOSI,H0 (no B3),T+A missing,0.8419,1.705,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts
+MOSI,H0 (no B3),T+V missing,0.8464,1.7141,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts
+MOSI,H0 (no B3),A+V missing,0.3587,0.7265,2.0252,,42,B,unified,experiments/stage3/diag_zhyper_results.json,D_cross=drift/median_pairwise(z_full),H0+B3 D_cross on MOSI absent in existing artifacts

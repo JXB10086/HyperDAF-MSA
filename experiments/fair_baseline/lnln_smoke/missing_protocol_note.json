@@ -1,0 +1,21 @@
+{
+  "missing_implementation": "token/frame-level erase via generate_m",
+  "NOT_CMRP_whole_modality_zeroing": true,
+  "train_behavior": "per-modality missing_rate ~ Uniform(0,1); half samples forced rate=0; then erase tokens/frames",
+  "eval_behavior": "missing_rate_eval_test applied to L/A/V simultaneously at token/frame level",
+  "text_erase": "replaced with UNK token id 100; CLS/SEP preserved",
+  "av_erase": "frame mask * modality (zero erased frames)",
+  "robust_evaluation_rates": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "generate_m_source_excerpt": "    def generate_m(self, modality, input_mask, input_len, missing_rate, missing_seed, mode='text'):\n        \n        if mode == 'text':\n            input_len = np.argmin(input_mask, axis=1)\n        elif mode == 'audio' or mode == 'vision':\n            input_mask = np.array([np.array([1] * length + [0] * (modality.shape[1] - length)) for length in input_len])\n        np.random.seed(missing_seed)\n        missing_mask = (np.random.uniform(size=input_mask.shape) > missing_rate.repeat(input_mask.shape[1], 1)) * input_mask\n        \n        assert missing_mask.shape == input_mask.shape\n        \n        if mode == 'text':\n            # CLS SEG Token unchanged.\n            for i, instance in enumerate(missing_mask):\n                instance[0] = instance[input_len[i] - 1] = 1\n            \n            modality_m = missing_mask * modality + (100 * np.ones_like(modality)) * (input_mask - missing_mask) # UNK token: 100.\n        elif mode == 'audio' or mode == 'vision':\n            modality_m = missing_mask.reshape(modality.shape[0], modality.shape[1], 1) * modality\n        \n        return modality_m, input_len, input_mask, missing_mask\n"
+}

@@ -1,0 +1,79 @@
+{
+  "phase": "Reported Comparison (Fair Re-run PAUSED)",
+  "date": "2026-09-13",
+  "frozen": {
+    "core": "H0+B3, lam=0.005, nsg-L2",
+    "RQ": "Cross-Missing Representation Stability",
+    "F2": "auxiliary",
+    "F3": "failure analysis",
+    "do_not_modify_H0_B3": true,
+    "no_IEMOCAP": true,
+    "no_new_training": true,
+    "fair_rerun_HME_CMAD_LNLN": "PAUSED"
+  },
+  "labeling_rule": {
+    "reported": "numbers taken from papers/README tables",
+    "ours_unified": "numbers from CMRP Evidence Package v1 under MultiBench + Protocol B",
+    "never_mix": "Do not place reported and ours in one fair SOTA ranking"
+  },
+  "files": [
+    "table_reported_vs_ours.csv",
+    "table_delta_context.csv",
+    "table_dcross_internal.csv",
+    "REPORTED_COMPARISON.json"
+  ],
+  "q1_absolute_level": {
+    "MOSEI": {
+      "band": "same_order_not_SOTA",
+      "ours_randMean_MAE": "0.721±0.001",
+      "ours_missAvg_MAE": "0.7335±0.001",
+      "reported_band_MAE": "EASE 0.645 / RECAP 0.659 / LNLN 0.692 (intra-random avg)",
+      "gap_vs_EASE_approx": "~0.07–0.09 MAE on incompatible protocols — noticeable but not absurd",
+      "verdict": "MOSEI absolute MAE is in a plausible competitive neighborhood at reported-number level only"
+    },
+    "MOSI": {
+      "band": "clearly_weaker_absolute",
+      "ours_randMean_MAE": "~1.267",
+      "ours_missAvg_MAE": "1.275±0.025",
+      "reported_band_MAE": "EASE 0.995 / RECAP 1.030 / LNLN 1.046",
+      "likely_cause": "MultiBench MOSI audio dim=5 (vs BERT/MMSA stacks)",
+      "verdict": "Do NOT use MOSI absolute MAE for go/no-go against BERT/MMSA papers"
+    }
+  },
+  "q2_same_order": {
+    "MOSEI": true,
+    "MOSI": false
+  },
+  "q3_stability_advantage": {
+    "available": true,
+    "evidence": {
+      "dMAE_MOSEI": "H0 0.0758 -> H0+B3 0.0746",
+      "dCorr_MOSEI": "H0 0.1970 -> H0+B3 0.1837",
+      "D_cross_MOSEI": "H0 0.6978 -> H0+B3 0.6785",
+      "pattern": "clearest under text-related missing; not uniform"
+    },
+    "near_work_delta_or_Dcross": "Generally NOT reported in comparable form; cannot claim external win on D_cross",
+    "verdict": "Stability story is internally consistent and is the correct product to sell; not yet externally stress-tested"
+  },
+  "go_no_go": {
+    "decision": "CONDITIONAL_GO",
+    "mapped_case": "B (absolute not strong SOTA; stability angle still worth pursuing)",
+    "continue_if": [
+      "Paper framed as Cross-Missing Representation Stability, not absolute SOTA",
+      "MOSEI is primary battlefield; MOSI is ablation/stability dataset",
+      "Claims stay within locked wording (average drift ↓; text-related clearest)",
+      "Any near-work numbers stay tagged reported"
+    ],
+    "do_not": [
+      "Mix reported MAE into a fair SOTA table",
+      "Claim outperforms HME/CMAD/EASE/RECAP/LNLN",
+      "Spend heavy compute on full HME/CMAD/LNLN re-run before accepting this framing",
+      "Start IEMOCAP now"
+    ],
+    "when_to_reopen_fair_rerun": "Only after accepting CONDITIONAL_GO and deciding which SINGLE nearest neighbor (prefer HME or CMAD for novelty stress) is worth one Path-A/B sanity check"
+  },
+  "hme_cmad_note": {
+    "HME": "Acc/F1 primary — useful for novelty narrative contrast, useless for MAE ranking",
+    "CMAD": "Acc/F1 on MOSEI modality combinations — nearest consistency narrative neighbor, not MAE peer"
+  }
+}

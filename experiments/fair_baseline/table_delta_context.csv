@@ -1,0 +1,7 @@
+method,dataset,full_MAE,missing_MAE,dMAE,missing_definition,status,comparability,source,note
+UMDF,MOSI,0.556,0.817,0.261,inter-modal Avg vs Full,reported,ROUGH_ONLY,UMDF paper (prior inventory),same paper; still not CMRP protocol
+EASE / LNLN / RECAP / HME / CMAD,—,—,—,—,rarely publish ΔMAE=MAE_miss−MAE_full under CMRP's 6 whole-modality conditions,reported,NO_DIRECT_DELTA,various papers,do not invent Δ from incompatible averages
+CMRP H0,MOSEI,0.6591,0.7349,0.0758,missAvg(6) whole-modality vs Full,ours_unified,INTERNAL,Evidence Package v1 table1/4,seed42 PB
+CMRP H0+B3,MOSEI,0.6580,0.7326,0.0746,missAvg(6) whole-modality vs Full,ours_unified,INTERNAL,Evidence Package v1 table1/4,seed42 PB; slight ↓ vs H0
+CMRP H0,MOSI,1.1580,1.3158,0.1578,missAvg(6) vs Full,ours_unified,INTERNAL_UNPAIRED_vs_B3,stage3,not same run as mosi_final B3
+CMRP H0+B3,MOSI,1.1526,1.2837,0.1312,missAvg(6) vs Full,ours_unified,INTERNAL,mosi_final,seed42 PB

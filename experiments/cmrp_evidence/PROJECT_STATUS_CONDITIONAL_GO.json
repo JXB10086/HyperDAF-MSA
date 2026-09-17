@@ -1,0 +1,69 @@
+{
+  "project_status": "CONDITIONAL_GO",
+  "phase": "paper_validation",
+  "sole_baseline_version": true,
+  "no_training_until_explicit_go": true,
+  "date_locked": "2026-09-13",
+  "interpretation": "Sole baseline for all later experiments. Old schemes / intermediate runs are not new model baselines. New evidence must answer: relative to frozen CMRP-MSA, what conclusion changed?",
+  "frozen": {
+    "Evidence_Package": "v1 — DO NOT REVISE",
+    "core_model": "CMRP-MSA = H0+B3",
+    "lam_cons": 0.005,
+    "cons_form": "nsg-L2 ||sg(zhat_full)-zhat_miss||_2^2",
+    "RQ": "Cross-Missing Representation Stability",
+    "core_logic": "Missing Modality -> Representation Drift -> Cross-Missing Consistency -> More Stable Representation",
+    "F2": "auxiliary ablation only",
+    "F3": "failure analysis only",
+    "paper_mainline_forbidden": [
+      "Hyper-Guided Dynamic Fusion as core claim",
+      "absolute SOTA / beats EASE on MAE"
+    ]
+  },
+  "freeze_rules": [
+    "Evidence Package v1 frozen — do not modify",
+    "H0/B3 frozen — no redesign",
+    "F2 = auxiliary/ablation; F3 = failure analysis",
+    "Do not stack modules because a recent method reports lower absolute MAE",
+    "Do not start IEMOCAP yet",
+    "Do not start new training until explicit go for fair verification"
+  ],
+  "evidence_skeleton": {
+    "L1_problem": "Performance_full > Performance_missing",
+    "L2_diagnosis": "D_cross > 0 (especially text-related patterns)",
+    "L3_intervention": "D_cross(H0+B3) < D_cross(H0); DeltaMAE/DeltaCorr move in same direction (limited, pattern-dependent)"
+  },
+  "dataset_roles": {
+    "MOSEI": "primary experimental battlefield",
+    "MOSI": "trend / stability verification only",
+    "IEMOCAP": "deferred until fair verification of nearest neighbors"
+  },
+  "first_phase_judgment": "Under a unified missing setting, does CMRP's stability claim hold against nearest neighbors — NOT whether CMRP beats all methods on MAE",
+  "next_phase_plan": {
+    "order": [
+      "HME/CMAD/LNLN fair verification",
+      "core ablation completion (H0 / H0+Mask / H0+B3 / H0+B3+F2)",
+      "IEMOCAP",
+      "final manuscript"
+    ],
+    "step_1_fair_nearest": {
+      "priority": ["LNLN (first smoke)", "HME (novelty #2)", "CMAD (wave-3)"],
+      "goal": "Under a unified missing protocol, does the stability claim still hold",
+      "status": "Phase-2 audit DONE — await explicit go for LNLN only",
+      "audit_files": [
+        "experiments/fair_baseline/FAIR_BASELINE_PHASE2_METHOD_AUDIT.json",
+        "experiments/fair_baseline/FAIR_BASELINE_PHASE2_COMPARISON.csv"
+      ]
+    },
+    "step_2_core_ablation_complete": {
+      "required": ["H0", "H0+Mask", "H0+B3", "H0+B3+F2 (aux)"],
+      "primary_readout": "D_cross trajectory under B3"
+    },
+    "step_3_IEMOCAP": {
+      "when": "after steps 1-2"
+    },
+    "step_4_final_paper": {
+      "realistic_targets_now": ["ESWA", "KBS"],
+      "sprint_if_strong": "Information Fusion"
+    }
+  }
+}

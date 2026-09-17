@@ -1,0 +1,12 @@
+method,dataset,condition,MAE,Corr,status,feature_ecology,comparability,note
+EASE,MOSI,random missing rate avg (0-0.9),0.995,0.573,reported,BERT/MMSA,NOT fair vs CMRP,different features and protocol
+EASE,MOSEI,random missing rate avg (0-0.9),0.645,0.610,reported,BERT/MMSA,NOT fair vs CMRP,
+EASE,MOSI,inter-modal 6-cond avg,1.035,0.473,reported,BERT/MMSA,NOT fair vs CMRP,
+EASE,MOSEI,inter-modal 6-cond avg,0.682,0.487,reported,BERT/MMSA,NOT fair vs CMRP,
+RECAP,MOSI,random missing rate avg (0-0.9),1.030,0.544,reported,MMSA unaligned,NOT fair vs CMRP,
+RECAP,MOSEI,random missing rate avg (0-0.9),0.659,0.599,reported,MMSA unaligned,NOT fair vs CMRP,
+UMDF,MOSI,inter-modal Avg / Full,0.817 / 0.556,—,reported,GloVe+COVAREP74+Facet,NOT fair vs CMRP,feature stack closer to MultiBench but still reported-only
+HME,MOSI/MOSEI,fixed+random MR,—,—,reported,BERT-aligned (typical),NOT fair vs CMRP,primary metrics Acc/F1; no direct MAE table used here
+CMAD,MOSEI,fixed modality combinations,—,—,reported,BERT-aligned (typical),NOT fair vs CMRP,primary Acc/F1; no MOSI main MAE table used here
+CMRP H0+B3,MOSEI,randMean / missAvg (multi-seed),0.721 / 0.733,0.478 / 0.420,unified,MultiBench 300/74/35,internal,competitive at reported-number level only; DO NOT claim outperforms
+CMRP H0+B3,MOSI,randMean / missAvg,1.267 / 1.284,— / 0.362,unified,MultiBench 300/5/20,internal,absolute MAE weak vs literature (audio dim=5 likely)

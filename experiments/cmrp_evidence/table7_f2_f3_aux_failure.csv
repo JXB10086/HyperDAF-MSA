@@ -1,0 +1,9 @@
+dataset,protocol,seed,variant,role,missAvg_MAE,missAvg_Corr,vs_F0_HB3,status,source,note
+MOSEI,B,42,F0 (=H0+B3),core / fusion-ablation baseline,0.7326,0.4181,=,unified,experiments/mosei/stage4_results.json,same as HB3
+MOSEI,B,42,F1 MaskGate,aux failed,0.7416,0.3673,worse MAE+Corr,unified,experiments/mosei/stage4_results.json,MaskGate hurts
+MOSEI,B,42,F2 GlobalQuery,aux keeper (not core claim),0.7263,0.4244,better MAE+Corr,unified,experiments/mosei/stage4_results.json,best fusion variant on seed42
+MOSEI,B,42,F3 HyperGuided,aux failed,0.7400,0.4094,worse MAE,unified,experiments/mosei/stage4_results.json,F3 fails vs F2 and F0
+MOSEI,B,42,F3n (normalized retry),aux failed,0.7412,,worse MAE,unified,experiments/mosei/stage4_r2_results.json,round-2 gates fail (L3_ge_F2=false)
+MOSI,B,42,HB3 (H0+B3),core,1.2837,,,unified,experiments/mosi_final/mosi_final_results.json,
+MOSI,B,42,F2nb (H0+F2 nocons),aux,1.3247,,worse than HB3,unified,experiments/mosi_final/mosi_final_results.json,fusion alone does not help MOSI
+MOSI,B,42,FINAL (H0+B3+F2),aux ladder,1.2815,,≈HB3,unified,experiments/mosi_final/mosi_final_results.json,no clear fusion gain on MOSI
