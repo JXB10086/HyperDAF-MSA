@@ -1,0 +1,202 @@
+﻿seed,variant,family,condition,metric,value
+43,H0,task,None,MAE,0.6646514268699916
+43,H0,task,None,Corr,0.5931944777321796
+43,H0,task,None,DeltaMAE,0.0
+43,H0,task,None,DeltaCorr,0.0
+43,H0,task,T missing,MAE,0.8052529078967838
+43,H0,task,T missing,Corr,0.25769186191126364
+43,H0,task,T missing,DeltaMAE,0.14060148102679226
+43,H0,task,T missing,DeltaCorr,0.33550261582091595
+43,H0,task,A missing,MAE,0.666627683289447
+43,H0,task,A missing,Corr,0.5942682281600346
+43,H0,task,A missing,DeltaMAE,0.0019762564194554244
+43,H0,task,A missing,DeltaCorr,-0.0010737504278549581
+43,H0,task,V missing,MAE,0.6697101565240375
+43,H0,task,V missing,Corr,0.597041181841637
+43,H0,task,V missing,DeltaMAE,0.005058729654045968
+43,H0,task,V missing,DeltaCorr,-0.0038467041094574217
+43,H0,task,T+A missing,MAE,0.8084865356830593
+43,H0,task,T+A missing,Corr,0.22669861472169897
+43,H0,task,T+A missing,DeltaMAE,0.1438351088130677
+43,H0,task,T+A missing,DeltaCorr,0.36649586301048065
+43,H0,task,T+V missing,MAE,0.8165521971590941
+43,H0,task,T+V missing,Corr,0.22925154770637662
+43,H0,task,T+V missing,DeltaMAE,0.15190077028910254
+43,H0,task,T+V missing,DeltaCorr,0.36394293002580297
+43,H0,task,A+V missing,MAE,0.676913706692878
+43,H0,task,A+V missing,Corr,0.5898959484280049
+43,H0,task,A+V missing,DeltaMAE,0.012262279822886413
+43,H0,task,A+V missing,DeltaCorr,0.0032985293041747354
+43,H0,task,missAvg,MAE,0.74059053120755
+43,H0,task,missAvg,Corr,0.4158078971281693
+43,H0,task,missAvg,DeltaMAE,0.07593910433755839
+43,H0,task,missAvg,DeltaCorr,0.17738658060401033
+43,H0,representation,T missing,absolute_l2,7.002884357697438
+43,H0,representation,T missing,cosine_drift,0.34424831466024114
+43,H0,representation,T missing,relational_drift_rms,0.5569163999724412
+43,H0,representation,T missing,legacy_D_cross,0.7259930999811405
+43,H0,representation,T missing,shared_reference_D_cross,0.7259930999811405
+43,H0,representation,A missing,absolute_l2,3.1849148844306963
+43,H0,representation,A missing,cosine_drift,0.08792225549723102
+43,H0,representation,A missing,relational_drift_rms,0.21442197560477316
+43,H0,representation,A missing,legacy_D_cross,0.330181981026484
+43,H0,representation,A missing,shared_reference_D_cross,0.330181981026484
+43,H0,representation,V missing,absolute_l2,3.4835280088505542
+43,H0,representation,V missing,cosine_drift,0.12296787288338756
+43,H0,representation,V missing,relational_drift_rms,0.33332920818458517
+43,H0,representation,V missing,legacy_D_cross,0.36113937755329284
+43,H0,representation,V missing,shared_reference_D_cross,0.36113937755329284
+43,H0,representation,T+A missing,absolute_l2,7.846293635855488
+43,H0,representation,T+A missing,cosine_drift,0.4230465193228278
+43,H0,representation,T+A missing,relational_drift_rms,0.5582413454190357
+43,H0,representation,T+A missing,legacy_D_cross,0.8134298310660655
+43,H0,representation,T+A missing,shared_reference_D_cross,0.8134298310660655
+43,H0,representation,T+V missing,absolute_l2,7.887834460669284
+43,H0,representation,T+V missing,cosine_drift,0.4362307552702221
+43,H0,representation,T+V missing,relational_drift_rms,0.6343062687293537
+43,H0,representation,T+V missing,legacy_D_cross,0.8177363925687114
+43,H0,representation,T+V missing,shared_reference_D_cross,0.8177363925687114
+43,H0,representation,A+V missing,absolute_l2,5.113515751800019
+43,H0,representation,A+V missing,cosine_drift,0.22339412794588923
+43,H0,representation,A+V missing,relational_drift_rms,0.4264135024604216
+43,H0,representation,A+V missing,legacy_D_cross,0.5301211562020317
+43,H0,representation,A+V missing,shared_reference_D_cross,0.5301211562020317
+43,H0,representation,mean(6),absolute_l2,5.753161849883914
+43,H0,representation,mean(6),cosine_drift,0.27296830759663315
+43,H0,representation,mean(6),relational_drift_rms,0.4539381167284351
+43,H0,representation,mean(6),legacy_D_cross,0.5964336397329543
+43,H0,representation,mean(6),shared_reference_D_cross,0.5964336397329543
+43,B3_POINT,task,None,MAE,0.6625399270189006
+43,B3_POINT,task,None,Corr,0.5939386723227281
+43,B3_POINT,task,None,DeltaMAE,0.0
+43,B3_POINT,task,None,DeltaCorr,0.0
+43,B3_POINT,task,T missing,MAE,0.8112808149544658
+43,B3_POINT,task,T missing,Corr,0.24884610142287886
+43,B3_POINT,task,T missing,DeltaMAE,0.14874088793556517
+43,B3_POINT,task,T missing,DeltaCorr,0.34509257089984924
+43,B3_POINT,task,A missing,MAE,0.655655136527287
+43,B3_POINT,task,A missing,Corr,0.5999303699690968
+43,B3_POINT,task,A missing,DeltaMAE,-0.006884790491613613
+43,B3_POINT,task,A missing,DeltaCorr,-0.005991697646368643
+43,B3_POINT,task,V missing,MAE,0.6574040965439686
+43,B3_POINT,task,V missing,Corr,0.6080779952252373
+43,B3_POINT,task,V missing,DeltaMAE,-0.005135830474932046
+43,B3_POINT,task,V missing,DeltaCorr,-0.014139322902509188
+43,B3_POINT,task,T+A missing,MAE,0.8187475991969911
+43,B3_POINT,task,T+A missing,Corr,0.22752398410597313
+43,B3_POINT,task,T+A missing,DeltaMAE,0.1562076721780905
+43,B3_POINT,task,T+A missing,DeltaCorr,0.366414688216755
+43,B3_POINT,task,T+V missing,MAE,0.8236317930888724
+43,B3_POINT,task,T+V missing,Corr,0.21786250401451834
+43,B3_POINT,task,T+V missing,DeltaMAE,0.16109186606997172
+43,B3_POINT,task,T+V missing,DeltaCorr,0.3760761683082098
+43,B3_POINT,task,A+V missing,MAE,0.6474914057739921
+43,B3_POINT,task,A+V missing,Corr,0.6144093985118377
+43,B3_POINT,task,A+V missing,DeltaMAE,-0.01504852124490852
+43,B3_POINT,task,A+V missing,DeltaCorr,-0.02047072618910961
+43,B3_POINT,task,missAvg,MAE,0.7357018076809294
+43,B3_POINT,task,missAvg,Corr,0.4194417255415903
+43,B3_POINT,task,missAvg,DeltaMAE,0.07316188066202887
+43,B3_POINT,task,missAvg,DeltaCorr,0.17449694678113778
+43,B3_POINT,representation,T missing,absolute_l2,7.103666791072003
+43,B3_POINT,representation,T missing,cosine_drift,0.15675430296523568
+43,B3_POINT,representation,T missing,relational_drift_rms,0.3414426355975223
+43,B3_POINT,representation,T missing,legacy_D_cross,0.7401871800992579
+43,B3_POINT,representation,T missing,shared_reference_D_cross,0.7364412735467684
+43,B3_POINT,representation,A missing,absolute_l2,3.5587862392081693
+43,B3_POINT,representation,A missing,cosine_drift,0.04358887833437088
+43,B3_POINT,representation,A missing,relational_drift_rms,0.13348924314659294
+43,B3_POINT,representation,A missing,legacy_D_cross,0.37081806177708115
+43,B3_POINT,representation,A missing,shared_reference_D_cross,0.36894144212635177
+43,B3_POINT,representation,V missing,absolute_l2,3.8698218722723023
+43,B3_POINT,representation,V missing,cosine_drift,0.052651501811616694
+43,B3_POINT,representation,V missing,relational_drift_rms,0.1816196141308916
+43,B3_POINT,representation,V missing,legacy_D_cross,0.4032273223631038
+43,B3_POINT,representation,V missing,shared_reference_D_cross,0.40118668735942786
+43,B3_POINT,representation,T+A missing,absolute_l2,8.170664980650747
+43,B3_POINT,representation,T+A missing,cosine_drift,0.21037985418922442
+43,B3_POINT,representation,T+A missing,relational_drift_rms,0.3495057933119937
+43,B3_POINT,representation,T+A missing,legacy_D_cross,0.8513661534863415
+43,B3_POINT,representation,T+A missing,shared_reference_D_cross,0.8470575973012903
+43,B3_POINT,representation,T+V missing,absolute_l2,8.255179924329662
+43,B3_POINT,representation,T+V missing,cosine_drift,0.19686935234590827
+43,B3_POINT,representation,T+V missing,relational_drift_rms,0.38393979408182793
+43,B3_POINT,representation,T+V missing,legacy_D_cross,0.8601724333524756
+43,B3_POINT,representation,T+V missing,shared_reference_D_cross,0.8558193107356616
+43,B3_POINT,representation,A+V missing,absolute_l2,6.048978196636119
+43,B3_POINT,representation,A+V missing,cosine_drift,0.10139326389757017
+43,B3_POINT,representation,A+V missing,relational_drift_rms,0.23527244042303358
+43,B3_POINT,representation,A+V missing,legacy_D_cross,0.630290840707396
+43,B3_POINT,representation,A+V missing,shared_reference_D_cross,0.6271010926900589
+43,B3_POINT,representation,mean(6),absolute_l2,6.167849667361501
+43,B3_POINT,representation,mean(6),cosine_drift,0.12693952559065436
+43,B3_POINT,representation,mean(6),relational_drift_rms,0.27087825344864364
+43,B3_POINT,representation,mean(6),legacy_D_cross,0.6426769986309426
+43,B3_POINT,representation,mean(6),shared_reference_D_cross,0.6394245672932598
+43,REL,task,None,MAE,0.6591065700342242
+43,REL,task,None,Corr,0.5995706787591503
+43,REL,task,None,DeltaMAE,0.0
+43,REL,task,None,DeltaCorr,0.0
+43,REL,task,T missing,MAE,0.7988433249289943
+43,REL,task,T missing,Corr,0.29308662781393174
+43,REL,task,T missing,DeltaMAE,0.1397367548947701
+43,REL,task,T missing,DeltaCorr,0.3064840509452185
+43,REL,task,A missing,MAE,0.658488132356442
+43,REL,task,A missing,Corr,0.6061188544284626
+43,REL,task,A missing,DeltaMAE,-0.0006184376777822465
+43,REL,task,A missing,DeltaCorr,-0.006548175669312317
+43,REL,task,V missing,MAE,0.6565392867882858
+43,REL,task,V missing,Corr,0.6029409579429915
+43,REL,task,V missing,DeltaMAE,-0.0025672832459384676
+43,REL,task,V missing,DeltaCorr,-0.0033702791838412516
+43,REL,task,T+A missing,MAE,0.8058965605810596
+43,REL,task,T+A missing,Corr,0.24835283094678492
+43,REL,task,T+A missing,DeltaMAE,0.1467899905468354
+43,REL,task,T+A missing,DeltaCorr,0.3512178478123653
+43,REL,task,T+V missing,MAE,0.8152504100330092
+43,REL,task,T+V missing,Corr,0.24421534538745682
+43,REL,task,T+V missing,DeltaMAE,0.156143839998785
+43,REL,task,T+V missing,DeltaCorr,0.35535533337169345
+43,REL,task,A+V missing,MAE,0.6559185004958993
+43,REL,task,A+V missing,Corr,0.6037097181571678
+43,REL,task,A+V missing,DeltaMAE,-0.0031880695383249558
+43,REL,task,A+V missing,DeltaCorr,-0.004139039398017519
+43,REL,task,missAvg,MAE,0.7318227025306151
+43,REL,task,missAvg,Corr,0.43307072244613254
+43,REL,task,missAvg,DeltaMAE,0.0727161324963908
+43,REL,task,missAvg,DeltaCorr,0.1664999563130177
+43,REL,representation,T missing,absolute_l2,8.371984871059617
+43,REL,representation,T missing,cosine_drift,0.12773191806795997
+43,REL,representation,T missing,relational_drift_rms,0.20689888331664685
+43,REL,representation,T missing,legacy_D_cross,0.7262811634196195
+43,REL,representation,T missing,shared_reference_D_cross,0.8679285475926721
+43,REL,representation,A missing,absolute_l2,3.9267802008530635
+43,REL,representation,A missing,cosine_drift,0.04584903372800568
+43,REL,representation,A missing,relational_drift_rms,0.09014695952072051
+43,REL,representation,A missing,legacy_D_cross,0.3406535650377648
+43,REL,representation,A missing,shared_reference_D_cross,0.40709159045705484
+43,REL,representation,V missing,absolute_l2,4.412498706975344
+43,REL,representation,V missing,cosine_drift,0.042074706906389966
+43,REL,representation,V missing,relational_drift_rms,0.1096634089786792
+43,REL,representation,V missing,legacy_D_cross,0.38279031124001645
+43,REL,representation,V missing,shared_reference_D_cross,0.45744631087883664
+43,REL,representation,T+A missing,absolute_l2,9.499635830265419
+43,REL,representation,T+A missing,cosine_drift,0.17383419804301728
+43,REL,representation,T+A missing,relational_drift_rms,0.2278623908356552
+43,REL,representation,T+A missing,legacy_D_cross,0.8241064298524746
+43,REL,representation,T+A missing,shared_reference_D_cross,0.9848327792998063
+43,REL,representation,T+V missing,absolute_l2,9.847050242333884
+43,REL,representation,T+V missing,cosine_drift,0.17362426590303864
+43,REL,representation,T+V missing,relational_drift_rms,0.24058403674228312
+43,REL,representation,T+V missing,legacy_D_cross,0.8542451063159323
+43,REL,representation,T+V missing,shared_reference_D_cross,1.0208494337399834
+43,REL,representation,A+V missing,absolute_l2,6.291938834795793
+43,REL,representation,A+V missing,cosine_drift,0.08106701021996474
+43,REL,representation,A+V missing,relational_drift_rms,0.14535202121394838
+43,REL,representation,A+V missing,legacy_D_cross,0.545834318561328
+43,REL,representation,A+V missing,shared_reference_D_cross,0.6522889635531636
+43,REL,representation,mean(6),absolute_l2,7.058314781047187
+43,REL,representation,mean(6),cosine_drift,0.10736352214472938
+43,REL,representation,mean(6),relational_drift_rms,0.1700846167679889
+43,REL,representation,mean(6),legacy_D_cross,0.6123184824045226
+43,REL,representation,mean(6),shared_reference_D_cross,0.7317396042535863

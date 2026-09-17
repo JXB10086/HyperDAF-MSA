@@ -20,20 +20,25 @@ seed-dependent effect. Average representation drift is nearly unchanged and
 average task degradation is not consistently improved. This result must not be
 rewritten as a stable multi-seed robustness gain.
 
-### CMRP v2: active hypothesis, isolated code
+### CMRP v2 R1: frozen failed gate
 
 - Entry document: `experiments/cmrp_v2/README.md`
 - Machine-readable state: `experiments/cmrp_v2/PROJECT_STATE.json`
 - Frozen R1 design: `experiments/cmrp_v2/R1_PREREGISTRATION.md`
+- Frozen adjudication: `experiments/cmrp_v2/R1_ADJUDICATION.md`
+- Frozen evidence: `experiments/cmrp_v2/r1_relational/frozen_r1/`
 - Runner: `experiments/cmrp_v2/r1_relational/run_r1.py`
 
-R1 tests only whether relational representation consistency is a better target
-than pointwise full-vector matching. It compares `H0`, frozen pointwise B3, and
-REL under a strict paired protocol. No R1 GPU result exists at the time of this
-handoff.
+R1 completed on MOSEI Protocol B for seeds 42/43/44. All pairing audits passed
+and nine validation-selected checkpoints were saved. REL reduced relational
+drift from `0.396129` to `0.168113` with improvement in 3/3 seeds, but mean
+missAvg DeltaMAE worsened from `0.071505` to `0.077713` and improved in only
+1/3 seeds. The preregistered automatic gate therefore failed.
 
-Do not add balanced pattern sampling, Group-DRO, fusion, attention,
-reconstruction, imputation, HME, CMAD, or IEMOCAP before R1 is adjudicated.
+The locked decision is `STOP_BEFORE_R2`. Do not change the gate, tune
+`lambda_rel` from the R1 test results, launch R2, or add modules to rescue the
+failed hypothesis. A future task-relevant stability study requires a new name,
+preregistration, development boundary, and output directory.
 
 ## External Baseline Status
 
@@ -60,8 +65,10 @@ and evaluation functions. It does not copy or modify them:
 - `experiments/stage3_lib.py`
 - `utils/missing_simulator.py`
 
-Large datasets, checkpoints, caches, external repositories, and runtime results
-must not be committed.
+Large datasets, checkpoints, caches, external repositories, and complete runtime
+directories must not be committed. The curated lightweight R1 evidence under
+`r1_relational/frozen_r1/` is intentionally tracked; checkpoints remain under
+the git-ignored `r1_relational/results/` and are covered by the evidence manifest.
 
 ## Current Safe Actions
 
@@ -72,12 +79,14 @@ python -m unittest discover experiments/cmrp_v2/tests -v
 python experiments/cmrp_v2/r1_relational/run_r1.py --audit-only
 ```
 
-With a GPU and explicit research GO:
+Read and verify the frozen decision:
 
-```bash
-python experiments/cmrp_v2/r1_relational/run_r1.py \
-  --output-dir experiments/cmrp_v2/r1_relational/results
+```text
+experiments/cmrp_v2/R1_ADJUDICATION.md
+experiments/cmrp_v2/r1_relational/frozen_r1/R1_REPORT.md
+experiments/cmrp_v2/r1_relational/frozen_r1/EVIDENCE_MANIFEST.json
 ```
 
-After R1 completes, stop and inspect `R1_REPORT.md`, `summary.json`, pairing
-hashes, seed directions, and pattern heterogeneity. Never advance automatically.
+Do not start R2. The next research question, if pursued, is task-relevant
+cross-missing representation stability rather than another generic consistency
+loss. It is an untested direction, not a conclusion from R1.

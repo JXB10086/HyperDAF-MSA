@@ -16,7 +16,7 @@
 | 轨道 | 状态 | 模型 | 产物位置 |
 |---|---|---|---|
 | CMRP **v1** | `FROZEN` 已冻结 | `H0+B3`，`lambda_cons=0.005` | `experiments/cmrp_evidence/` |
-| CMRP **v2** | `CODE_DESIGN_READY_NO_GPU_RUN` | `H0` / `B3_POINT` / `REL` | `experiments/cmrp_v2/` |
+| CMRP **v2 R1** | `FROZEN_R1_GATE_FAILED` / `STOP_BEFORE_R2` | `H0` / `B3_POINT` / `REL` | `experiments/cmrp_v2/r1_relational/frozen_r1/` |
 
 外部 baseline：
 
@@ -24,13 +24,13 @@
 |---|---|---|
 | LNLN native 三 seed 复现（MOSI） | 已完成，**test-driven checkpoint selection** | `experiments/fair_baseline/lnln_native/` |
 
-**当前阻塞 / 待决：**
+**当前裁决 / 待决：**
 
-1. CMRP v2 的 R1 只有设计与代码，**尚未在任何 GPU 上运行**。
-2. 封账的三 seed 配对运行（`experiments/cmrp_evidence/paired_multiseed/`）**没有保存模型权重**，
-   因此无法对主证据做逐样本的后续分析。
-3. `run_r1.py` 同样不保存权重 —— 跑完 R1 将再次无法复查表征。
-4. 尚无「同数据集 + 同缺失协议 + 同 checkpoint 选择规则」的 head-to-head 对比表。
+1. CMRP v2 R1 已在 MOSEI Protocol B 上完成严格配对三 seed 运行；9 个最佳验证集权重全部保存。
+2. REL 将 relational drift 从 `0.3961` 降至 `0.1681`（3/3 seed），但 missAvg DeltaMAE
+   从 `0.0715` 恶化至 `0.0777`（仅 1/3 seed 改善），预注册自动门槛失败。
+3. 正式裁决为 **`STOP_BEFORE_R2`**；不得事后修改门槛、根据 test 调 `lambda_rel`，或启动 R2。
+4. 尚无「同数据集 + 同缺失协议 + 同 checkpoint 选择规则」的外部 baseline head-to-head 对比表。
 
 ---
 
@@ -50,6 +50,15 @@
 
 因此：**不得**把它写成「稳定的多 seed 鲁棒性增益」。
 
+CMRP v2 R1 新增冻结结论：
+
+> REL consistently stabilizes generic relational geometry, but this geometric
+> improvement does not translate into stable task robustness under the tested
+> protocol.
+
+它不等于“表征稳定性与鲁棒性无关”，也不等于“REL 对几何目标无效”。完整边界见
+`experiments/cmrp_v2/R1_ADJUDICATION.md`。
+
 ---
 
 ## 3. 目录地图
@@ -59,7 +68,7 @@
 | `configs/` `datasets/` `models/` `losses/` `utils/` | 核心代码 | ACTIVE |
 | `train.py` `test.py` | 通用入口 | ACTIVE |
 | `experiments/cmrp_evidence/` | v1 冻结证据包（表格、结论、配对三 seed 报告） | **FROZEN** |
-| `experiments/cmrp_v2/` | v2 活跃轨道（REL 假设 + R1 runner + 单测） | ACTIVE |
+| `experiments/cmrp_v2/` | v2 R1（REL 机制筛查 + 冻结证据） | **FROZEN / STOP_BEFORE_R2** |
 | `experiments/fair_baseline/` | LNLN 复现与协议审计 | ACTIVE |
 | `experiments/cmrp_phase0_audit/` | 2026-09-17 漂移↔退化关系审计（零 GPU） | NEW |
 | `experiments/mosei/` | MOSEI 主实验 + **现存唯一的模型权重** | 见 INDEX |
@@ -82,25 +91,26 @@ python -m unittest discover experiments/cmrp_v2/tests -v
 python experiments/cmrp_v2/r1_relational/run_r1.py --audit-only
 ```
 
-**有 GPU 且明确 research GO 时（R1 全量，seeds 42/43/44）：**
+R1 已完成并冻结。不要重跑覆盖 `frozen_r1/`，不要启动 R2。结果核对入口：
 
-```bash
-python experiments/cmrp_v2/r1_relational/run_r1.py \
-  --output-dir experiments/cmrp_v2/r1_relational/results
+```text
+experiments/cmrp_v2/R1_ADJUDICATION.md
+experiments/cmrp_v2/r1_relational/frozen_r1/R1_REPORT.md
+experiments/cmrp_v2/r1_relational/frozen_r1/EVIDENCE_MANIFEST.json
 ```
-
-R1 跑完**必须停下人工审查**，不自动进入 R2/HME/CMAD/IEMOCAP。
 
 ---
 
 ## 5. 冻结规则摘要
 
-以下内容在 R1 裁决前**不得**引入：balanced all-pattern sampling、Group-DRO、F2、F3、
-attention、新 fusion、reconstruction、imputation、HME、CMAD、IEMOCAP，
-也不得用 test 结果调 `lambda`。
+R1 已裁决失败。不得通过 balanced all-pattern sampling、Group-DRO、F2/F3、attention、
+新 fusion、reconstruction、imputation、HME、CMAD、IEMOCAP 或 test-driven lambda tuning
+挽救原 REL 假设。
 
 - F2 仅作辅助/消融；F3 仅作失败分析。
 - `H0+B3`、`lambda_cons=0.005`、Evidence Package v1 保持冻结。
+- REL 作为“几何稳定不充分推出任务稳定”的机制结果冻结。
+- 下一候选问题为 Task-Relevant Cross-Missing Representation Stability，但仍是未验证假设，必须另行预注册。
 - LNLN 的指标**不得**并入 CMRP 的 whole-modality 七模式表。
 
 英文原文与完整规则见 `PROJECT_HANDOFF.md`。

@@ -1,0 +1,34 @@
+{
+  "package": "CMRP v2 R1 frozen evidence",
+  "freeze_date": "2026-09-17",
+  "decision": "STOP_BEFORE_R2",
+  "source_commit": "246e4b37e743d5020ad19e7fe0d1fd97c87a4f81",
+  "runtime_seconds": 3667.2484815120697,
+  "pairing_audits_passed": 3,
+  "checkpoint_count": 9,
+  "checkpoint_location": "../results/checkpoints (git-ignored; retained locally and remotely)",
+  "files": [
+    {"path": "metrics_long.csv", "bytes": 36890, "sha256": "817c7133beac6ca4f9911d387aa9a43b21839bb1e85dcae64503510f5b651f50"},
+    {"path": "R1_REPORT.md", "bytes": 1342, "sha256": "cecfb003f68ed2e4f923eec87045417cb8a33fe324a091ed3d5d1d31ddf1d809"},
+    {"path": "RUN_CONFIG.json", "bytes": 844, "sha256": "4f2d9529833d8b68ecdaacbc845f773050aa54f456c1e5b6f422a6a6eaeb87b3"},
+    {"path": "seed42/metrics_long.csv", "bytes": 12322, "sha256": "19200c80d63629829505767887ed12d985466569f76462372d40ce93cb170190"},
+    {"path": "seed42/results.json", "bytes": 42353, "sha256": "6b5c82f61036f63d82efa94ce8ace9ec3d833a0fb437657a5b5b5d850e08989b"},
+    {"path": "seed43/metrics_long.csv", "bytes": 12332, "sha256": "34864912043a7b58cf4822333edddc770286c1548a1fda45fffb2a8da0050491"},
+    {"path": "seed43/results.json", "bytes": 42330, "sha256": "12e2b25ec8ae478fc4f2ec94a85ae2dd411e7a6d258f59fbb3e299a89785f93d"},
+    {"path": "seed44/metrics_long.csv", "bytes": 12330, "sha256": "2be0292f48e8d0d7ad78414f7f52a602d898d820857acacac3d9a7b1fca3d447"},
+    {"path": "seed44/results.json", "bytes": 42364, "sha256": "980ebb5f2a544208b475b40484fbb0f81a70ccff055d2e3517bd2696a71335fc"},
+    {"path": "summary.csv", "bytes": 44901, "sha256": "af442f2789fa9a96718d2be0bf6f9235dbb97f4b023031ea0e8c98d41d3dfea0"},
+    {"path": "summary.json", "bytes": 387746, "sha256": "538749c1fbaef29ef936c78130fbf05271f3b31915a2a8035420ae894c954247"}
+  ],
+  "checkpoint_sha256": {
+    "H0_seed42_best_val_mae.pth": "3cc8725d4c954cf01820208166161fa1375f7323036db4027b5db2bc54842849",
+    "H0_seed43_best_val_mae.pth": "841a863b86cad71cab45b4094c37f8b07fee0486e62899a86a3c66d770011be7",
+    "H0_seed44_best_val_mae.pth": "6973a19dabddd35ec5e5b6ea118681c1a9e1f1d303d4eb3d1e2eff0e64d507",
+    "B3_POINT_seed42_best_val_mae.pth": "f498fe1967830baf175269c3a295217f490215df68006a4a12f4415531d002cb",
+    "B3_POINT_seed43_best_val_mae.pth": "e9aefb3c084889cb8c2cf196922cc86664d9b4c9b6c2da325c4c576f3b74a4d0",
+    "B3_POINT_seed44_best_val_mae.pth": "0cbabb1b8de1530fe6283eed6f1c7c2e8f578c9fee59785d3b05beabf29da5b7",
+    "REL_seed42_best_val_mae.pth": "19dd880e0e12628567fb9c073152cb07cbcca9a53d44f6f73844c286afb0be5f",
+    "REL_seed43_best_val_mae.pth": "07e386984c41c19c7e13564a6011cce79d09056c951852978bede4f2aca6fe82",
+    "REL_seed44_best_val_mae.pth": "88c84a7d6011dfba644063b24063db77b69432672065732ab6dac2c0db0432fd"
+  }
+}

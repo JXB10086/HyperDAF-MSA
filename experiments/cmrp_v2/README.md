@@ -18,9 +18,10 @@ CMRP v2 tests a new falsifiable hypothesis:
 > information that is unavailable after modality loss. Preserving sample-to-sample
 > representation relations may be a more appropriate consistency target.
 
-This is initially called **relational representation consistency**, not
-task-relevant consistency. The current experiment does not establish that all
-preserved relations encode sentiment.
+R1 is now complete and frozen. It established that REL can preserve generic
+relational geometry without producing stable task-robustness improvement. This
+does not establish that representation stability is irrelevant; it shows that
+generic relational geometry is not sufficient under the tested protocol.
 
 ## Project Map
 
@@ -29,22 +30,39 @@ experiments/cmrp_v2/
 |-- README.md                     # human entry point
 |-- PROJECT_STATE.json            # machine-readable handoff state
 |-- R1_PREREGISTRATION.md         # frozen R1 question, protocol, gates
+|-- R1_ADJUDICATION.md            # frozen result, claim boundary, STOP decision
 |-- cmrp_v2/
 |   |-- __init__.py
 |   |-- losses.py                 # pointwise and relational objectives
 |   `-- metrics.py                # L2, cosine, relational and shared-scale drift
 |-- r1_relational/
 |   |-- __init__.py
-|   `-- run_r1.py                 # strict paired H0/B3/REL experiment
+|   |-- run_r1.py                 # strict paired H0/B3/REL experiment
+|   `-- frozen_r1/                # tracked report, summaries, hashes, seed results
 `-- tests/
     |-- test_losses_metrics.py             # CPU-only mathematical checks
     |-- test_r1_checkpoint.py              # checkpoint provenance round-trip
     `-- test_r1_checkpoint_integration.py  # training-loop wiring, bit-identical
 ```
 
-Runtime results belong under `r1_relational/results/`, and the validation-selected
+Complete runtime results belong under `r1_relational/results/`, and the validation-selected
 weights under `r1_relational/results/checkpoints/`. Neither replaces any v1
-artifact. Both are git-ignored (`results/`, `checkpoints/`, `*.pth`).
+artifact. Both are git-ignored (`results/`, `checkpoints/`, `*.pth`). A curated
+lightweight copy is frozen and tracked under `r1_relational/frozen_r1/`.
+
+## R1 Adjudication
+
+R1 completed for MOSEI Protocol B, seeds 42/43/44. All pairing audits passed.
+
+| Metric | H0 mean +/- SD | REL mean +/- SD | REL - H0 | Improved seeds |
+|---|---:|---:|---:|---:|
+| Relational drift RMS | 0.396129 +/- 0.050133 | 0.168113 +/- 0.015464 | -0.228016 | 3/3 |
+| missAvg DeltaMAE | 0.071505 +/- 0.006680 | 0.077713 +/- 0.009850 | +0.006208 | 1/3 |
+| missAvg DeltaCorr | 0.177449 +/- 0.003213 | 0.172998 +/- 0.010643 | -0.004451 | 2/3 |
+
+The preregistered automatic gate failed because mean DeltaMAE worsened. The
+decision is `STOP_BEFORE_R2`. See `R1_ADJUDICATION.md` for the allowed and
+forbidden claims.
 
 ## R1 Comparison
 
@@ -90,7 +108,7 @@ It exists because the sealed CMRP v1 paired run never called `torch.save`, so
 per-sample representation audits were impossible once a process exited. Keeping
 the selected weights makes those audits repeatable.
 
-## Commands
+## Verification Commands
 
 CPU-safe code/config audit:
 
@@ -104,15 +122,8 @@ CPU unit tests:
 python -m unittest discover experiments/cmrp_v2/tests -v
 ```
 
-Full GPU run after explicit research GO:
-
-```bash
-python experiments/cmrp_v2/r1_relational/run_r1.py \
-  --output-dir experiments/cmrp_v2/r1_relational/results
-```
-
-The full command runs seeds 42/43/44 and stops after R1. It does not launch R2,
-R3, HME, CMAD, or IEMOCAP.
+The full GPU run is complete. Do not rerun it into `results/` or overwrite
+`frozen_r1/`. Verify the evidence against `frozen_r1/EVIDENCE_MANIFEST.json`.
 
 ## Decision Rule
 
@@ -122,10 +133,11 @@ paired multi-seed evidence is directionally consistent for both:
 - relational representation drift; and
 - task robustness (`missAvg DeltaMAE` and `missAvg DeltaCorr`).
 
-If relational drift improves without task robustness, the result does not
-support the claim that preserving generic sample relations preserves sentiment.
-If REL is not stable across seeds, the consistency research line stops before
-adding more modules.
+The observed outcome is exactly the preregistered mismatch case: relational
+drift improved consistently, while task robustness did not. The generic REL
+line is stopped before adding more modules. A separately preregistered future
+study may ask which task-relevant representation structure should be preserved;
+R1 does not establish that such a method will succeed.
 
 ## Existing Dependencies
 

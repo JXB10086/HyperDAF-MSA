@@ -31,12 +31,12 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 | 项 | 值 |
 |---|---|
 | 主机名 | `autodl-container-094a4c8b58-fbbfcbde`（会随实例重建变化） |
-| GPU | **当前为「无卡开机」**：`nvidia-smi` 报 `No devices were found`，`/proc/driver/nvidia` 存在 |
+| GPU | NVIDIA GeForce RTX 4090（R1 运行完成后空闲） |
 | Python | conda `base`，Python **3.12.3** |
-| PyTorch | **2.5.1+cu124**，`torch.cuda.is_available() = False`（无卡模式的预期表现） |
+| PyTorch | **2.5.1+cu124**；R1 启动审计时 `torch.cuda.is_available() = True` |
 | conda envs | 仅 `base`（`/root/miniconda3`），无其他环境 |
 | 项目路径 | `/root/HyperDAF-MSA` |
-| 数据盘 | `/autodl-fs` → `/autodl-fs/data`（7.0 TB，**已用 98%，余 196 GB**） |
+| 数据盘 | `/autodl-fs` → `/autodl-fs/data`（最近核对约 96%，余约 302 GB） |
 
 **启用 GPU 后需先确认：** `nvidia-smi -L` 能列出卡、`torch.cuda.is_available()` 为 `True`，
 再开始任何训练。
@@ -48,7 +48,7 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 | 挂载点 | 容量 | 已用 | 可用 |
 |---|---|---|---|
 | `/` | 30 G | 7.9 G | 23 G |
-| `/autodl-fs` | 7.0 T | 98% | **196 G** |
+| `/autodl-fs` | 7.0 T | 96% | **约 302 G** |
 
 `/autodl-fs/data` 下已被本项目占用的部分：
 
@@ -68,39 +68,38 @@ RethinkingTMSC 项目），**对本实例未授权**，不要误用。
 
 | 项 | 本地（Windows） | 远端（Linux） |
 |---|---|---|
-| HEAD | `3db00f8`（已推送） | 待同步（最后已知 `b270f17`） |
-| `origin/main` | `3db00f8` | 待同步 |
-| `experiments/cmrp_v2/` | 有（R1 runner、单测） | **不存在** |
+| HEAD | `246e4b3` 后新增封口改动 | `246e4b3`（R1 运行提交） |
+| `origin/main` | `246e4b3` 后新增封口改动 | `246e4b3` |
+| `experiments/cmrp_v2/` | 有（含本地回收的完整 R1 结果） | 有（完整 R1 结果与 9 个 checkpoint） |
 | `experiments/cmrp_evidence/` | 有 | 有 |
-| `experiments/fair_baseline/lnln_native/` | 有（派生汇总） | **不存在**（原始产物在 `/autodl-fs`） |
-| `experiments/cmrp_phase0_audit/` | 有 | 不存在 |
+| `experiments/fair_baseline/lnln_native/` | 有（派生汇总） | 有（同步后的派生汇总；原始产物在 `/autodl-fs`） |
+| `experiments/cmrp_phase0_audit/` | 有 | 有 |
 | `experiments/mosei/*.pt` 权重 | 有 | 未确认 |
 | `.venv/` | Windows 版（`Scripts/`） | **同一份 Windows venv，在 Linux 无效** |
 
-远端工作树有 **136 个文件显示为 modified，但内容并无变化**：
-`git diff --stat --ignore-cr-at-eol` 输出为空，是纯 CRLF/LF 换行差异。
-这些伪改动可以直接 `git checkout -- .` 丢弃，`scripts/sync_run_r1_to_server.ps1`
-在丢弃前会先用上面的命令确认没有真实改动。
+首次同步时会与新提交重叠的 57 个未跟踪文件已先备份到
+`/root/HyperDAF-MSA-untracked-backup-20260917-162210`。其中 41 个原始哈希不同，
+但去除 CRLF 后全部与提交版本一致；备份未删除。
 
 仓库地址（本地与远端相同）：`https://github.com/JXB10086/HyperDAF-MSA.git`
 
-### 4.1 同步通道：远端无法直连 GitHub
+### 4.1 同步通道：网络不稳定，保留 bundle 回退
 
-**远端 `git fetch/pull` 不可用**，实测报错：
+远端曾出现以下 GitHub TLS 错误：
 
 ```text
 fatal: unable to access 'https://github.com/JXB10086/HyperDAF-MSA.git/':
 GnuTLS recv error (-110): The TLS connection was non-properly terminated.
 ```
 
-因此不要把「远端 pull」写进任何流程。唯一被验证过的同步通道是本地脚本：
+2026-09-17 正式同步时网络 fetch 成功，但不能据此假定长期稳定。使用本地脚本：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync_run_r1_to_server.ps1
 ```
 
 它按顺序做：本地单测 → `git commit` + `push` → 服务器诊断 →
-**本地 `git bundle main` 打包后 scp 上去、在服务器上从 bundle fetch 并 fast-forward**
+优先网络 fetch，失败则以 **本地 `git bundle main` + scp** 回退；合并前备份会被覆盖的未跟踪文件
 → 比对两侧 SHA-256（不一致则 scp 直传整棵 `experiments/cmrp_v2`）→
 服务器 `py_compile` + 关键符号计数比对 → 打印 `SYNC_PASS` / `SYNC_FAIL`。
 
@@ -130,12 +129,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\sync_run_r1_to_serve
 
 | 级别 | 问题 |
 |---|---|
-| 高 | 远端没有 `cmrp_v2/`，R1 目前**只能在本地跑或需先同步**。 |
-| 高 | **远端无法直连 GitHub**（`GnuTLS recv error -110`），只能走 `scripts/sync_run_r1_to_server.ps1` 的 bundle 通道；见 4.1。 |
-| 已修（待同步） | `run_r1.py` 原本没有 `torch.save`，运行结束即无法复查表征；现已按 variant/seed 保存验证集最优权重，并把路径/字节数/SHA-256 写入结果 JSON。`run_paired_multiseed.py`（v1 冻结产物）仍不保存权重。 |
-| 高 | 唯一现存的权重（`experiments/mosei/*.pt`）**不在 git 中**，且只存在于本地。 |
-| 中 | 远端工作树 CRLF 伪修改，`git pull` 易冲突。 |
+| 冻结 | R1 已完成且门槛失败，正式状态为 `STOP_BEFORE_R2`；不得启动 R2。 |
+| 中 | 远端 GitHub 网络曾出现 `GnuTLS recv error -110`；同步脚本保留 bundle 回退。 |
+| 已修 | R1 已按 variant/seed 保存 9 个验证集最优权重，路径/字节数/SHA-256 均有记录；v1 `run_paired_multiseed.py` 仍无权重。 |
+| 中 | R1 checkpoint 不入 git；现已同时保存在本地与远端，哈希纳入冻结 manifest。 |
+| 低 | 首次同步的未跟踪重叠副本仍保留在远端备份目录，内容差异仅为换行符。 |
 | 中 | 远端 `.venv` 是 Windows 版，Linux 下不可用；重跑需在 `base` 环境或缺环境时新建。 |
-| 中 | `/autodl-fs` 已用 98%。 |
+| 中 | `/autodl-fs` 最近核对约用 96%，仍需控制大型运行产物。 |
 | 中 | `third_party/LNLN` 没有版本号/commit 记录，复现声明缺少可核验的上游修订号。 |
 | 低 | git 每次操作都会警告 `unable to access 'C:\Users\Dell/.config/git/ignore'` —— HOME 在 C 盘、仓库在 F 盘导致的权限噪声，不影响功能。 |

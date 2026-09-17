@@ -1,7 +1,7 @@
 {
   "project": "CMRP v2 relational consistency track",
-  "status": "CODE_DESIGN_READY_NO_GPU_RUN",
-  "current_stage": "R1",
+  "status": "FROZEN_R1_GATE_FAILED",
+  "current_stage": "STOP_BEFORE_R2",
   "research_question": "Is relational representation consistency more stable than pointwise full-vector consistency under irreversible whole-modality loss?",
   "v1_boundary": {
     "status": "FROZEN_UNCHANGED",
@@ -38,9 +38,24 @@
       "cosine_drift",
       "legacy_D_cross",
       "shared_reference_D_cross"
-    ]
+    ],
+    "run_status": "complete",
+    "run_commit": "246e4b37e743d5020ad19e7fe0d1fd97c87a4f81",
+    "runtime_sec": 3667.2484815120697,
+    "pairing_audits_passed": true,
+    "checkpoint_count": 9,
+    "automatic_gate_pass": false,
+    "decision": "STOP_BEFORE_R2",
+    "primary_result": {
+      "relational_drift_rms": {"H0": 0.396129, "REL": 0.168113, "REL_minus_H0": -0.228016, "improved_seeds": "3/3"},
+      "missAvg_DeltaMAE": {"H0": 0.071505, "REL": 0.077713, "REL_minus_H0": 0.006208, "improved_seeds": "1/3"},
+      "missAvg_DeltaCorr": {"H0": 0.177449, "REL": 0.172998, "REL_minus_H0": -0.004451, "improved_seeds": "2/3"}
+    },
+    "supported_conclusion": "REL stabilizes generic relational geometry, but the improvement does not translate into stable task robustness under the tested protocol.",
+    "evidence": "experiments/cmrp_v2/r1_relational/frozen_r1",
+    "adjudication": "experiments/cmrp_v2/R1_ADJUDICATION.md"
   },
-  "prohibited_until_r1_decision": [
+  "prohibited_after_r1_decision": [
     "balanced all-pattern sampling",
     "Group-DRO",
     "F2",
@@ -51,8 +66,16 @@
     "imputation",
     "HME",
     "CMAD",
-    "IEMOCAP"
+    "IEMOCAP",
+    "post-hoc R1 gate changes",
+    "test-driven lambda_rel tuning",
+    "R2 under the failed REL hypothesis"
   ],
+  "next_hypothesis": {
+    "name": "Task-Relevant Cross-Missing Representation Stability",
+    "status": "UNTESTED_RESEARCH_DIRECTION",
+    "boundary": "Must be separately scoped and preregistered; R1 does not establish that it will work."
+  },
   "handoff": {
     "read_first": [
       "experiments/cmrp_v2/README.md",
@@ -60,6 +83,6 @@
       "experiments/cmrp_v2/PROJECT_STATE.json"
     ],
     "entrypoint": "experiments/cmrp_v2/r1_relational/run_r1.py",
-    "next_action": "Run CPU tests and audit-only now; run full R1 only after GPU GO."
+    "next_action": "Preserve the frozen R1 evidence and do not start R2. Any future work requires a separately preregistered task-relevant hypothesis."
   }
 }

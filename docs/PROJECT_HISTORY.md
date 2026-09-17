@@ -37,8 +37,9 @@
 | 09-13 | CONDITIONAL GO 锁定 | — | `PROJECT_STATUS_CONDITIONAL_GO.json` | 在明确 GO 前禁止训练 |
 | 09-13 ~ 09-16 | 公平 baseline（LNLN）与协议审计 | MOSI | `experiments/fair_baseline/` | 复现完成，标注 test-selection |
 | 09-14 ~ 09-16 | 严格配对多种子 H0 vs H0+B3 | MOSEI | `cmrp_evidence/paired_multiseed/` | 效应小且依赖 seed |
-| 09-16 | CMRP v2 轨道建立（R1 预注册） | — | `experiments/cmrp_v2/` | 设计冻结，未运行 |
+| 09-16 | CMRP v2 轨道建立（R1 预注册） | — | `experiments/cmrp_v2/` | 设计冻结 |
 | 09-17 | 状态核对 + Phase-0 审计 | MOSEI | `experiments/cmrp_phase0_audit/`、`README.md`、`docs/` | 见第 2.8 节 |
+| 09-17 | CMRP v2 R1 严格配对运行与裁决 | MOSEI | `experiments/cmrp_v2/r1_relational/frozen_r1/` | **STOP_BEFORE_R2** |
 
 ---
 
@@ -156,10 +157,8 @@ pointwise B3 的效果**小且依赖 seed**。
 `r1_relational/run_r1.py`、`tests/test_losses_metrics.py`。
 
 R1 比较 `H0` / `B3_POINT`（冻结比较器）/ `REL`（关系一致性），
-并预注册了配对契约、决策门与禁止项。**截至目前无任何 R1 GPU 结果。**
-
-同日本地 git 提交 `1b906e2`「新增 CMRP v2 关系一致性研究轨道」——
-**该提交尚未推送**（远端 `origin/main` 仍为 `b270f17`）。
+并预注册了配对契约、决策门与禁止项。设计提交为 `1b906e2`；R1 运行前
+已同步到远端，checkpoint instrumentation 也经过逐位一致性测试。
 
 ### 2.8 阶段八：状态核对与 Phase-0 审计（09-17，本次）
 
@@ -173,8 +172,33 @@ R1 比较 `H0` / `B3_POINT`（冻结比较器）/ `REL`（关系一致性），
 
    **局限：** 聚合级观测，非逐样本；有效自由度仅 3 seeds × 2 变体，功效低。
    因此这是**削弱**核心前提，不是**否证**。
-3. 发现 `run_paired_multiseed.py` 与 `run_r1.py` **均不保存模型权重**
-   （只有内存内 `copy.deepcopy`），因此主证据与未来的 R1 都无法做逐样本复查。
+3. 发现 `run_paired_multiseed.py` 与初版 `run_r1.py` 均不保存模型权重。
+   R1 在正式运行前补充了纯 instrumentation 式 checkpoint 保存，并通过测试证明不改变
+   参数、随机摘要或验证 MAE；v1 的封账运行仍无权重。
+
+### 2.9 阶段九：CMRP v2 R1 运行与封口（09-17）
+
+在远端 RTX 4090 上按冻结协议完成 MOSEI Protocol B、seeds 42/43/44、
+`H0/B3_POINT/REL` 共 9 次训练。运行使用
+`CUBLAS_WORKSPACE_CONFIG=:4096:8`；9 个验证集最优 checkpoint 全部保存，
+三组 pairing audit 全部通过。总运行时间 `3667.25 s`。
+
+REL 相对 H0 的预注册主结果：
+
+| 指标 | H0 | REL | REL - H0 | 改善 seed |
+|---|---:|---:|---:|---:|
+| relational drift RMS | 0.396129 | 0.168113 | -0.228016 | 3/3 |
+| missAvg DeltaMAE | 0.071505 | 0.077713 | +0.006208 | 1/3 |
+| missAvg DeltaCorr | 0.177449 | 0.172998 | -0.004451 | 2/3 |
+
+REL 明显且一致地稳定了跨样本关系几何，但没有带来稳定的任务鲁棒性改善；
+平均 DeltaMAE 反而恶化，导致预注册自动门槛失败。正式裁决：
+**`STOP_BEFORE_R2`**。
+
+证据入口：`experiments/cmrp_v2/R1_ADJUDICATION.md`、
+`experiments/cmrp_v2/r1_relational/frozen_r1/`。不得事后修改门槛、基于 test
+调 `lambda_rel` 或启动 R2。下一候选问题是尚未验证的
+**Task-Relevant Cross-Missing Representation Stability**。
 
 ---
 
@@ -186,14 +210,16 @@ R1 比较 `H0` / `B3_POINT`（冻结比较器）/ `REL`（关系一致性），
    （`conclusions.json`: `paper_mainline`）。
 2. **方法 → 诊断**：严格配对多种子显示效应小且依赖 seed 后，
    项目从「提出更强方法」转向「先验证机制是否成立」，v2 的 R1 即为此设计。
+3. **通用几何稳定 → 任务相关稳定**：R1 证明普通 REL 可以显著降低 relational drift，
+   但未能稳定改善任务退化。后续问题从“如何保持几何”收敛为“哪些可保持结构与任务相关”。
 
 ---
 
 ## 4. 未验证 / 存疑（诚实清单）
 
 - `stage2/stage3/stage3b` 使用 MOSI 属**推断**（依据 test 规模 686），未在文档中找到明示。
-- 封账的 `paired_multiseed` 与 R1 均未保存权重 —— 已由代码确证（无 `torch.save`），
-  但远端是否另有副本**尚未确认**（SSH 审批不稳定）。
+- 封账的 v1 `paired_multiseed` 未保存权重；v2 R1 已保存 9 个 checkpoint，
+  哈希见 `frozen_r1/EVIDENCE_MANIFEST.json`。
 - `run_paired_multiseed.py` 与 v1 早期 runner 的协议是否逐字节一致，未做代码级 diff。
 - LNLN 复现与我们数字的差距（MAE +0.0232 / Corr −0.0319）尚**未量化归因**
   （我们自己也用了 test-driven selection，故无法用该差距推断泄漏幅度）。
@@ -213,3 +239,4 @@ R1 比较 `H0` / `B3_POINT`（冻结比较器）/ `REL`（关系一致性），
 | `experiments/cmrp_evidence/paired_multiseed/` | 2.6 |
 | `experiments/cmrp_v2/` | 2.7 |
 | `experiments/cmrp_phase0_audit/` | 2.8 |
+| `experiments/cmrp_v2/r1_relational/frozen_r1/` | 2.9 |

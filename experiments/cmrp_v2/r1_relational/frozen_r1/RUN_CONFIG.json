@@ -1,0 +1,44 @@
+{
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.5.1+cu124",
+    "cuda_available": true,
+    "cuda_version": "12.4",
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "config": {
+    "dataset": "MOSEI",
+    "protocol": "B",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "variants": [
+      "H0",
+      "B3_POINT",
+      "REL"
+    ],
+    "epochs": 30,
+    "batch_size": 32,
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "lambda_point": 0.005,
+    "lambda_rel": 0.005,
+    "checkpoint_selection": "validation MAE only",
+    "checkpoint_artifacts": "best validation-MAE weights saved per variant/seed under checkpoints/",
+    "split_sizes": {
+      "train": 16265,
+      "valid": 1869,
+      "test": 4643
+    },
+    "dims": [
+      300,
+      74,
+      35,
+      50
+    ],
+    "metric_block_size": 512
+  }
+}

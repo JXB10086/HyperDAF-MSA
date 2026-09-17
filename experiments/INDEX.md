@@ -18,10 +18,10 @@
 |---|---:|---:|---|---|---|
 | `cmrp_evidence/` | 0.32 MB | 30 | **FROZEN** | v1 证据包：table1–8、`conclusions.json`、`PACKAGE_MANIFEST.json`、`PROJECT_STATUS_CONDITIONAL_GO.json`、`PAPER_EVIDENCE_AUDIT.md`、`paired_multiseed/` | **保留** |
 | `cmrp_evidence/paired_multiseed/` | — | — | **FROZEN** | 严格配对三 seed（H0 vs H0+B3，MOSEI 42/43/44）：报告、明细 CSV、summary、train log | **保留**；注意**无权重** |
-| `cmrp_v2/` | 0.07 MB | 16 | **ACTIVE** | v2 轨道：`PROJECT_STATE.json`、`R1_PREREGISTRATION.md`、`losses.py`、`metrics.py`、`run_r1.py`、CPU 单测 | **保留**，唯一活跃开发对象 |
+| `cmrp_v2/` | — | — | **FROZEN** | v2 R1：预注册、REL runner、`STOP_BEFORE_R2` 裁决、冻结结果与 9 个本地/远端 checkpoint | **保留**；不得覆盖 `frozen_r1/` 或启动 R2 |
 | `cmrp_phase0_audit/` | <0.01 MB | 1 | ACTIVE | 2026-09-17 零 GPU 漂移↔退化审计记录 | 保留 |
 | `fair_baseline/` | 2.92 MB | 65 | **ACTIVE** | LNLN 复现与协议审计：method inventory、reported-vs-ours、`lnln_native/` 三 seed、smoke、sha256 | **保留** |
-| `mosei/` | 90.31 MB | 117 | FROZEN + ARTIFACT | MOSEI 主线结果；**仓库内唯一现存的模型权重**（`*.pt`，约 30 个） | 结果 CSV/JSON 保留；权重**务必保留** |
+| `mosei/` | 90.31 MB | 117 | FROZEN + ARTIFACT | MOSEI v1 主线结果与模型权重（`*.pt`，约 30 个） | 结果 CSV/JSON 保留；权重**务必保留** |
 | `mosi_final/` | 11.68 MB | 18 | SUPERSEDED | MOSI 收尾阶梯（HB3/F2nb/FINAL）+ 权重 | 保留（证据链一环） |
 | `mosi_multiseed/` | 0.01 MB | 7 | SUPERSEDED | MOSI 多种子（42/43/44） | 保留 |
 | `mosei/multiseed/` | — | — | SUPERSEDED | MOSEI 多种子（42/43/44） | 保留 |
@@ -66,7 +66,8 @@
 
 | 目标 | 理由 |
 |---|---|
-| `experiments/mosei/*.pt`、`experiments/mosi_final/*.pt` 等 | **仓库内唯一现存的模型权重**。封账的配对三 seed 与 R1 都不保存权重，这些是唯一的逐样本复盘依据。 |
+| `experiments/mosei/*.pt`、`experiments/mosi_final/*.pt` 等 | v1 历史模型权重。v1 封账配对三 seed 不保存权重，因此这些仍是 v1 逐样本复盘的重要依据。 |
+| `experiments/cmrp_v2/r1_relational/results/checkpoints/` | v2 R1 的 9 个验证集最优权重；本地与远端均保留，哈希见 `frozen_r1/EVIDENCE_MANIFEST.json`。 |
 | `experiments/cmrp_evidence/` | 冻结证据包，任何覆盖都会破坏论文可追溯性。 |
 | `experiments/fair_baseline/` | LNLN 复现与协议审计的唯一记录。 |
 | `third_party/LNLN/`、`data/mmsa/` | 外部 baseline 复现的数据与源码依据。 |
@@ -76,8 +77,8 @@
 
 ## 5. 结构性提醒（不是清理项）
 
-1. **权重不在 git 中**（`*.pt` 被 `.gitignore` 排除）。若本地磁盘损坏，
-   唯一现存的模型权重会一并丢失 —— 建议单独备份到服务器 `/autodl-fs`。
+1. **权重不在 git 中**（`*.pt` / `*.pth` 被 `.gitignore` 排除）。v2 R1 checkpoint
+   已同时保存在本地与远端并记录哈希；v1 历史权重仍建议单独备份到服务器 `/autodl-fs`。
 2. `experiments/stage2|3|3b` 建议整体移入 `experiments/archive/`，
    但**会破坏** `run_stage*.py` 里写死的输出路径；本次**未移动**，
    只做标注，避免制造隐性故障。
