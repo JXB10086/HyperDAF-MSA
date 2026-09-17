@@ -109,4 +109,3 @@ into a recovery ratio.
 
 T0 can nominate a mechanism for a separately preregistered T1. It cannot start
 T1, create TASK_REL, or overturn the frozen `STOP_BEFORE_R2` decision.
-
