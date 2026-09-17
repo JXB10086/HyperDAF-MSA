@@ -70,4 +70,3 @@ The consistency method line remains stopped. Research Review may recommend:
   publication readiness still requires novelty review and external validation;
 - `PAPER_READY`: prohibited at this stage because no independent confirmatory
   dataset has been audited under this protocol.
-

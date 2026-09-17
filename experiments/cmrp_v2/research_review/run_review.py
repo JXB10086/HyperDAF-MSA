@@ -253,6 +253,17 @@ def mean_by(rows, key, group_key, group_value):
 def write_report(path, t0, sample_rows, group_rows, claims, manifest):
     text = [row for row in group_rows if row["condition_group"] == "text_missing"]
     other = [row for row in group_rows if row["condition_group"] == "other_missing"]
+    text_error_worse = sum(row["REL_minus_H0_DeltaMAE"] > 0 for row in text)
+    text_drift_lower = sum(row["REL_minus_H0_prediction_drift"] < 0 for row in text)
+
+    def shape_mean(variant, is_text, key):
+        selected = [
+            row
+            for row in sample_rows
+            if row["variant"] == variant and row["text_missing"] == is_text
+        ]
+        return float(np.mean([row[key] for row in selected]))
+
     t0_outcome = t0["adjudication"]["mechanism"]
     lines = [
         "# CMRP Research Review",
@@ -278,6 +289,29 @@ def write_report(path, t0, sample_rows, group_rows, claims, manifest):
         "",
         "Negative prediction-drift difference means REL is more output-stable; positive DeltaMAE difference means worse robustness degradation. Cluster intervals are retained in `grouped_paired_audit.csv`; seeds, not clips, remain the replication unit.",
         "",
+        f"For text-missing conditions, REL has worse DeltaMAE than H0 in {text_error_worse}/3 seeds and lower prediction drift in {text_drift_lower}/3 seeds. The within-sample drift-change/error-change correlations by seed are "
+        + ", ".join(f"{row['drift_change_error_change_corr']:+.3f}" for row in text)
+        + ".",
+        "",
+        "## Output Shape",
+        "",
+        "Mean missing/full prediction standard-deviation ratio and full-to-missing slope:",
+        "",
+        "| Variant | Text-missing SD ratio | Text-missing slope | Other-missing SD ratio | Other-missing slope |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for variant in VARIANTS:
+        lines.append(
+            f"| {variant} | {shape_mean(variant, True, 'prediction_std_ratio'):.4f} | "
+            f"{shape_mean(variant, True, 'full_to_missing_slope'):.4f} | "
+            f"{shape_mean(variant, False, 'prediction_std_ratio'):.4f} | "
+            f"{shape_mean(variant, False, 'full_to_missing_slope'):.4f} |"
+        )
+    lines.extend(
+        [
+        "",
+        "Text removal contracts predictions for every variant. REL is not uniquely more contracted than H0, so REL-specific output collapse is not supported as the explanation for its robustness result.",
+        "",
         "## Evidence Synthesis",
         "",
         "- REL strongly achieves its relational-geometry objective and modestly reduces frozen-head output drift.",
@@ -301,7 +335,8 @@ def write_report(path, t0, sample_rows, group_rows, claims, manifest):
         "The consistency method line remains closed. The current evidence is coherent enough for an analysis/mechanism paper candidate, but not yet paper-ready. Do not train a new method. First perform literature/novelty and independent-evidence gap review; only a single preregistered external confirmation may be considered afterward.",
         "",
         f"Frozen T0 evidence: {manifest['file_count']} files, {manifest['total_bytes']} bytes.",
-    ]
+        ]
+    )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -340,4 +375,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
