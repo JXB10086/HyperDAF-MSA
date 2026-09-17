@@ -24,7 +24,7 @@
   "checkpoint_sha256": {
     "H0_seed42_best_val_mae.pth": "3cc8725d4c954cf01820208166161fa1375f7323036db4027b5db2bc54842849",
     "H0_seed43_best_val_mae.pth": "841a863b86cad71cab45b4094c37f8b07fee0486e62899a86a3c66d770011be7",
-    "H0_seed44_best_val_mae.pth": "6973a19dabddd35ec5e5b6ea118681c1a9e1f1d303d4eb3d1e2eff0e64d507",
+    "H0_seed44_best_val_mae.pth": "6973a19dabddd35ec5e5d5b6ea118681c1a9e1f1d303d4eb3d1e2eff0e64d507",
     "B3_POINT_seed42_best_val_mae.pth": "f498fe1967830baf175269c3a295217f490215df68006a4a12f4415531d002cb",
     "B3_POINT_seed43_best_val_mae.pth": "e9aefb3c084889cb8c2cf196922cc86664d9b4c9b6c2da325c4c576f3b74a4d0",
     "B3_POINT_seed44_best_val_mae.pth": "0cbabb1b8de1530fe6283eed6f1c7c2e8f578c9fee59785d3b05beabf29da5b7",
